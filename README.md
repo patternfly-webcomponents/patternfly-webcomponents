@@ -2,7 +2,7 @@
 This project will provide a set of core web components for the PatternFly reference implementation.
 
 ![image](https://cloud.githubusercontent.com/assets/12733153/19731570/d719d1d0-9b6b-11e6-8c70-2b93d1d60788.png)
-
+---
 ![image](https://cloud.githubusercontent.com/assets/12733153/19732159/e0ee31cc-9b6d-11e6-9dfa-9e954ab611c2.png)
 
 ## Getting started

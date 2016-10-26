@@ -14,8 +14,9 @@
       var remainingBar = this.querySelector('.progress-bar-remaining');
 
       usedBar.setAttribute("style", "width: " + percentageUsed + "%;");
-      //this.querySelector('pf-tooltip').innerText = percentageUsed + "% Used";
+      usedBar.querySelector('.tooltiptext').innerText = percentageUsed + "% Used";
       remainingBar.setAttribute("style", "width: " + (100 - percentageUsed) + "%;");
+      remainingBar.querySelector('.tooltiptext').innerText = (100 - percentageUsed) + "% Available";
 
       var errorThreshold = this.getAttribute('threshold-error');
       var warnThreshold = this.getAttribute('threshold-warning');

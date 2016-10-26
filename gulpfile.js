@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
-  $ = require('gulp-load-plugins')();
+  $ = require('gulp-load-plugins')(),
+  webpack = require('webpack-stream');
 
 gulp.task('js', function () {
   return gulp.src('src/*.js')
@@ -42,15 +43,22 @@ gulp.task('fonts', function(){
 gulp.task('vulcanize', ['copy'], function () {
   return gulp.src([
         'dist/pf-tabs.html',
-        'dist/pf-utilization-bar-chart.html',
-        'src/pf-alert.html',
-        'src/pf-icon.html'])
+        'dist/pf-utilization-bar-chart.html'])
       .pipe($.vulcanize({dest: 'dist', inlineScripts: true, inlineCss: true}))
       .pipe(gulp.dest('dist'));
 });
 
+gulp.task('webpack', function() {
+  return gulp.src([
+    'dist/pf-alert.js',
+    'dist/pf-icon.js'])
+    .pipe(webpack())
+    .pipe($.rename('pf.js'))
+    .pipe(gulp.dest('dist/'));
+});
+
 // gulp.task('build', ['copy', 'js', 'css', 'img', 'fonts']);
-gulp.task('build', ['js', 'copy', 'css', 'img', 'fonts', 'vulcanize']);
+gulp.task('build', ['js', 'copy', 'css', 'img', 'fonts', 'vulcanize', 'webpack']);
 
 
 gulp.task('serve', function(){

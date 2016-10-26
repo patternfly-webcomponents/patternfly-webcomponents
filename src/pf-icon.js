@@ -1,22 +1,23 @@
-(function(){
-  var doc = (document._currentScript || document.currentScript).ownerDocument;
-  var dangerTemplate = doc.querySelector('.pf-icon-danger-template');
-  var infoTemplate = doc.querySelector('.pf-icon-info-template');
-  var successTemplate = doc.querySelector('.pf-icon-success-template');
-  var warningTemplate = doc.querySelector('.pf-icon-warning-template');
+import {default as tmpl} from './pf-icon-tmpl';
 
-  // PfIcon Element
-  class PfIcon extends HTMLElement {
-    attachedCallback() {
-      var template = warningTemplate;
-      switch (this.getAttribute("type")) {
-        case "danger": template = dangerTemplate; break;
-        case "info": template = infoTemplate; break;
-        case "success": template = successTemplate; break;
-        case "warning": template = warningTemplate; break;
-      }
-      this.appendChild(document.importNode(template.content, true));
+// PfIcon Element
+export class PfIcon extends HTMLElement {
+  // Fires when an instance was inserted into the document.
+  attachedCallback() {
+    switch (this.getAttribute("type")) {
+      case "danger": this._template = tmpl.danger; break;
+      case "info": this._template = tmpl.info; break;
+      case "success": this._template = tmpl.success; break;
+      case "warning": this._template = tmpl.warning; break;
     }
-  }
+    this.innerHTML = this._template;
+  };
+
+  // Fires when an instance of the element is created.
+  createdCallback() {
+    this._template = tmpl.warning;
+  };
+}
+(function() {
   document.registerElement('pf-icon', PfIcon);
-})();
+}());

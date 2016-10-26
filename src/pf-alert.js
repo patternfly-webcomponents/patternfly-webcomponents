@@ -1,34 +1,35 @@
-(function(){
-  var doc = (document._currentScript || document.currentScript).ownerDocument;
-  var dangerTemplate = doc.querySelector('.pf-alert-danger-template');
-  var infoTemplate = doc.querySelector('.pf-alert-info-template');
-  var successTemplate = doc.querySelector('.pf-alert-success-template');
-  var warningTemplate = doc.querySelector('.pf-alert-warning-template');
+import {default as tmpl} from './pf-alert-tmpl';
 
-  // PfAlert Element
-  class PfAlert extends HTMLDivElement {
-    attachedCallback() {
-      var template = warningTemplate;
-      switch (this.getAttribute("type")) {
-        case "danger":
-          this.className = "alert alert-danger";
-          template = dangerTemplate;
-          break;
-        case "info":
-          this.className = "alert alert-info";
-          template = infoTemplate;
-          break;
-        case "success":
-          this.className = "alert alert-success";
-          template = successTemplate;
-          break;
-        case "warning":
-          this.className = "alert alert-warning";
-          template = warningTemplate;
-          break;
-      }
-      this.insertBefore(document.importNode(template.content, true), this.firstChild);
+// PfAlert Element
+export class PfAlert extends HTMLElement {
+  // Fires when an instance was inserted into the document.
+  attachedCallback() {
+    switch (this.getAttribute("type")) {
+      case "danger":
+        this.className = "alert alert-danger";
+        this._template = tmpl.danger;
+        break;
+      case "info":
+        this.className = "alert alert-info";
+        this._template = tmpl.info;
+        break;
+      case "success":
+        this.className = "alert alert-success";
+        this._template = tmpl.success;
+        break;
+      case "warning":
+        this.className = "alert alert-warning";
+        this._template = tmpl.warning;
+        break;
     }
-  }
+    this.innerHTML = this._template + this.innerHTML;
+  };
+
+  // Fires when an instance of the element is created.
+  createdCallback() {
+    this._template = tmpl.warning;
+  };
+}
+(function() {
   document.registerElement('pf-alert', PfAlert);
-})();
+}());

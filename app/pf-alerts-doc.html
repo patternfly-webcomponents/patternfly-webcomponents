@@ -3,10 +3,21 @@
     <head>
         <title>Alerts Doc Page</title>
         <script src="../dist/webcomponents.js"></script>
-
         <link rel="stylesheet" href="../dist/css/patternfly.css">
         <link rel="stylesheet" href="../dist/css/patternfly-additions.css">
-        <link rel="import" href="../dist/pf-alert.html">
+        <script src="../dist/pf.js"></script>
+        <!-- Expecting these styles to be included in patternfly-additions.css -->
+        <style>
+            pf-alert {
+                display: block;
+            }
+            pf-alert.alert .pficon {
+                font-size: 22px;
+                position: absolute;
+                left: 13px;
+                top: 10px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -27,7 +38,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <pf-alert type="danger">
                         <strong>Hey there is a problem!</strong> Yeah this is really messed up and you should <a href="#" class="alert-link">know about it</a>.
                     </pf-alert>

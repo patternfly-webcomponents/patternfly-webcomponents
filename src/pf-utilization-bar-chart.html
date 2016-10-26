@@ -1,0 +1,67 @@
+<style>
+    .progress {
+        overflow: visible;
+    }
+
+    .mytooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+    }
+
+    .mytooltip .tooltiptext {
+        visibility: hidden;
+        width: 60px;
+        color: #fff;
+        text-align: center;
+
+        /* Position the tooltip */
+        position: absolute;
+        top: -43px;
+        z-index: 1;
+    }
+
+    .mytooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+
+    .arrow_box {
+        position: relative;
+        background: #393f44;
+        border: 4px solid #393f44;
+    }
+    .arrow_box:after, .arrow_box:before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .arrow_box:after {
+        border-color: rgba(57, 63, 68, 0);
+        border-top-color: #393f44;
+        border-width: 10px;
+        margin-left: -10px;
+    }
+    .arrow_box:before {
+        border-color: rgba(57, 63, 68, 0);
+        border-top-color: #393f44;
+        border-width: 16px;
+        margin-left: -16px;
+    }
+</style>
+
+<template class="utilization-bar-chart-template">
+    <div class="progress">
+        <div class="progress-bar progress-bar-used mytooltip">
+            <span class="tooltiptext arrow_box">33% Used</span>
+        </div>
+        <div class="progress-bar progress-bar-remaining"></div>
+    </div>
+</template>
+
+<script src="pf-utilization-bar-chart.js"></script>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Basic Pf-Tabs Demo</title>
+        <script src="../dist/webcomponents.js"></script>
+
+        <link rel="stylesheet" href="../dist/css/patternfly.css">
+        <link rel="stylesheet" href="../dist/css/patternfly-additions.css">
+        <link rel="import" href="../dist/pf-alert.html">
+
+        <link rel="import" href="../dist/pf-tabs.html">
+    </head>
+    <body>
+        <div class="container">
+            <div style="float: right">
+                <a href="../index.html"><span class="fa fa-angle-double-left"></span> Back</a>
+            </div>
+            <div class="page-header">
+                <h1>Tabs</h1>
+            </div>
+            <pf-alert type="warning">
+                These examples are included for development testing purposes. For official documentation, see
+                <a href="https://www.patternfly.org" class="alert-link">https://www.patternfly.org</a> and
+                <a href="http://getbootstrap.com" class="alert-link">http://getbootstrap.com</a>
+            </pf-alert>
+            <div class="row">
+                <div class="col-sm-10">
+                    <h3>Example</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <pf-tabs>
+                        <pf-tab title="Tab1" active="true">
+                            <p>Tab1 content here</p>
+                        </pf-tab>
+                        <pf-tab title="Tab2">
+                            <p>Tab2 content here</p>
+                        </pf-tab>
+                    </pf-tabs>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <h3>Code</h3>
+                </div>
+                <div class="col-sm-6">
+                    <pre>
+&lt;pf-tabs>
+    &lt;pf-tab title="Tab1" active="true">
+        &lt;p>Tab1 content here&lt;/p>
+    &lt;/pf-tab>
+    &lt;pf-tab title="Tab2">
+        &lt;p>Tab2 content here&lt;/p>
+    &lt;/pf-tab>
+&lt;/pf-tabs>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

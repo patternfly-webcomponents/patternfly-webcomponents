@@ -1,0 +1,108 @@
+<html><head><meta charset="UTF-8"><style>
+  pf-alert {
+    display: block;
+  }
+  pf-alert.alert .pficon {
+    font-size: 22px;
+    position: absolute;
+    left: 13px;
+    top: 10px;
+  }
+</style>
+
+<!-- Danger Template -->
+<template class="pf-alert-danger-template">
+  <pf-icon type="danger"></pf-icon>
+</template>
+
+<!-- Info Template -->
+<template class="pf-alert-info-template">
+  <pf-icon type="info"></pf-icon>
+</template>
+
+<!-- Success Template -->
+<template class="pf-alert-success-template">
+  <pf-icon type="success"></pf-icon>
+</template>
+
+<!-- Warning Template -->
+<template class="pf-alert-warning-template">
+  <pf-icon type="warning"></pf-icon>
+</template>
+
+
+</head><body><div hidden="" by-vulcanize=""><template class="pf-icon-danger-template">
+  <span class="pficon pficon-error-circle-o"></span>
+</template>
+
+<!-- Info Template -->
+<template class="pf-icon-info-template">
+  <span class="pficon pficon-info"></span>
+</template>
+
+<!-- Success Template -->
+<template class="pf-icon-success-template">
+  <span class="pficon pficon-ok"></span>
+</template>
+
+<!-- Warning Template -->
+<template class="pf-icon-warning-template">
+  <span class="pficon pficon-warning-triangle-o"></span>
+</template>
+
+<script>(function(){
+  var doc = (document._currentScript || document.currentScript).ownerDocument;
+  var dangerTemplate = doc.querySelector('.pf-icon-danger-template');
+  var infoTemplate = doc.querySelector('.pf-icon-info-template');
+  var successTemplate = doc.querySelector('.pf-icon-success-template');
+  var warningTemplate = doc.querySelector('.pf-icon-warning-template');
+
+  // PfIcon Element
+  class PfIcon extends HTMLElement {
+    attachedCallback() {
+      var template = warningTemplate;
+      switch (this.getAttribute("type")) {
+        case "danger": template = dangerTemplate; break;
+        case "info": template = infoTemplate; break;
+        case "success": template = successTemplate; break;
+        case "warning": template = warningTemplate; break;
+      }
+      this.appendChild(document.importNode(template.content, true));
+    }
+  }
+  document.registerElement('pf-icon', PfIcon);
+})();</script>
+<script>(function(){
+  var doc = (document._currentScript || document.currentScript).ownerDocument;
+  var dangerTemplate = doc.querySelector('.pf-alert-danger-template');
+  var infoTemplate = doc.querySelector('.pf-alert-info-template');
+  var successTemplate = doc.querySelector('.pf-alert-success-template');
+  var warningTemplate = doc.querySelector('.pf-alert-warning-template');
+
+  // PfAlert Element
+  class PfAlert extends HTMLDivElement {
+    attachedCallback() {
+      var template = warningTemplate;
+      switch (this.getAttribute("type")) {
+        case "danger":
+          this.className = "alert alert-danger";
+          template = dangerTemplate;
+          break;
+        case "info":
+          this.className = "alert alert-info";
+          template = infoTemplate;
+          break;
+        case "success":
+          this.className = "alert alert-success";
+          template = successTemplate;
+          break;
+        case "warning":
+          this.className = "alert alert-warning";
+          template = warningTemplate;
+          break;
+      }
+      this.insertBefore(document.importNode(template.content, true), this.firstChild);
+    }
+  }
+  document.registerElement('pf-alert', PfAlert);
+})();</script></div></body></html>

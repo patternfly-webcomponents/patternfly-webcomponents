@@ -7,16 +7,25 @@
   class PfUtilizationBarChart extends HTMLElement {
     attachedCallback() {
       this.appendChild(document.importNode(utilBarChartTemplate.content, true));
-
-      var percentageUsed = Math.round(100 * (this.getAttribute('used') / this.getAttribute('total')));
-
       var usedBar = this.querySelector('.progress-bar-used');
       var remainingBar = this.querySelector('.progress-bar-remaining');
 
+      var chartTitle = this.getAttribute('chart-title');
+      if(chartTitle) {
+        this.querySelector('.progress-description').innerText = chartTitle;
+      }
+
+      var usedValue = this.getAttribute('used');
+      var totalValue = this.getAttribute('total');
+      var units = this.getAttribute('units') !== null ? this.getAttribute('units') : "";
+      usedBar.querySelector('#labelTopRight').innerText = usedValue + " of " + totalValue + " " + units;
+
+      var percentageUsed = Math.round(100 * (usedValue / totalValue));
+
       usedBar.setAttribute("style", "width: " + percentageUsed + "%;");
-      usedBar.querySelector('.tooltiptext').innerText = percentageUsed + "% Used";
+      //usedBar.querySelector('.tooltiptext').innerText = percentageUsed + "% Used";
       remainingBar.setAttribute("style", "width: " + (100 - percentageUsed) + "%;");
-      remainingBar.querySelector('.tooltiptext').innerText = (100 - percentageUsed) + "% Available";
+      //remainingBar.querySelector('.tooltiptext').innerText = (100 - percentageUsed) + "% Available";
 
       var errorThreshold = this.getAttribute('threshold-error');
       var warnThreshold = this.getAttribute('threshold-warning');

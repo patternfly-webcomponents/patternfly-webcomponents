@@ -1,68 +1,13 @@
-<html><head><meta charset="UTF-8"><style>
-    .progress {
-        overflow: visible;
-    }
-
-    .mytooltip {
-        position: relative;
-        display: inline-block;
-    }
-
-    .mytooltip .tooltiptext {
-        visibility: hidden;
-        opacity: 0.9;
-        width: 83px;
-        color: #fff;
-        text-align: center;
-
-        /* Position the tooltip */
-        position: relative;
-        bottom: 35px;
-        white-space: nowrap;
-        z-index: 1;
-    }
-
-    .mytooltip:hover .tooltiptext {
-        visibility: visible;
-    }
-
-    .arrow_box {
-        position: relative;
-        background: #393f44;
-        border: 4px solid #393f44;
-    }
-    .arrow_box:after, .arrow_box:before {
-        top: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-    }
-
-    .arrow_box:after {
-        border-color: rgba(57, 63, 68, 0);
-        border-top-color: #393f44;
-        border-width: 8px;
-        margin-left: -8px;
-    }
-    .arrow_box:before {
-        border-color: rgba(57, 63, 68, 0);
-        border-top-color: #393f44;
-        border-width: 14px;
-        margin-left: -14px;
-    }
-</style>
-
-<template class="utilization-bar-chart-template">
-    <div class="progress">
-        <div class="progress-bar progress-bar-used mytooltip">
-            <span class="tooltiptext arrow_box"></span>
-        </div>
-        <div class="progress-bar progress-bar-remaining mytooltip">
-            <span class="tooltiptext arrow_box"></span>
+<html><head><meta charset="UTF-8"><template class="utilization-bar-chart-template">
+    <div class="utilization-bar-chart-pf">
+        <div class="progress-description"></div>
+        <div class="progress progress-label-top-right">
+            <div class="progress">
+                <div class="progress-bar progress-bar-used">
+                    <span><strong id="labelTopRight">8 of 24 MB</strong> Used</span>
+                </div>
+                <div class="progress-bar progress-bar-remaining"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -97,16 +42,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'attachedCallback',
       value: function attachedCallback() {
         this.appendChild(document.importNode(utilBarChartTemplate.content, true));
-
-        var percentageUsed = Math.round(100 * (this.getAttribute('used') / this.getAttribute('total')));
-
         var usedBar = this.querySelector('.progress-bar-used');
         var remainingBar = this.querySelector('.progress-bar-remaining');
 
+        var chartTitle = this.getAttribute('chart-title');
+        if (chartTitle) {
+          this.querySelector('.progress-description').innerText = chartTitle;
+        }
+
+        var usedValue = this.getAttribute('used');
+        var totalValue = this.getAttribute('total');
+        var units = this.getAttribute('units') !== null ? this.getAttribute('units') : "";
+        usedBar.querySelector('#labelTopRight').innerText = usedValue + " of " + totalValue + " " + units;
+
+        var percentageUsed = Math.round(100 * (usedValue / totalValue));
+
         usedBar.setAttribute("style", "width: " + percentageUsed + "%;");
-        usedBar.querySelector('.tooltiptext').innerText = percentageUsed + "% Used";
+        //usedBar.querySelector('.tooltiptext').innerText = percentageUsed + "% Used";
         remainingBar.setAttribute("style", "width: " + (100 - percentageUsed) + "%;");
-        remainingBar.querySelector('.tooltiptext').innerText = 100 - percentageUsed + "% Available";
+        //remainingBar.querySelector('.tooltiptext').innerText = (100 - percentageUsed) + "% Available";
 
         var errorThreshold = this.getAttribute('threshold-error');
         var warnThreshold = this.getAttribute('threshold-warning');

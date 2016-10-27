@@ -6,8 +6,9 @@
 
         <link rel="stylesheet" href="../dist/css/patternfly.css">
         <link rel="stylesheet" href="../dist/css/patternfly-additions.css">
-        <link rel="import" href="../dist/pf-alert.html">
+        <link rel="stylesheet" href="../dist/css/app.css">
 
+        <link rel="import" href="../dist/pf-alert.html">
         <link rel="import" href="../dist/pf-utilization-bar-chart.html">
     </head>
     <body>
@@ -24,45 +25,35 @@
                 <a href="http://getbootstrap.com" class="alert-link">http://getbootstrap.com</a>
             </pf-alert>
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-md-10">
                     <h3>Example</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-10">
-                    <b>Ok</b>
+                <div class="col-md-10">
+                    <label class="label-title">Default Layout, no Thresholds</label>
                     <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="10" total="100" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                        <div class="col-xs-8 col-sm-6 col-md-8">
+                            <pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB"></pf-utilization-bar-chart>
                         </div>
                     </div>
-                    <b>Warning</b>
+                    <label class="label-title">Inline Layouts with Thresholds</label>
                     <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="67" total="100" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-                        </div>
-                    </div>
-                    <b>Error</b>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="87" total="100" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-                        </div>
-                    </div>
-                    <b>No Thresholds</b>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="37" total="100"></pf-utilization-bar-chart>
+                        <div class="col-xs-8 col-sm-6 col-md-8">
+                            <pf-utilization-bar-chart chart-title="RAM Usage" used="10" total="100" units="MB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                            <pf-utilization-bar-chart used="67" total="100" units="MHz" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                            <pf-utilization-bar-chart used="87" total="100" units="I/Ops" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-md-10">
                     <h3>Code</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-md-10">
                     <pre>
 Ok:
 

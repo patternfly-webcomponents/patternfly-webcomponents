@@ -7,7 +7,19 @@
         <link rel="stylesheet" href="dist/css/patternfly.css">
         <link rel="stylesheet" href="dist/css/patternfly-additions.css">
 
-        <link rel="import" href="dist/pf-alert.html">
+        <script src="../dist/pf.js"></script>
+        <!-- Expecting these styles to be included in patternfly-additions.css -->
+        <style>
+            pf-alert {
+                display: block;
+            }
+            pf-alert.alert .pficon {
+                font-size: 22px;
+                position: absolute;
+                left: 13px;
+                top: 10px;
+            }
+        </style>
     </head>
     <body>
     <div class="container">

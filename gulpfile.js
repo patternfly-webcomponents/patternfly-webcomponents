@@ -23,7 +23,8 @@ gulp.task('copy', function () {
 
 gulp.task('css', function () {
   return gulp.src(['node_modules/patternfly/less/patternfly.less',
-    'node_modules/patternfly/less/patternfly-additions.less'])
+    'node_modules/patternfly/less/patternfly-additions.less',
+    'app/app.less'])
     .pipe($.plumber())
     .pipe($.less())
     .pipe($.autoprefixer("last 3 versions", "> 1%"))

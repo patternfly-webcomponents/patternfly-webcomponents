@@ -1,68 +1,25 @@
-<style>
-    .progress {
-        overflow: visible;
-    }
-
-    .mytooltip {
-        position: relative;
-        display: inline-block;
-    }
-
-    .mytooltip .tooltiptext {
-        visibility: hidden;
-        opacity: 0.9;
-        width: 83px;
-        color: #fff;
-        text-align: center;
-
-        /* Position the tooltip */
-        position: relative;
-        bottom: 35px;
-        white-space: nowrap;
-        z-index: 1;
-    }
-
-    .mytooltip:hover .tooltiptext {
-        visibility: visible;
-    }
-
-    .arrow_box {
-        position: relative;
-        background: #393f44;
-        border: 4px solid #393f44;
-    }
-    .arrow_box:after, .arrow_box:before {
-        top: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-    }
-
-    .arrow_box:after {
-        border-color: rgba(57, 63, 68, 0);
-        border-top-color: #393f44;
-        border-width: 8px;
-        margin-left: -8px;
-    }
-    .arrow_box:before {
-        border-color: rgba(57, 63, 68, 0);
-        border-top-color: #393f44;
-        border-width: 14px;
-        margin-left: -14px;
-    }
-</style>
-
 <template class="utilization-bar-chart-template">
-    <div class="progress">
-        <div class="progress-bar progress-bar-used mytooltip">
-            <span class="tooltiptext arrow_box"></span>
+    <div class="utilization-bar-chart-pf">
+        <div class="progress-description"></div>
+        <div class="progress progress-label-top-right">
+            <div class="progress">
+                <div class="progress-bar progress-bar-used">
+                    <span><strong class="utiliz-bar-strong-label"></strong> Used</span>
+                </div>
+                <div class="progress-bar progress-bar-remaining"></div>
+            </div>
         </div>
-        <div class="progress-bar progress-bar-remaining mytooltip">
-            <span class="tooltiptext arrow_box"></span>
+    </div>
+</template>
+
+<template class="utilization-bar-chart-inline-template">
+    <div class="progress-container progress-description-left progress-label-right">
+        <div class="progress-description"></div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-used">
+                <span><strong class="utiliz-bar-strong-label"></strong> Used</span>
+            </div>
+            <div class="progress-bar progress-bar-remaining"></div>
         </div>
     </div>
 </template>

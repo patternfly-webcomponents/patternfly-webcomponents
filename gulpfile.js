@@ -44,8 +44,7 @@ gulp.task('vulcanize', function () {
 });
 
 gulp.task('webpack', ['js'], function() {
-  return gulp.src([
-    'node_modules/pf-alert/dist/js/pf-alert.js'])
+  return gulp.src(['node_modules/pf-alert/dist/pf-alert.component.js'])
     .pipe(webpack())
     .pipe($.rename('patternfly.js'))
     .pipe(gulp.dest('dist/js'));

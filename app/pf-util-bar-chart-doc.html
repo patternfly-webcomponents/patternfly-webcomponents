@@ -26,78 +26,118 @@
             }
         </style>
     </head>
-    <body>
-        <div class="container">
-            <div style="float: right">
-                <a href="../index.html"><span class="fa fa-angle-double-left"></span> Back</a>
+    <body onload="startThresholdIncrements();">
+    <div class="container">
+        <div style="float: right">
+            <a href="../index.html"><span class="fa fa-angle-double-left"></span> Back</a>
+        </div>
+        <div class="page-header">
+            <h1>Utilization Bar Chart</h1>
+        </div>
+        <pf-alert type="warning">
+            These examples are included for development testing purposes. For official documentation, see
+            <a href="https://www.patternfly.org" class="alert-link">https://www.patternfly.org</a> and
+            <a href="http://getbootstrap.com" class="alert-link">http://getbootstrap.com</a>
+        </pf-alert>
+        <div class="row">
+            <div class="col-md-10">
+                <h3>Example</h3>
             </div>
-            <div class="page-header">
-                <h1>Utilization Bar Chart</h1>
-            </div>
-            <pf-alert type="warning">
-                These examples are included for development testing purposes. For official documentation, see
-                <a href="https://www.patternfly.org" class="alert-link">https://www.patternfly.org</a> and
-                <a href="http://getbootstrap.com" class="alert-link">http://getbootstrap.com</a>
-            </pf-alert>
-            <div class="row">
-                <div class="col-sm-10">
-                    <h3>Example</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10">
-                    <b>Ok</b>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="10" total="100" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-                        </div>
-                    </div>
-                    <b>Warning</b>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="67" total="100" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-                        </div>
-                    </div>
-                    <b>Error</b>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="87" total="100" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-                        </div>
-                    </div>
-                    <b>No Thresholds</b>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-6 col-md-6">
-                            <pf-utilization-bar-chart used="37" total="100"></pf-utilization-bar-chart>
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <label class="label-title">Default Layout, no Thresholds</label>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6 col-md-8">
+                        <pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB"></pf-utilization-bar-chart>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10">
-                    <h3>Code</h3>
+                <label class="label-title">Thresholds</label>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6 col-md-8">
+                        <pf-utilization-bar-chart id="thresholdExample" chart-title="RAM Usage" used="10" total="100" units="MB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                        <span class="doc-bottom-label">Listening for Threshold Change Events: <span class="" id="thresholdChangedText"></span></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-10">
-                    <pre>
-Ok:
-
-&lt;pf-utilization-bar-chart used="10" total="100" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
-
-Warning:
-
-&lt;pf-utilization-bar-chart used="67" total="100" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
-
-Error:
-
-&lt;pf-utilization-bar-chart used="87" total="100" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
-
-No Thresholds:
-
-&lt;pf-utilization-bar-chart used="37" total="100">&lt;/pf-utilization-bar-chart>
-                    </pre>
+                <label class="label-title">Inline Layout</label>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6 col-md-8">
+                        <pf-utilization-bar-chart chart-title="Disk I/O" layout="inline" used="450" total="500" units="I/Ops" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6 col-md-8">
+                        <pf-utilization-bar-chart chart-title="CPU Usage" layout="inline" used="350" total="500" units="MHz" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6 col-md-8">
+                        <pf-utilization-bar-chart chart-title="Memory" layout="inline" used="150" total="500" units="GB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-10">
+                <h3>Code</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                    <pre>
+Default Layout, no Thresholds
+
+&lt;pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB">&lt;/pf-utilization-bar-chart>
+
+Thresholds
+
+&lt;pf-utilization-bar-chart chart-title="RAM Usage" used="10" total="100" units="MB" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
+
+Inline Layout
+
+&lt;pf-utilization-bar-chart layout="inline" chart-title="Disk I/O" used="450" total="500" units="I/Ops" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
+&lt;pf-utilization-bar-chart layout="inline" chart-title="CPU Usage" used="350" total="500" units="MHz" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
+&lt;pf-utilization-bar-chart layout="inline" chart-title="Memory" used="150" total="500" units="GB" threshold-warning="60" threshold-error="85">&lt;/pf-utilization-bar-chart>
+                    </pre>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var inlineLayout = {
+            'type': 'inline'
+        };
+
+        function startThresholdIncrements() {
+            setInterval(function () {
+                var thresholdExample = document.querySelector('#thresholdExample');
+                var newThreshold = parseInt(thresholdExample.getAttribute("used")) + 10;
+                if (newThreshold > 100) {
+                    newThreshold = 10;
+                }
+                thresholdExample.setAttribute("used", newThreshold);
+            }, 1000);
+
+            // Listen for the threshold changed event.
+            document.addEventListener('thresholdSet', function (e) {
+                var threshold = e.detail.threshold;
+                var thresholdChangedText = document.querySelector('#thresholdChangedText');
+                var msg = threshold.substr(threshold.lastIndexOf('-') + 1);
+                if (msg === 'warning') {
+                    msg = "Warning! You should look at this.";
+                    thresholdChangedText.setAttribute("class", 'warning-text');
+                } else if (msg === 'danger') {
+                    msg = "Danger!!  Seriously, something's wrong!";
+                    thresholdChangedText.setAttribute("class", 'danger-text');
+                } else if (msg === 'success') {
+                    msg = "Whew...Everythings normal :-)";
+                    thresholdChangedText.setAttribute("class", 'ok-text');
+                }
+
+                thresholdChangedText.innerText = msg;
+
+            }, false);
+        }
+    </script>
     </body>
 </html>

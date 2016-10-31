@@ -1,7 +1,13 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
+  sass = require('gulp-sass'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream');
+
+gulp.task('copy', function () {
+  return gulp.src(['src/*.html'])
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('js', function () {
   return gulp.src('src/*.js')
@@ -13,35 +19,23 @@ gulp.task('js', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('copy', function () {
-  return gulp.src([
-        'src/*.html',
-        'node_modules/webcomponents.js/webcomponents.js',
-      ])
-      .pipe(gulp.dest('dist'));
-});
-
 gulp.task('css', function () {
-  return gulp.src(['node_modules/patternfly/less/patternfly.less',
-    'node_modules/patternfly/less/patternfly-additions.less',
-    'app/app.less'])
+  return gulp.src(['app/app.less'])
     .pipe($.plumber())
     .pipe($.less())
     .pipe($.autoprefixer("last 3 versions", "> 1%"))
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('img', function(){
-  return gulp.src(['./node_modules/patternfly/dist/img/*.*'])
-    .pipe(gulp.dest('dist/img'));
+gulp.task('scss', function(){
+  return gulp.src(['src/scss/*.scss'])
+    .pipe(sass().on('error', sass.logError))
+    .pipe($.rename('patternfly.css'))
+    .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('fonts', function(){
-  return gulp.src(['./node_modules/patternfly/dist/fonts/*.*'])
-    .pipe(gulp.dest('dist/fonts'));
-});
-
-gulp.task('vulcanize', ['copy'], function () {
+// ToDo: Remove Vulcanize in favor of Webpack
+gulp.task('vulcanize', function () {
   return gulp.src([
         'dist/pf-tabs.html',
         'dist/pf-utilization-bar-chart.html'])
@@ -49,18 +43,15 @@ gulp.task('vulcanize', ['copy'], function () {
       .pipe(gulp.dest('dist'));
 });
 
-gulp.task('webpack', function() {
+gulp.task('webpack', ['js'], function() {
   return gulp.src([
-    'dist/pf-alert.js',
-    'dist/pf-icon.js'])
+    'node_modules/pf-alert/dist/js/pf-alert.js'])
     .pipe(webpack())
-    .pipe($.rename('pf.js'))
-    .pipe(gulp.dest('dist/'));
+    .pipe($.rename('patternfly.js'))
+    .pipe(gulp.dest('dist/js'));
 });
 
-// gulp.task('build', ['copy', 'js', 'css', 'img', 'fonts']);
-gulp.task('build', ['js', 'copy', 'css', 'img', 'fonts', 'vulcanize', 'webpack']);
-
+gulp.task('build', ['js', 'copy', 'css', 'scss', 'vulcanize', 'webpack']);
 
 gulp.task('serve', function(){
   browserSync.init({

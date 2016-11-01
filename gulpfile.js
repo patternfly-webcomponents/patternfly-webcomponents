@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
+  eslint = require('gulp-eslint'),
   sass = require('gulp-sass'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream');
@@ -9,7 +10,7 @@ gulp.task('copy', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('js', function () {
+gulp.task('js', ['lint'], function () {
   return gulp.src('src/*.js')
     .pipe($.plumber())
     .pipe($.babel(
@@ -17,6 +18,12 @@ gulp.task('js', function () {
     ))
     // .pipe($.uglify())
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('lint', function () {
+  return gulp.src(['src/*.js'])
+    .pipe(eslint('eslint.json'))
+    .pipe(eslint.failOnError());
 });
 
 gulp.task('css', function () {
@@ -34,13 +41,6 @@ gulp.task('scss', function(){
     .pipe(gulp.dest('dist/css'));
 });
 
-// ToDo: Remove Vulcanize in favor of Webpack
-gulp.task('vulcanize', function () {
-  return gulp.src(['dist/pf-utilization-bar-chart.html'])
-      .pipe($.vulcanize({dest: 'dist', inlineScripts: true, inlineCss: true}))
-      .pipe(gulp.dest('dist'));
-});
-
 gulp.task('webpack', ['js'], function() {
   return gulp.src([
     'node_modules/patternfly-alert/dist/pf-alert.component.js',
@@ -51,7 +51,7 @@ gulp.task('webpack', ['js'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('build', ['js', 'copy', 'css', 'scss', 'vulcanize', 'webpack']);
+gulp.task('build', ['js', 'copy', 'css', 'scss', 'webpack']);
 
 gulp.task('serve', function(){
   browserSync.init({

@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "patternfly-alert": "*",
-    "patternfly-tabs": "*"
+    "patternfly-tabs": "*",
+    "patternfly-utilization-bar-chart": "*"
   },
   "repository": {
     "type": "git",

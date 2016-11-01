@@ -2,29 +2,11 @@
 <html>
     <head>
         <title>Utilization Bar Chart Doc Page</title>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
-        <link rel="stylesheet" href="/dist/css/app.css">
-        <link rel="import" href="/dist/pf-utilization-bar-chart.html">
+        <link rel="stylesheet" href="/dist/css/patternfly.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
         <script src="/dist/js/patternfly.js"></script>
-        <!-- Expecting these styles to be included in patternfly-additions.css -->
-        <style>
-            .ok-text {
-                color: #3f9c35;
-            }
-            .warning-text {
-                color: #ec7a08;
-            }
-            .danger-text {
-                color: #cc0000;
-            }
-            .doc-bottom-label {
-                position: relative;
-                top: -16px;
-                left: 94px;
-            }
-        </style>
     </head>
     <body onload="startThresholdIncrements();">
     <div class="container">

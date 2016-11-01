@@ -1,5 +1,5 @@
 {
-  "name": "pf-webcomponents",
+  "name": "patternfly-webcomponents",
   "version": "0.0.1",
   "description": "Core PatternFly Web Components",
   "main": "patternfly.js",
@@ -28,7 +28,8 @@
     "webpack-stream": "~3.2.0"
   },
   "dependencies": {
-    "pf-alert": "*"
+    "patternfly-alert": "*",
+    "patternfly-tabs": "*"
   },
   "repository": {
     "type": "git",

@@ -36,15 +36,15 @@ gulp.task('scss', function(){
 
 // ToDo: Remove Vulcanize in favor of Webpack
 gulp.task('vulcanize', function () {
-  return gulp.src([
-        'dist/pf-tabs.html',
-        'dist/pf-utilization-bar-chart.html'])
+  return gulp.src(['dist/pf-utilization-bar-chart.html'])
       .pipe($.vulcanize({dest: 'dist', inlineScripts: true, inlineCss: true}))
       .pipe(gulp.dest('dist'));
 });
 
 gulp.task('webpack', ['js'], function() {
-  return gulp.src(['node_modules/pf-alert/dist/pf-alert.component.js'])
+  return gulp.src([
+    'node_modules/patternfly-alert/dist/pf-alert.component.js',
+    'node_modules/patternfly-tabs/dist/pf-tabs.component.js'])
     .pipe(webpack())
     .pipe($.rename('patternfly.js'))
     .pipe(gulp.dest('dist/js'));

@@ -44,7 +44,8 @@ gulp.task('vulcanize', function () {
 gulp.task('webpack', ['js'], function() {
   return gulp.src([
     'node_modules/patternfly-alert/dist/pf-alert.component.js',
-    'node_modules/patternfly-tabs/dist/pf-tabs.component.js'])
+    'node_modules/patternfly-tabs/dist/pf-tabs.component.js',
+    'node_modules/patternfly-utilization-bar-chart/dist/pf-utilization-bar-chart.component.js'])
     .pipe(webpack())
     .pipe($.rename('patternfly.js'))
     .pipe(gulp.dest('dist/js'));

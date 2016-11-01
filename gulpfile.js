@@ -5,11 +5,6 @@ var gulp = require('gulp'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream');
 
-gulp.task('copy', function () {
-  return gulp.src(['src/*.html'])
-    .pipe(gulp.dest('dist'));
-});
-
 gulp.task('js', ['lint'], function () {
   return gulp.src('src/*.js')
     .pipe($.plumber())
@@ -24,14 +19,6 @@ gulp.task('lint', function () {
   return gulp.src(['src/*.js'])
     .pipe(eslint('eslint.json'))
     .pipe(eslint.failOnError());
-});
-
-gulp.task('css', function () {
-  return gulp.src(['app/app.less'])
-    .pipe($.plumber())
-    .pipe($.less())
-    .pipe($.autoprefixer("last 3 versions", "> 1%"))
-    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('scss', function(){
@@ -51,7 +38,7 @@ gulp.task('webpack', ['js'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('build', ['js', 'copy', 'css', 'scss', 'webpack']);
+gulp.task('build', ['js', 'scss', 'webpack']);
 
 gulp.task('serve', function(){
   browserSync.init({

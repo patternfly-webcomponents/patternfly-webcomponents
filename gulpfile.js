@@ -1,11 +1,19 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
   eslint = require('gulp-eslint'),
+  path = require('path'),
   sass = require('gulp-sass'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream');
 
-var path = require('path');
+
+gulp.task('font', function(){
+  return gulp.src([
+      'node_modules/font-awesome/fonts/*',
+      'node_modules/patternfly-css/source/fonts/*'
+    ])
+    .pipe(gulp.dest('dist/fonts'));
+});
 
 gulp.task('js', ['lint'], function () {
   return gulp.src('src/*.js')
@@ -14,7 +22,7 @@ gulp.task('js', ['lint'], function () {
       {presets: ['es2015']}
     ))
     // .pipe($.uglify())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('lint', function () {
@@ -23,26 +31,26 @@ gulp.task('lint', function () {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('scss', function(){
+gulp.task('scss', function() {
   return gulp.src(['src/scss/*.scss'])
+    .pipe($.plumber())
     .pipe(sass().on('error', sass.logError))
-    .pipe($.rename('patternfly.css'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('webpack', ['js'], function() {
   return gulp.src([
-    'node_modules/patternfly-alert/dist/pf-alert.component.js',
-    'node_modules/patternfly-tabs/dist/pf-tabs.component.js',
-    'node_modules/patternfly-utilization-bar-chart/dist/pf-utilization-bar-chart.component.js'])
+    'node_modules/patternfly-alert/dist/js/pf-alert.component.js',
+    'node_modules/patternfly-tabs/dist/js/pf-tabs.component.js',
+    'node_modules/patternfly-utilization-bar-chart/dist/js/pf-utilization-bar-chart.component.js'])
     .pipe(webpack({
       resolveLoader: { root: path.join(__dirname, "node_modules") }
     }))
     .pipe($.rename('patternfly.js'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('build', ['js', 'scss', 'webpack']);
+gulp.task('build', ['font', 'js', 'scss', 'webpack']);
 
 gulp.task('serve', function(){
   browserSync.init({

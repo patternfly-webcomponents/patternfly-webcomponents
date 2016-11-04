@@ -5,13 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "dist/js/patternfly.js",
   "author": "Red Hat",
   "license": "Apache-2.0",
   "devDependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
+    "babel-loader": "^6.2.7",
     "babel-preset-es2015": "^6.14.0",
     "browser-sync": "^2.14.3",
-    "font-awesome": "^4.7.0",
     "gulp": "~3.9.1",
     "gulp-autoprefixer": "3.1.1",
     "gulp-babel": "^6.1.2",
@@ -24,6 +24,7 @@
     "gulp-plumber": "~1.1.0",
     "gulp-rename": "~1.2.2",
     "gulp-sass": "~2.3.2",
+    "gulp-sitespeedio": "0.0.8",
     "gulp-uglify": "~2.0.0",
     "gulp-vulcanize": "~6.1.0",
     "gulp-watch": "^4.3.9",
@@ -33,12 +34,16 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
-    "webcomponentsjs": "^1.0.2",
+    "run-sequence": "^1.2.2",
     "webpack": "~1.13.2",
+    "webpack-bundle-analyzer": "^1.4.2",
     "webpack-stream": "~3.2.0"
   },
   "dependencies": {
-    "patternfly-css": "*"
+    "bootstrap": "^4.0.0-alpha.5",
+    "font-awesome": "^4.7.0",
+    "patternfly-css": "*",
+    "webcomponentsjs": "^1.0.2"
   },
   "repository": {
     "type": "git",

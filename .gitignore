@@ -10,3 +10,6 @@ npm-debug.log
 
 #Ignore generated dist files
 #/dist
+
+#Ignore generated performance metrics
+perf/localhost

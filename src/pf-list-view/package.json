@@ -1,0 +1,11 @@
+{
+  "name": "pf-list-view",
+  "version": "1.0.0",
+  "description": "pf-list-view webcomponent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

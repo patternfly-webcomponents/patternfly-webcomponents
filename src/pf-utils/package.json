@@ -1,0 +1,11 @@
+{
+  "name": "pf-utils",
+  "version": "1.0.0",
+  "description": "the pf-utils library for webcomponents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <title>Basic Pf-Tabs Demo</title>
+    <!-- todo: remove PF3 reference -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly.css">
+    <link rel="stylesheet" href="../../dist/css/patternfly.css">
+    <script src="../../node_modules/webcomponentsjs/lite.js"></script>
+
+    <!-- todo: make this not reference the kitchen sink and only reference pf-tabs js -->
+    <script src="../../dist/js/patternfly.js"></script>
+    <!--<script src="../../dist/es2015/pf-tabs/panel.template.js"></script>-->
+    <!--<script src="../../dist/es2015/pf-tabs/pf-tab.component.js"></script>-->
+    <!--<script src="../../dist/es2015/pf-tabs/pf-tab.template.js"></script>-->
+    <!--<script src="../../dist/es2015/pf-tabs/pf-tabs.component.js"></script>-->
+    <!--<script src="../../dist/es2015/pf-tabs/pf-tabs.template.js"></script>-->
+    <script defer src="perf.js"></script>
+</head>
+<body>
+<h1>Nested tabs</h1>
+<h2>Execution time: <span class="results"></span></h2>
+<script defer>
+    window.onload = function() {
+        var start = performance.now();
+        var previous = document.body;
+        var url = window.location.search;
+        var max = 10;
+        console.log('Creating', max, 'tabs');
+        for (var i = 0; i <= max; i++) {
+            var tabs = perf.createTab();
+            previous.appendChild(tabs);
+            // tabs.offsetWidth; // trigger a paint of the new tabs
+            previous = tabs.querySelector('pf-tab');
+        }
+        document.body.offsetWidth; // trigger a paint
+        var end = performance.now();
+        var results = end - start;
+        results = results.toFixed(2);
+        console.log('Total execution time', results, 'ms');
+        document.querySelector('.results').innerText = results + ' ms';
+    }
+</script>
+</body>
+</html>

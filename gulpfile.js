@@ -1,11 +1,12 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
   eslint = require('gulp-eslint'),
+  ignore = require('gulp-ignore'),
+  karma = require('karma').Server,
   path = require('path'),
   sass = require('gulp-sass'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream');
-
 
 gulp.task('font', function(){
   return gulp.src([
@@ -16,18 +17,18 @@ gulp.task('font', function(){
 });
 
 gulp.task('js', ['lint'], function () {
-  return gulp.src('src/*.js')
+  return gulp.src(['src/*/*.js', '!src/*/*.spec.js'])
     .pipe($.plumber())
     .pipe($.babel(
       {presets: ['es2015']}
     ))
     // .pipe($.uglify())
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('dist/es2015'));
 });
 
 gulp.task('lint', function () {
-  return gulp.src(['src/*.js'])
-    .pipe(eslint('node_modules/patternfly-utils/eslint.json'))
+  return gulp.src(['src/*/*.js'])
+    .pipe(eslint('eslint.json'))
     .pipe(eslint.failOnError());
 });
 
@@ -38,13 +39,31 @@ gulp.task('scss', function() {
     .pipe(gulp.dest('dist/css'));
 });
 
+gulp.task('test', function (done) {
+  new karma({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('test-debug', function (done) {
+  new karma({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false,
+    browsers: ['Chrome']
+  }, done).start();
+});
+
 gulp.task('webpack', ['js'], function() {
-  return gulp.src([
-    'node_modules/patternfly-alert/dist/js/pf-alert.component.js',
-    'node_modules/patternfly-tabs/dist/js/pf-tabs.component.js',
-    'node_modules/patternfly-utilization-bar-chart/dist/js/pf-utilization-bar-chart.component.js'])
+  return gulp.src(['dist/es2015/*/*.js'])
     .pipe(webpack({
-      resolveLoader: { root: path.join(__dirname, "node_modules") }
+      resolve: {
+        root: [
+          path.join(__dirname, "dist/es2015/pf-alert"),
+          path.join(__dirname, "dist/es2015/pf-tabs"),
+          path.join(__dirname, "dist/es2015/pf-utilization-bar-chart"),
+          path.join(__dirname, "dist/es2015/pf-utils")
+      ]}
     }))
     .pipe($.rename('patternfly.js'))
     .pipe(gulp.dest('dist/js'));
@@ -52,7 +71,7 @@ gulp.task('webpack', ['js'], function() {
 
 gulp.task('build', ['font', 'js', 'scss', 'webpack']);
 
-gulp.task('serve', function(){
+gulp.task('serve', function() {
   browserSync.init({
     server: {
       baseDir: './'

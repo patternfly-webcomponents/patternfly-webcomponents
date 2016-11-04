@@ -1,7 +1,7 @@
 {
   "name": "patternfly-webcomponents",
   "version": "0.0.1",
-  "description": "Core PatternFly Web Components",
+  "description": "PatternFly Web Components",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,7 @@
     "gulp-concat": "~2.6.0",
     "gulp-connect": "~2.0.4",
     "gulp-eslint": "~3.0.1",
+    "gulp-ignore": "~2.0.1",
     "gulp-less": "^3.1.0",
     "gulp-load-plugins": "~1.2.4",
     "gulp-plumber": "~1.1.0",
@@ -26,18 +27,21 @@
     "gulp-uglify": "~2.0.0",
     "gulp-vulcanize": "~6.1.0",
     "gulp-watch": "^4.3.9",
+    "jasmine-core": "^2.5.2",
+    "jasmine-promises": "^0.4.1",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "webcomponentsjs": "^1.0.2",
     "webpack": "~1.13.2",
     "webpack-stream": "~3.2.0"
   },
   "dependencies": {
-    "patternfly-alert": "*",
-    "patternfly-css": "*",
-    "patternfly-tabs": "*",
-    "patternfly-utilization-bar-chart": "*",
-    "patternfly-utils": "*"
+    "patternfly-css": "*"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/patternfly/patternfly-webcomponents.git"
+    "url": "https://github.com/patternfly-webcomponents/patternfly-webcomponents.git"
   }
 }

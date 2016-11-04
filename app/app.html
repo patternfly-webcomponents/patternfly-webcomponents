@@ -44,7 +44,7 @@
 
     function getDocExampleFile(){
       var fileName = location.search.split('file=')[1];
-      var pathToFile = "../node_modules/" + fileName + "/index.html";
+      var pathToFile = "../src/" + fileName + "/index.html";
       document.getElementById('example').setAttribute('src', pathToFile);
 
       var rawFile = new XMLHttpRequest();

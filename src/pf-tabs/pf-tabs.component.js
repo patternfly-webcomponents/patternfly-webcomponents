@@ -1,5 +1,5 @@
-import {default as tabTemplate} from 'pf-tab.template';
-import {default as tabsTemplate} from 'pf-tabs.template';
+import {default as tabTemplate} from './pf-tab.template';
+import {default as tabsTemplate} from './pf-tabs.template';
 import PfTab from './pf-tab.component';
 
 /**

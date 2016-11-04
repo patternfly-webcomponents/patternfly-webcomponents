@@ -1,5 +1,5 @@
-import {default as defaultTemplate} from 'pf-utilization-bar-chart.default.template';
-import {inline as inlineTemplate} from 'pf-utilization-bar-chart.inline.template';
+import {default as defaultTemplate} from './pf-utilization-bar-chart.default.template';
+import {inline as inlineTemplate} from './pf-utilization-bar-chart.inline.template';
 
 export class PfUtilizationBarChart extends HTMLElement {
   createdCallback () {

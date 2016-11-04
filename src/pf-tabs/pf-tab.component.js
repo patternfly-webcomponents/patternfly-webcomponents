@@ -1,4 +1,4 @@
-import {default as tmpl} from 'panel.template';
+import {default as tmpl} from './panel.template';
 
 /**
  * PfTab element for Patternfly web components

@@ -86,17 +86,8 @@ gulp.task('perf', function(done){
 });
 
 gulp.task('webpack', ['js'], function() {
-  return gulp.src(['dist/es2015/*/*.js'])
-    .pipe(webpack({
-      resolve: {
-        root: [
-          path.join(__dirname, "dist/es2015/pf-alert"),
-          path.join(__dirname, "dist/es2015/pf-tabs"),
-          path.join(__dirname, "dist/es2015/pf-utilization-bar-chart"),
-          path.join(__dirname, "dist/es2015/pf-utils")
-      ]}
-    }))
-    .pipe($.rename('patternfly.js'))
+  return gulp.src('src/patternfly.js')
+    .pipe(webpack( require('./webpack.config.js') ))
     .pipe(gulp.dest('dist/js'));
 });
 

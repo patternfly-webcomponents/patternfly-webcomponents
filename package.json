@@ -20,6 +20,7 @@
     "gulp-ignore": "~2.0.1",
     "gulp-less": "^3.1.0",
     "gulp-load-plugins": "~1.2.4",
+    "gulp-louis": "git+https://github.com/priley86/gulp-louis.git",
     "gulp-plumber": "~1.1.0",
     "gulp-rename": "~1.2.2",
     "gulp-sass": "~2.3.2",

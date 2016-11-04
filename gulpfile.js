@@ -10,6 +10,7 @@ var gulp = require('gulp'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream'),
   runSequence = require('run-sequence'),
+  louis = require('gulp-louis'),
   sitespeedio = require('gulp-sitespeedio');
 
 gulp.task('font', function(){
@@ -79,6 +80,22 @@ gulp.task('sitespeedio', ['serve'], function(done){
     }
   });
   run(done);
+});
+
+gulp.task('louis', ['serve'], function() {
+  return louis({
+    //note: change this url to the page you are testing
+    //todo: refactor gulp-louis to accept an array
+    timeout: 10,
+    url: baseUrl + '/app/app.html?file=pf-alert',
+    outputFileName: 'perf/phantomas/results.json',
+    engine: 'webkit',
+    userAgent: 'Chrome/54.0.2840.87',
+    performanceBudget: {
+      slowestResponse: 1000,
+      domComplete: 3000
+    }
+  });
 });
 
 gulp.task('perf', function(done){

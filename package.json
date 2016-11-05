@@ -1,6 +1,6 @@
 {
   "name": "patternfly-webcomponents",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "PatternFly Web Components",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

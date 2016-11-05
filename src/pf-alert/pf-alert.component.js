@@ -3,6 +3,8 @@ import {default as utils} from 'pf-utils';
 
 /**
  * PfAlert element for Patternfly web components
+ *
+ * ToDo: Document attrbutes and examples.
  */
 export class PfAlert extends HTMLElement {
   /**
@@ -23,6 +25,8 @@ export class PfAlert extends HTMLElement {
     if (attrName === "type") {
       this._resetType(oldValue, newValue);
       this._initType();
+    } else if (attrName === "persistent" || attrName === "persistentCallbackFn") {
+      this._initPersistent();
     }
   }
 
@@ -34,6 +38,7 @@ export class PfAlert extends HTMLElement {
     this._template.innerHTML = tmpl;
     this.classList.add("alert");
     this._initDefaults();
+    this._initPersistent();
     this._initType();
   }
 
@@ -59,27 +64,50 @@ export class PfAlert extends HTMLElement {
   }
 
   /**
+   * Helper function to make alert persistent
+   * @private
+   */
+  _initPersistent () {
+    let self = this;
+    let nodes = this._getNodes('button.close');
+    let el = nodes[0];
+    if (this.getAttribute("persistent") === "true") {
+      this.classList.add("alert-dismissable");
+      if (el !== undefined) {
+        el.classList.remove("hidden");
+        el.setAttribute('onclick', this.getAttribute("persistentCallbackFn"));
+      }
+    } else {
+      this.classList.remove("alert-dismissable");
+      if (el !== undefined) {
+        el.classList.add("hidden");
+      }
+    }
+  }
+
+  /**
    * Helper function to init alert type
    * @private
    */
   _initType () {
-    let pficon = this._getElement('.pficon');
+    let nodes = this._getNodes('span.pficon');
+    let el = nodes[nodes.length - 1];
     switch (this.getAttribute("type")) {
       case "danger":
         this.classList.add(this._classNames.pfalert.danger);
-        pficon.classList.add(this._classNames.pficon.danger);
+        el.classList.add(this._classNames.pficon.danger);
         break;
       case "info":
         this.classList.add(this._classNames.pfalert.info);
-        pficon.classList.add(this._classNames.pficon.info);
+        el.classList.add(this._classNames.pficon.info);
         break;
       case "success":
         this.classList.add(this._classNames.pfalert.success);
-        pficon.classList.add(this._classNames.pficon.success);
+        el.classList.add(this._classNames.pficon.success);
         break;
       case "warning":
         this.classList.add(this._classNames.pfalert.warning);
-        pficon.classList.add(this._classNames.pficon.warning);
+        el.classList.add(this._classNames.pficon.warning);
         break;
     }
   }
@@ -90,38 +118,39 @@ export class PfAlert extends HTMLElement {
    * @private
    */
   _resetType (oldValue) {
-    let pficon = this._getElement('.pficon');
+    let nodes = this._getNodes('span.pficon');
+    let el = nodes[nodes.length - 1];
     switch (oldValue) {
       case "danger":
         this.classList.remove(this._classNames.pfalert.danger);
-        pficon.classList.remove(this._classNames.pficon.danger);
+        el.classList.remove(this._classNames.pficon.danger);
         break;
       case "info":
         this.classList.remove(this._classNames.pfalert.info);
-        pficon.classList.remove(this._classNames.pficon.info);
+        el.classList.remove(this._classNames.pficon.info);
         break;
       case "success":
         this.classList.remove(this._classNames.pfalert.success);
-        pficon.classList.remove(this._classNames.pficon.success);
+        el.classList.remove(this._classNames.pficon.success);
         break;
       case "warning":
         this.classList.remove(this._classNames.pfalert.warning);
-        pficon.classList.remove(this._classNames.pficon.warning);
+        el.classList.remove(this._classNames.pficon.warning);
         break;
     }
   }
 
   /**
-   * Get pficon from this node or document fragment
+   * Get nodes from given selector
    *
-   * @param selector The query selector identifying the element to retrieve
+   * @param selector The query selector identifying the elements to retrieve
    * @returns {Element}
    * @private
    */
-  _getElement (selector) {
-    let el = this.querySelector(selector);
-    if (el === null) {
-      el = this._template.content.querySelector(selector);
+  _getNodes (selector) {
+    let el = this.querySelectorAll(selector);
+    if (el.length === 0) {
+      el = this._template.content.querySelectorAll(selector);
     }
     return el;
   }

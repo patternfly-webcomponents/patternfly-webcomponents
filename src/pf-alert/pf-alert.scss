@@ -2,4 +2,7 @@
 
 pf-alert {
   display: block;
+  .hidden {
+    display: none;
+  }
 }

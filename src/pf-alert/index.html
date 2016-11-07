@@ -20,7 +20,7 @@
     <pf-alert type="danger">
       <strong>Hey there is a problem!</strong> Yeah this is really messed up and you should <a href="#" class="alert-link">know about it</a>.
     </pf-alert>
-    <pf-alert type="warning" id="test">
+    <pf-alert type="warning" id="test" persistent-callback-fn="alert('Danger alert closed');">
       <strong>There might be a problem here!</strong> We are not really sure, but <a href="#" class="alert-link">it might be bad</a>.
     </pf-alert>
     <pf-alert type="success">
@@ -51,7 +51,8 @@
   <script>
     function togglePersistent() {
       var el = document.getElementById("test");
-      if (el.getAttribute("persistent") === "false") {
+      var persistent = el.getAttribute("persistent");
+      if (persistent === null || el.getAttribute("persistent") === "false") {
         el.setAttribute("persistent", "true");
       } else {
         el.setAttribute("persistent", "false");

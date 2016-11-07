@@ -127,7 +127,7 @@
 	      if (attrName === "type") {
 	        this._resetType(oldValue, newValue);
 	        this._initType();
-	      } else if (attrName === "persistent" || attrName === "persistentCallbackFn") {
+	      } else if (attrName === "persistent" || attrName === "persistent-callback-fn") {
 	        this._initPersistent();
 	      }
 	    }
@@ -186,7 +186,7 @@
 	        this.classList.add("alert-dismissable");
 	        if (el !== undefined) {
 	          el.classList.remove("hidden");
-	          el.setAttribute('onclick', this.getAttribute("persistentCallbackFn"));
+	          el.setAttribute('onclick', this.getAttribute("persistent-callback-fn"));
 	        }
 	      } else {
 	        this.classList.remove("alert-dismissable");

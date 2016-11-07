@@ -12,7 +12,7 @@ This project will provide a set of core web components for the PatternFly refere
 URL: http://localhost:3000/index.html
 * Uses gulp watch and browser-sync
 
-![image](https://cloud.githubusercontent.com/assets/12733153/19868600/22d70806-9f7f-11e6-980c-f9bfb6bac027.png)
+![image](https://cloud.githubusercontent.com/assets/12733153/20062925/69b80140-a4d3-11e6-87d7-b2f523b1b869.png)
 
 ## Tech Notes
 

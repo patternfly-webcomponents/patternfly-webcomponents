@@ -9,4 +9,4 @@ npm-debug.log
 .DS_Store
 
 #Ignore generated dist files
-/dist
+#/dist

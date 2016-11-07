@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <title>pf-alert example</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
+  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
+  <script src="/dist/js/patternfly.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="page-header">
+    <h1>List View</h1>
+  </div>
+  <pf-list-view id="example1" show-checkboxes="true">
+    <pf-template-repeater id="example1-content" content='[{"name": "Big Bird", "address": "1 Seaseme Street"}]'>
+      <template>
+        <div class="list-view-pf-description">
+          <div class="list-group-item-heading">
+            ${name}
+          </div>
+          <div class="list-group-item-text">
+            ${address}
+          </div>
+        </div>
+      </template>
+    </pf-template-repeater>
+  </pf-list-view>
+  <hr><br>
+  <input type="checkbox" checked onchange="showCheckboxes(this)"> Show Checkboxes
+  <div>
+    <b><br>Events:</b>
+    <textarea id="demoEvents" style="height: 260px; width: 100%;"></textarea>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function getExampleContent() {
+    return JSON.stringify([
+      {"name": "Fred Flintstone", "address": "20 Dinosaur Way"},
+      {"name": "John Smith", "address": "415 East Main Street"},
+      {"name": "Frank Livingston", "address": "234 Elm Street"},
+      {"name": "Linda McGovern", "address": "22 Oak Street"}
+    ]);
+  }
+
+  function getActionButtons() {
+    return JSON.stringify([
+      {
+        name: 'Start',
+        class: 'btn-primary',
+        include: 'start-button-template',
+        title: 'Start the server',
+        actionFn: 'startAction'
+      },
+      {
+        name: 'Action 1',
+        title: 'Perform an action',
+        actionFn: 'performAction'
+      }
+    ]);
+  }
+
+  document.querySelector('#example1').setAttribute("action-buttons", getActionButtons());
+  document.querySelector('#example1-content').setAttribute("content", getExampleContent());
+
+  function showCheckboxes(cb) {
+    document.querySelector('#example1').setAttribute("show-checkboxes", cb.checked);
+  }
+
+  var demoEvents = document.querySelector('#demoEvents');
+
+  this.addEventListener("RowSelectionChanged", function (e) {
+    demoEvents.innerHTML = e.detail.value + "\n" + demoEvents.innerHTML;
+  });
+
+  function performAction(rowValue) {
+    demoEvents.innerHTML = "Perform Action for: " + rowValue + "\n" + demoEvents.innerHTML;
+  }
+  function startAction(rowValue) {
+    demoEvents.innerHTML = "Started Action for: " + rowValue + "\n" + demoEvents.innerHTML;
+  }
+</script>
+</body>
+</html>

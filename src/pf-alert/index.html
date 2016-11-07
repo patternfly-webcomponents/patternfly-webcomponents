@@ -3,49 +3,51 @@
 <head>
   <title>pf-alert example</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
-  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="/dist/js/patternfly.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
 </head>
 <body>
-  <div class="page-header">
-    <h1>Alerts</h1>
+  <div class="container">
+    <div class="page-header">
+      <h1>Alerts</h1>
+    </div>
+    <a onclick="toggleType()">Toggle</a> pf-alert type from warning to danger.<br>
+    <a onclick="togglePersistent()">Toggle</a> pf-alert persistent.
+    <hr>
+    <pf-alert type="danger">
+      <strong>Hey there is a problem!</strong> Yeah this is really messed up and you should <a href="#" class="alert-link">know about it</a>.
+    </pf-alert>
+    <pf-alert type="warning" id="test">
+      <strong>There might be a problem here!</strong> We are not really sure, but <a href="#" class="alert-link">it might be bad</a>.
+    </pf-alert>
+    <pf-alert type="success">
+      <strong>Great job!</strong> This is really working out <a href="#" class="alert-link">great for us</a>.
+    </pf-alert>
+    <pf-alert type="info">
+      <strong>This is some general information.</strong> You should <a href="#" class="alert-link">know about this</a>.
+    </pf-alert>
+    <hr>
+    <pf-alert type="danger" persistent="true" persistentCallbackFn="alert('Danger alert closed');">
+      <strong>Hey there is a problem!</strong> Yeah this is really messed up and you should <a href="#" class="alert-link">know about it</a>.
+    </pf-alert>
+    <pf-alert type="warning" persistent="true">
+      <strong>There might be a problem here!</strong> We are not really sure, but <a href="#" class="alert-link">it might be bad</a>.
+    </pf-alert>
+    <pf-alert type="success" persistent="true">
+      <strong>Great job!</strong> This is really working out <a href="#" class="alert-link">great for us</a>.
+    </pf-alert>
+    <pf-alert type="info" persistent="true">
+      <strong>This is some general information.</strong> You should <a href="#" class="alert-link">know about this</a>.
+    </pf-alert>
+    <hr>
+    <pf-alert type="success">
+      <strong>Great job!</strong> This is really working out <a href="#" class="alert-link">great for us</a>.
+      <button class="btn btn-default pull-right" type="submit">Button</button>
+    </pf-alert>
   </div>
-  <a onclick="toggleType()">Toggle</a> pf-alert type from warning to danger.<br>
-  <a onclick="togglePersistent()">Toggle</a> pf-alert persistent.
-  <hr>
-  <pf-alert type="danger">
-    <strong>Hey there is a problem!</strong> Yeah this is really messed up and you should <a href="#" class="alert-link">know about it</a>.
-  </pf-alert>
-  <pf-alert type="warning" id="test">
-    <strong>There might be a problem here!</strong> We are not really sure, but <a href="#" class="alert-link">it might be bad</a>.
-  </pf-alert>
-  <pf-alert type="success">
-    <strong>Great job!</strong> This is really working out <a href="#" class="alert-link">great for us</a>.
-  </pf-alert>
-  <pf-alert type="info">
-    <strong>This is some general information.</strong> You should <a href="#" class="alert-link">know about this</a>.
-  </pf-alert>
-  <hr>
-  <pf-alert type="danger" persistent="true" persistentCallbackFn="alert('Danger alert closed');">
-    <strong>Hey there is a problem!</strong> Yeah this is really messed up and you should <a href="#" class="alert-link">know about it</a>.
-  </pf-alert>
-  <pf-alert type="warning" persistent="true">
-    <strong>There might be a problem here!</strong> We are not really sure, but <a href="#" class="alert-link">it might be bad</a>.
-  </pf-alert>
-  <pf-alert type="success" persistent="true">
-    <strong>Great job!</strong> This is really working out <a href="#" class="alert-link">great for us</a>.
-  </pf-alert>
-  <pf-alert type="info" persistent="true">
-    <strong>This is some general information.</strong> You should <a href="#" class="alert-link">know about this</a>.
-  </pf-alert>
-  <hr>
-  <pf-alert type="success">
-    <strong>Great job!</strong> This is really working out <a href="#" class="alert-link">great for us</a>.
-    <button class="btn btn-default pull-right" type="submit">Button</button>
-  </pf-alert>
   <script>
     function togglePersistent() {
       var el = document.getElementById("test");

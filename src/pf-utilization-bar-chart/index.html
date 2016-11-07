@@ -4,26 +4,27 @@
   <title>pf-utilization-bar-chart example</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
-  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="/dist/js/patternfly.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
 </head>
 <body onload="startThresholdIncrements();">
-  <div class="page-header">
-    <h1>Utilization Bar Chart</h1>
+  <div class="container">
+    <div class="page-header">
+      <h1>Utilization Bar Chart</h1>
+    </div>
+    <label class="label-title">Default Layout, no Thresholds</label>
+    <pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB"></pf-utilization-bar-chart>
+
+    <label class="label-title">Thresholds</label>
+    <pf-utilization-bar-chart id="thresholdExample1" chart-title="RAM Usage" used="10" total="100" units="MB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+    <span class="doc-bottom-label">Listening for Threshold Change Events: <span class="" id="thresholdChangedText"></span></span>
+
+    <label class="label-title">Inline Layout</label>
+    <pf-utilization-bar-chart id="thresholdExample2" chart-title="Disk I/O" layout="inline" used="450" total="500" units="I/Ops" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+    <pf-utilization-bar-chart id="thresholdExample3" chart-title="CPU Usage" layout="inline" used="350" total="500" units="MHz" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+    <pf-utilization-bar-chart id="thresholdExample4" chart-title="Memory" layout="inline" used="150" total="500" units="GB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
   </div>
-   <label class="label-title">Default Layout, no Thresholds</label>
-   <pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB"></pf-utilization-bar-chart>
-
-   <label class="label-title">Thresholds</label>
-   <pf-utilization-bar-chart id="thresholdExample1" chart-title="RAM Usage" used="10" total="100" units="MB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-   <span class="doc-bottom-label">Listening for Threshold Change Events: <span class="" id="thresholdChangedText"></span></span>
-
-   <label class="label-title">Inline Layout</label>
-   <pf-utilization-bar-chart id="thresholdExample2" chart-title="Disk I/O" layout="inline" used="450" total="500" units="I/Ops" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-   <pf-utilization-bar-chart id="thresholdExample3" chart-title="CPU Usage" layout="inline" used="350" total="500" units="MHz" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-   <pf-utilization-bar-chart id="thresholdExample4" chart-title="Memory" layout="inline" used="150" total="500" units="GB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
-
 <script type="text/javascript">
   var inlineLayout = {
     'type': 'inline'

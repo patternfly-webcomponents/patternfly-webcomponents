@@ -3,21 +3,23 @@
 <head>
   <title>pf-tabs example</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly.css">
-  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="/dist/js/patternfly.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
 </head>
 <body>
-  <div class="page-header">
-    <h1>Tabs</h1>
+  <div class="container">
+    <div class="page-header">
+      <h1>Tabs</h1>
+    </div>
+    <pf-tabs>
+      <pf-tab title="Tab1" active="true">
+        <p>Tab1 content here</p>
+      </pf-tab>
+      <pf-tab title="Tab2">
+        <p>Tab2 content here</p>
+      </pf-tab>
+    </pf-tabs>
   </div>
-  <pf-tabs>
-    <pf-tab title="Tab1" active="true">
-      <p>Tab1 content here</p>
-    </pf-tab>
-    <pf-tab title="Tab2">
-      <p>Tab2 content here</p>
-    </pf-tab>
-  </pf-tabs>
 </body>
 </html>

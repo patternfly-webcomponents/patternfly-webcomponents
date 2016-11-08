@@ -9,6 +9,7 @@ module.exports = {
     'patternfly': './src/patternfly',
     'pf-alert': './src/pf-alert/index',
     'pf-list-view': './src/pf-list-view/index',
+    'pf-template-repeater': './src/pf-template-repeater/index',
     'pf-tabs': './src/pf-tabs/index',
     'pf-utilization-bar-chart': './src/pf-utilization-bar-chart/index',
     'pf-utils': './src/pf-utils/index'
@@ -18,6 +19,7 @@ module.exports = {
     root: [
       path.join(__dirname, "src/pf-alert"),
       path.join(__dirname, "src/pf-list-view"),
+      path.join(__dirname, "src/pf-template-repeater"),
       path.join(__dirname, "src/pf-tabs"),
       path.join(__dirname, "src/pf-utilization-bar-chart"),
       path.join(__dirname, "src/pf-utils")

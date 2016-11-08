@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -44,21 +44,22 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
-	__webpack_require__(2);
-	__webpack_require__(4);
-	__webpack_require__(5);
-	__webpack_require__(6);
-	__webpack_require__(7);
-	__webpack_require__(8);
-	__webpack_require__(9);
-	__webpack_require__(10);
-	__webpack_require__(11);
-	__webpack_require__(12);
-	__webpack_require__(13);
-	__webpack_require__(14);
-	module.exports = __webpack_require__(3);
+	'use strict';
 
+	/** PF Alert Component **/
+	__webpack_require__(1);
+
+	/** PfListView Component **/
+	__webpack_require__(4);
+
+	/** PF Tabs Component **/
+	__webpack_require__(6);
+
+	/** PF Utilization Bar Chart **/
+	__webpack_require__(11);
+
+	/** PF Utils **/
+	__webpack_require__(3);
 
 /***/ },
 /* 1 */
@@ -558,163 +559,6 @@
 
 /***/ },
 /* 6 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var PfPanelTemplate = "\n<div role=\"tabpanel\"></div>\n";
-	exports.default = PfPanelTemplate;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.PfTab = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _panel = __webpack_require__(6);
-
-	var _panel2 = _interopRequireDefault(_panel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	/**
-	 * PfTab element for Patternfly web components
-	 */
-	var PfTab = exports.PfTab = function (_HTMLElement) {
-	  _inherits(PfTab, _HTMLElement);
-
-	  function PfTab() {
-	    _classCallCheck(this, PfTab);
-
-	    return _possibleConstructorReturn(this, (PfTab.__proto__ || Object.getPrototypeOf(PfTab)).apply(this, arguments));
-	  }
-
-	  _createClass(PfTab, [{
-	    key: 'attachedCallback',
-
-	    /**
-	     * Called when an instance was inserted into the document
-	     */
-	    value: function attachedCallback() {
-	      this.appendChild(this._template.content);
-	    }
-
-	    /**
-	     * Called when element's attribute value has changed
-	     *
-	     * @param {string} attrName The attribute name that has changed
-	     * @param {string} oldValue The old attribute value
-	     * @param {string} newValue The new attribute value
-	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
-	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
-	      var parent = this.parentNode;
-	      if (attrName === 'title' && parent && parent.handleTitle) {
-	        parent.handleTitle(this, newValue);
-	      }
-	    }
-
-	    /**
-	     * Called when an instance of the element is created
-	     */
-
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _panel2.default;
-	    }
-
-	    /**
-	     * Get tab title
-	     *
-	     * @returns {string} The tab title
-	     */
-
-	  }, {
-	    key: 'title',
-	    get: function get() {
-	      return this._title;
-	    }
-
-	    /**
-	     * Set tab title
-	     *
-	     * @param {string} value The tab title
-	     */
-	    ,
-	    set: function set(value) {
-	      if (this._title !== value) {
-	        this._title = value;
-	        this.setAttribute('title', value);
-	      }
-	    }
-
-	    /**
-	     * Get flag indicating tab is active
-	     *
-	     * @returns {boolean} True if tab is active
-	     */
-
-	  }, {
-	    key: 'active',
-	    get: function get() {
-	      return this._active;
-	    }
-
-	    /**
-	     * Set flag indicating tab is active
-	     *
-	     * @param {boolean} value True to set tab active
-	     */
-	    ,
-	    set: function set(value) {
-	      if (this._active !== value) {
-	        this._active = value;
-	        this.setAttribute('active', value);
-	      }
-	    }
-	  }]);
-
-	  return PfTab;
-	}(HTMLElement);
-
-	(function () {
-	  document.registerElement('pf-tab', PfTab);
-	})();
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var PfTabTemplate = "\n<li role=\"presentation\">\n  <a href=\"#\" role=\"tab\" data-toggle=\"tab\"></a>\n</li>\n";
-	exports.default = PfTabTemplate;
-
-/***/ },
-/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -726,15 +570,15 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfTab = __webpack_require__(8);
+	var _pfTab = __webpack_require__(7);
 
 	var _pfTab2 = _interopRequireDefault(_pfTab);
 
-	var _pfTabs = __webpack_require__(10);
+	var _pfTabs = __webpack_require__(8);
 
 	var _pfTabs2 = _interopRequireDefault(_pfTabs);
 
-	var _pfTab3 = __webpack_require__(7);
+	var _pfTab3 = __webpack_require__(9);
 
 	var _pfTab4 = _interopRequireDefault(_pfTab3);
 
@@ -1039,7 +883,19 @@
 	})();
 
 /***/ },
-/* 10 */
+/* 7 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var PfTabTemplate = "\n<li role=\"presentation\">\n  <a href=\"#\" role=\"tab\" data-toggle=\"tab\"></a>\n</li>\n";
+	exports.default = PfTabTemplate;
+
+/***/ },
+/* 8 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1051,14 +907,23 @@
 	exports.default = PfTabsTemplate;
 
 /***/ },
-/* 11 */
-/***/ function(module, exports) {
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.PfTab = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _panel = __webpack_require__(10);
+
+	var _panel2 = _interopRequireDefault(_panel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1067,90 +932,127 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	/**
-	 * This is a fork of a repeater: github.com/Nevraeka/template-repeater
+	 * PfTab element for Patternfly web components
 	 */
+	var PfTab = exports.PfTab = function (_HTMLElement) {
+	  _inherits(PfTab, _HTMLElement);
 
-	var PFTemplateRepeater = function (_HTMLElement) {
-	  _inherits(PFTemplateRepeater, _HTMLElement);
+	  function PfTab() {
+	    _classCallCheck(this, PfTab);
 
-	  function PFTemplateRepeater() {
-	    _classCallCheck(this, PFTemplateRepeater);
-
-	    return _possibleConstructorReturn(this, (PFTemplateRepeater.__proto__ || Object.getPrototypeOf(PFTemplateRepeater)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (PfTab.__proto__ || Object.getPrototypeOf(PfTab)).apply(this, arguments));
 	  }
 
-	  _createClass(PFTemplateRepeater, [{
+	  _createClass(PfTab, [{
 	    key: 'attachedCallback',
+
+	    /**
+	     * Called when an instance was inserted into the document
+	     */
 	    value: function attachedCallback() {
-	      this.template = this.querySelector('template');
-	      this.render(this.getAttribute('content'));
+	      this.appendChild(this._template.content);
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render(val) {
-	      var renderError = "Content should be an Array of objects.";
-	      var template = this.template;
-	      var content = PFTemplateRepeater.fromJson(val);
-	      this.innerHTML = (Array.isArray(content) ? content.map(andApplyTemplate) : new Error(renderError).message).join('');
 
-	      function andApplyTemplate(item) {
-	        return PFTemplateRepeater.interpolate(template.cloneNode(true), item);
-	      }
+	    /**
+	     * Called when element's attribute value has changed
+	     *
+	     * @param {string} attrName The attribute name that has changed
+	     * @param {string} oldValue The old attribute value
+	     * @param {string} newValue The new attribute value
+	     */
 
-	      // dispatch a 'repeater content changed' event
-	      var event = new CustomEvent('RepeaterContentChanged', {});
-	      event.initCustomEvent('RepeaterContentChanged', true, true, {});
-	      this.dispatchEvent(event);
-
-	      return this.innerHTML;
-	    }
 	  }, {
 	    key: 'attributeChangedCallback',
-	    value: function attributeChangedCallback(name, oldVal, newVal) {
-	      if (name === "content" && typeof newVal === 'string') {
-	        this.render(newVal);
+	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
+	      var parent = this.parentNode;
+	      if (attrName === 'title' && parent && parent.handleTitle) {
+	        parent.handleTitle(this, newValue);
 	      }
 	    }
-	  }], [{
-	    key: 'interpolate',
-	    value: function interpolate(template, content) {
-	      var contentArr = Object.keys(content);
-	      var updatedHTML = "";
 
-	      if ((typeof content === 'undefined' ? 'undefined' : _typeof(content)) === "object") {
-	        var andIterateOverData = function andIterateOverData(item) {
-	          template.innerHTML = template.innerHTML.replace("${" + item + "}", content[item]);
-	        };
+	    /**
+	     * Called when an instance of the element is created
+	     */
 
-	        contentArr.forEach(andIterateOverData);
-
-	        updatedHTML += template.innerHTML;
-	      }
-
-	      return updatedHTML;
-	    }
 	  }, {
-	    key: 'fromJson',
-	    value: function fromJson(str) {
-	      var obj = [];
-	      if (typeof str === "string") {
-	        try {
-	          obj = JSON.parse(str);
-	        } catch (e) {
-	          // throw new Error("Invalid JSON string provided. ");
-	        }
+	    key: 'createdCallback',
+	    value: function createdCallback() {
+	      this._template = document.createElement('template');
+	      this._template.innerHTML = _panel2.default;
+	    }
+
+	    /**
+	     * Get tab title
+	     *
+	     * @returns {string} The tab title
+	     */
+
+	  }, {
+	    key: 'title',
+	    get: function get() {
+	      return this._title;
+	    }
+
+	    /**
+	     * Set tab title
+	     *
+	     * @param {string} value The tab title
+	     */
+	    ,
+	    set: function set(value) {
+	      if (this._title !== value) {
+	        this._title = value;
+	        this.setAttribute('title', value);
 	      }
-	      return obj;
+	    }
+
+	    /**
+	     * Get flag indicating tab is active
+	     *
+	     * @returns {boolean} True if tab is active
+	     */
+
+	  }, {
+	    key: 'active',
+	    get: function get() {
+	      return this._active;
+	    }
+
+	    /**
+	     * Set flag indicating tab is active
+	     *
+	     * @param {boolean} value True to set tab active
+	     */
+	    ,
+	    set: function set(value) {
+	      if (this._active !== value) {
+	        this._active = value;
+	        this.setAttribute('active', value);
+	      }
 	    }
 	  }]);
 
-	  return PFTemplateRepeater;
+	  return PfTab;
 	}(HTMLElement);
 
-	document.registerElement("pf-template-repeater", PFTemplateRepeater);
+	(function () {
+	  document.registerElement('pf-tab', PfTab);
+	})();
 
 /***/ },
-/* 12 */
+/* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var PfPanelTemplate = "\n<div role=\"tabpanel\"></div>\n";
+	exports.default = PfPanelTemplate;
+
+/***/ },
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1162,11 +1064,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfUtilizationBarChartDefault = __webpack_require__(13);
+	var _pfUtilizationBarChartDefault = __webpack_require__(12);
 
 	var _pfUtilizationBarChartDefault2 = _interopRequireDefault(_pfUtilizationBarChartDefault);
 
-	var _pfUtilizationBarChartInline = __webpack_require__(14);
+	var _pfUtilizationBarChartInline = __webpack_require__(13);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1274,7 +1176,7 @@
 	})();
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1286,7 +1188,7 @@
 	exports.default = pfUtilzBarChartDefault;
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";

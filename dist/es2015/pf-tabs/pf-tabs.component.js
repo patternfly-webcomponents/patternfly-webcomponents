@@ -15,7 +15,7 @@ var _pfTabs = require('pf-tabs.template');
 
 var _pfTabs2 = _interopRequireDefault(_pfTabs);
 
-var _pfTab3 = require('./pf-tab.component');
+var _pfTab3 = require('pf-tab.component');
 
 var _pfTab4 = _interopRequireDefault(_pfTab3);
 

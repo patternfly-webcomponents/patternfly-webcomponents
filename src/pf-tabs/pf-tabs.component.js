@@ -1,6 +1,6 @@
 import {default as tabTemplate} from 'pf-tab.template';
 import {default as tabsTemplate} from 'pf-tabs.template';
-import PfTab from './pf-tab.component';
+import PfTab from 'pf-tab.component';
 
 /**
  * PfTabs element for Patternfly web components

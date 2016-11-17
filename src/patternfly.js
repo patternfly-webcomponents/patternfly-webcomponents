@@ -8,10 +8,16 @@ require('pf-list-view.component.js');
 require('pf-template-repeater.component.js');
 
 /** PF Tabs Component **/
-require('pf-tabs.component');
+require('pf-tabs.component.js');
 
 /** PF Utilization Bar Chart **/
-require('pf-utilization-bar-chart.component');
+require('pf-utilization-bar-chart.component.js');
 
 /** PF Utils **/
-require('pf-utils');
+require('pf-utils.js');
+
+/** PF I18N **/
+require('pf-i18n.component.js');
+
+/** PF Hello **/
+require('pf-hello.component.js');

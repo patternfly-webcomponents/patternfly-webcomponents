@@ -3,9 +3,11 @@ var gulp = require('gulp'),
   browserSyncPort = 3000,
   baseUrl = 'http://localhost:' + browserSyncPort,
   eslint = require('gulp-eslint'),
+  gettext = require("gulp-gettext-parser"),
   ignore = require('gulp-ignore'),
   karma = require('karma').Server,
   path = require('path'),
+  rename = require("gulp-rename"),
   sass = require('gulp-sass'),
   $ = require('gulp-load-plugins')(),
   webpack = require('webpack-stream'),
@@ -103,7 +105,14 @@ gulp.task('webpack', ['js'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('build', ['font', 'js', 'scss', 'webpack']);
+gulp.task('gettext-extract', function () {
+  return gulp.src(["src/**/*.js"])
+    .pipe(gettext())
+    .pipe(rename("patternfly.pot"))
+    .pipe(gulp.dest("dist/i18n"));
+});
+
+gulp.task('build', ['font', 'js', 'scss', 'gettext-extract', 'webpack']);
 
 gulp.task('serve', function() {
   browserSync.init({
@@ -115,7 +124,7 @@ gulp.task('serve', function() {
 
   gulp.watch('index.html', ['build']);
   gulp.watch('app/*.html', ['build']);
-  gulp.watch('src/*.js', ['build']);
-  gulp.watch('src/*.html', ['build']);
+  gulp.watch('src/**/*.js', ['build']);
+  gulp.watch('src/**/*.html', ['build']);
   gulp.watch("dist/**/*").on('change', browserSync.reload);
 });

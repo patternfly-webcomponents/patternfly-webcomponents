@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Patternfly Doc Page</title>
-  <link rel="stylesheet" href="../dist/css/patternfly.css">
+  <link rel="stylesheet" href="/dist/css/patternfly.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="../dist/js/patternfly.js"></script>
+  <script src="/dist/js/patternfly.js"></script>
   <script type="text/javascript">
     function resizeIframe(obj) {
       obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
@@ -45,11 +45,15 @@
     </div>
   </div>
   <script type="text/javascript">
-    var reader = new FileReader();
+    function getDocExampleFile() {
+      var query = location.search.substr(1);
+      var result = {};
+      query.split("&").forEach(function(part) {
+        var item = part.split("=");
+        result[item[0]] = decodeURIComponent(item[1]);
+      });
 
-    function getDocExampleFile(){
-      var fileName = location.search.split('file=')[1];
-      var pathToFile = "../src/" + fileName + "/index.html";
+      var pathToFile = "/src/" + result.dir + "/" + result.file;
       document.getElementById('example').setAttribute('src', pathToFile);
 
       var rawFile = new XMLHttpRequest();

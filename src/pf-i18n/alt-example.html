@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <title>pf-i18n example</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
+  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jed/1.1.1/jed.min.js"></script>
+  <script src="/dist/js/patternfly.js"></script>
+  <script>
+    var locale = "de-DE";
+    var i18n = {
+      "de-DE": {
+        "Hello World!": "Hello World! (de-DE)",
+      },
+      "fr": {
+        "Hello World!": "Hello World! (fr)",
+      }
+    };
+  </script>
+</head>
+<body>
+  <pf-i18n id="pfi18n" mixin="i18n[locale]"></pf-i18n>
+  <div class="container">
+    <div class="page-header">
+      <h1>I18N with object literal</h1>
+    </div>
+    <hr>
+    <pf-alert type="success">
+      <pf-hello id="pfhello"></pf-hello>
+    </pf-alert>
+    <a onclick="toggleLocale()">Toggle</a> pf-i18n locale from German to French.<br>
+  </div>
+  <script>
+    function toggleLocale() {
+      var pfi18n = document.getElementById("pfi18n");
+      var pfhello = document.getElementById("pfhello");
+      if (locale === "de-DE") {
+        locale = "fr";
+      } else {
+        locale = "de-DE";
+      }
+      // Note: String must be different to fire on change event
+      pfi18n.setAttribute("mixin", "i18n['" + locale + "']");
+      pfhello.refresh();
+    }
+  </script>
+</body>
+</html>

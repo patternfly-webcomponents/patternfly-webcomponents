@@ -1,5 +1,4 @@
 import {default as tmpl} from 'pf-alert.template';
-import {default as utils} from 'pf-utils';
 
 /**
  * PfAlert element for Patternfly web components

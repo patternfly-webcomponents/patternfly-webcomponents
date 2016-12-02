@@ -14,7 +14,7 @@
   </div>
   <pf-list-view id="example1" show-checkboxes="true">
     <pf-template-repeater id="example1-content" content='[{"name": "Big Bird", "address": "1 Seaseme Street"}]'>
-      <template>
+      <pf-template>
         <div class="list-view-pf-description">
           <div class="list-group-item-heading">
             ${name}
@@ -23,7 +23,7 @@
             ${address}
           </div>
         </div>
-      </template>
+      </pf-template>
     </pf-template-repeater>
   </pf-list-view>
   <hr><br>
@@ -51,12 +51,12 @@
         class: 'btn-primary',
         include: 'start-button-template',
         title: 'Start the server',
-        actionFn: 'startAction'
+        actionType: 'start'
       },
       {
         name: 'Action 1',
         title: 'Perform an action',
-        actionFn: 'performAction'
+        actionType: 'action1'
       }
     ]);
   }
@@ -74,12 +74,9 @@
     demoEvents.innerHTML = e.detail.value + "\n" + demoEvents.innerHTML;
   });
 
-  function performAction(rowValue) {
-    demoEvents.innerHTML = "Perform Action for: " + rowValue + "\n" + demoEvents.innerHTML;
-  }
-  function startAction(rowValue) {
-    demoEvents.innerHTML = "Started Action for: " + rowValue + "\n" + demoEvents.innerHTML;
-  }
+  this.addEventListener("ListViewItemActionInitiated", function (e) {
+    demoEvents.innerHTML = "Action '" + e.detail.actionType + "' initiated for item: '" + e.detail.itemId + "'\n" + demoEvents.innerHTML;
+  });
 </script>
 </body>
 </html>

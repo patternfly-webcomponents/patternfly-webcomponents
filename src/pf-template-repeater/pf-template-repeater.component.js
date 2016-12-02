@@ -4,11 +4,6 @@
 
 class PFTemplateRepeater extends HTMLElement {
 
-  attachedCallback () {
-    this.template = this.querySelector('template');
-    this.render(this.getAttribute('content'));
-  }
-
   render (val) {
     const renderError = "Content should be an Array of objects.";
     let template = this.template;
@@ -16,7 +11,7 @@ class PFTemplateRepeater extends HTMLElement {
     this.innerHTML = (Array.isArray(content) ? content.map(andApplyTemplate) : new Error(renderError).message).join('');
 
     function andApplyTemplate (item) {
-      return PFTemplateRepeater.interpolate(template.cloneNode(true), item);
+      return "<pf-template>" + PFTemplateRepeater.interpolate(template.cloneNode(true), item) + "</pf-template>";
     }
 
     // dispatch a 'repeater content changed' event
@@ -29,6 +24,7 @@ class PFTemplateRepeater extends HTMLElement {
 
   attributeChangedCallback (name, oldVal, newVal) {
     if (name === "content" && typeof newVal === 'string') {
+      this.template = this.querySelector('pf-template');
       this.render(newVal);
     }
   }

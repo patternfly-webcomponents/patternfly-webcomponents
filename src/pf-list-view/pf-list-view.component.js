@@ -1,70 +1,14 @@
-import {default as defaultTemplate, itemRow, pfCheckbox} from './pf-list-view.template.js';
+import {default as defaultTemplate, itemRow} from './pf-list-view.template.js';
 
 let forEach = Array.prototype.forEach;
 
 export class PfListView extends HTMLElement {
   createdCallback () {
-    /**
-     * This method updates the raw user defined template before the template-repeater processes it.
-     * Ie.
-     *  <pf-list-view>
-     *    <pf-template-repeater content='[{"name": "Fred Flintstone", "address": "20 Dinosaur Way"}, {"name": "John Smith", "address": "415 ...
-       *      <template>
-       *        <div class="list-view-pf-description">
-       *          <div class="list-group-item-heading">
-       *            ${name}
-       *          ...
-       */
-    this._template = document.createElement('template');
-    this._template.innerHTML = defaultTemplate;
-
-    let itemRowTemplate = document.createElement('template');
-    itemRowTemplate.innerHTML = itemRow;
-
-    // get user defined template-repeater's template
-    let transcludeTemplate = this.querySelector('template');
-
-    // add all children of transcludeTemplate to itemRowTemplate (wraps them)
-    itemRowTemplate.content.querySelector('.list-view-pf-main-info').innerHTML = transcludeTemplate.innerHTML;
-
-    // add checkbox
-    let header = itemRowTemplate.content.querySelector('.list-group-item-header');
-    header.innerHTML = pfCheckbox + header.innerHTML;
-
-    // Update the template-repeater's template in the DOM to that of the itemRowTemplate
-    transcludeTemplate.innerHTML = itemRowTemplate.innerHTML;
-
-    // wrap all in default template
-    this._template.content.querySelector('.list-view-pf').innerHTML = this.innerHTML;
-
     // Listen for when the child template-repeater updates it's content
     // ie. repeates the user defined template and replaces $(name) with actual values
     this.addEventListener("RepeaterContentChanged", function (e) {
       this.handleRepeaterContentChanged();
     });
-
-    /**
-     * This method updated the user defined template to:
-     * Ie.
-     *  <pf-list-view>
-     *    <div class="list-group list-view-pf" >
-     *      <pf-template-repeater content='[{"name": "Fred Flintstone", "address": "20 Dinosaur Way"}, {"name": "John Smith", "address": "415 ...
-       *        <template>
-       *          <div class="list-group-item">
-       *            <div class="list-group-item-header">
-       *              <div class="list-view-pf-checkbox">
-       *                <input type="checkbox">
-       *              </div>
-       *              <div class="list-view-pf-main-info">
-       *                <div class="list-view-pf-description">
-       *                  ${name}
-       *                ...
-       *
-       */
-  }
-
-  attachedCallback () {
-    this.innerHTML = this._template.innerHTML;
   }
 
   attributeChangedCallback (attributeName, oldValue, newValue) {
@@ -74,8 +18,62 @@ export class PfListView extends HTMLElement {
   }
 
   handleRepeaterContentChanged () {
+    this.updateComponent();
     this.updateCheckboxes();
     this.updateActionButtons();
+  }
+
+  updateComponent() {
+    /**
+     * This method updates the overall list view and each repeated row/item in the list.
+     * Ie.
+     *  <pf-list-view>
+     *    <pf-template-repeater content='[{"name": "Fred Flintstone", "address": "20 Dinosaur Way"}, {"name": "John Smith", "address": "415 ...
+     *      <pf-template>
+     *        <div class="list-view-pf-description">
+     *          <div class="list-group-item-heading">
+     *            ${name}
+     *          ...
+     */
+
+    this._template = document.createElement('template');
+    this._template.innerHTML = defaultTemplate;
+
+    // get repeated templates
+    let repeatedTemplates = this.querySelectorAll('pf-template');
+
+    for (let i = 0; i < repeatedTemplates.length; i++) {
+      let template = repeatedTemplates[i];
+
+      let itemRowTemplate = document.createElement('template');
+      itemRowTemplate.innerHTML = itemRow;
+
+      // Where the transclude happens
+      itemRowTemplate.content.querySelector('.list-view-pf-main-info').innerHTML = template.innerHTML;
+
+      this._template.content.querySelector('.list-view-pf').appendChild(itemRowTemplate.content);
+    }
+
+    this.innerHTML = this._template.innerHTML;
+
+    /**
+     * This method updated the component to:
+     * Ie.
+     *  <pf-list-view>
+     *    <div class="list-group list-view-pf" >
+     *      <pf-template-repeater content='[{"name": "Fred Flintstone", "address": "20 Dinosaur Way"}, {"name": "John Smith", "address": "415 ...
+     *        <pf-template>
+     *          <div class="list-group-item">
+     *            <div class="list-group-item-header">
+     *              <div class="list-view-pf-checkbox">
+     *                <input type="checkbox">
+     *              </div>
+     *              <div class="list-view-pf-main-info">
+     *                <div class="list-view-pf-description">
+     *                  ${name}
+     *                ...
+     *
+     */
   }
 
   updateCheckboxes () {
@@ -98,8 +96,8 @@ export class PfListView extends HTMLElement {
         btn.innerHTML = button.name;
         btn.classList = "btn btn-default" + (button.class ? " " + button.class : "");
         btn.title = button.title;
-        btn.actionFn = button.actionFn;
-        btn.rowInnerText = header.lastElementChild.innerText.replace(/\s+/g, ' ').trim();
+        btn.actionType = button.actionType;
+        btn.itemId = header.lastElementChild.innerText.replace(/\s+/g, ' ').trim();
         // btn.onclick = this.handleActionButtonClick;   <-- why can't I get this way to work?!
         btn.addEventListener("click", this.handleActionButtonClick);
         actions.appendChild(btn);
@@ -111,10 +109,12 @@ export class PfListView extends HTMLElement {
   }
 
   handleActionButtonClick (e) {
-    let funcStr = e.currentTarget.actionFn;
-    let funcParam = e.currentTarget.rowInnerText;
-    // TODO: There are pros & cons to using eval, we'll need to reevaluate
-    eval('(' + funcStr + ')("' + funcParam + '")');
+    let actionType = e.currentTarget.actionType;
+    let itemId = e.currentTarget.itemId;
+
+    let event = new CustomEvent('ListViewItemActionInitiated', {"actionType": actionType, "itemId": itemId});
+    event.initCustomEvent('ListViewItemActionInitiated', true, true, {"actionType": actionType, "itemId": itemId});
+    this.dispatchEvent(event);
   }
 
   showHideCheckboxes () {
@@ -137,8 +137,8 @@ export class PfListView extends HTMLElement {
       for (let i = 0; i < checkboxes.length; i++) {
         let checkbox = checkboxes[i];
         // TODO: kind of hacky, need a better way to do this
-        let rowInnerText = checkbox.parentNode.parentNode.lastElementChild.innerText.replace(/\s+/g, ' ').trim();
-        checkbox.value = rowInnerText;
+        let itemId = checkbox.parentNode.parentNode.lastElementChild.innerText.replace(/\s+/g, ' ').trim();
+        checkbox.value = itemId;
         // there can only be one
         checkbox.removeEventListener("change", handleCheckboxChange);
         checkbox.addEventListener("change", handleCheckboxChange);

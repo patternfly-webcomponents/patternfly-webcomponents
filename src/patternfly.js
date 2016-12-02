@@ -7,6 +7,9 @@ require('pf-list-view.component.js');
 /** PfTemplateRepeaterComponent **/
 require('pf-template-repeater.component.js');
 
+/** PfTemplateComponent **/
+require('pf-template.component.js');
+
 /** PF Tabs Component **/
 require('pf-tabs.component.js');
 

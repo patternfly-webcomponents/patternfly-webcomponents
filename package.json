@@ -20,6 +20,7 @@
     "gulp-eslint": "~3.0.1",
     "gulp-gettext-parser": "~1.8.0",
     "gulp-ignore": "~2.0.1",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-less": "^3.1.0",
     "gulp-load-plugins": "~1.2.4",
     "gulp-plumber": "~1.1.0",

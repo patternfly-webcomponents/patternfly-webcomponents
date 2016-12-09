@@ -3,7 +3,18 @@ import {default as tabsTemplate} from 'pf-tabs.template';
 import PfTab from 'pf-tab.component';
 
 /**
- * PfTabs element for Patternfly web components
+ * <b>&lt;pf-tabs&gt;</b> element for Patternfly Web Components
+ *
+ * @example {@lang xml}
+ * <pf-tabs>
+ *  <pf-tab title="Tab1" active="true">
+ *    <p>Tab1 content here</p>
+ *  </pf-tab>
+ *  <pf-tab title="Tab2">
+ *    <p>Tab2 content here</p>
+ *  </pf-tab>
+ * </pf-tabs>
+ *
  */
 export class PfTabs extends HTMLElement {
   /**
@@ -60,9 +71,9 @@ export class PfTabs extends HTMLElement {
   }
 
   /**
-   * Handle event
+   * Handle the tab change event
    *
-   * @param event
+   * @param event {Event} Handle the tab change event
    */
   handleEvent (event) {
     if (event.target.tagName === 'A') {
@@ -143,10 +154,10 @@ export class PfTabs extends HTMLElement {
   }
 
   /**
-   * Handle title change
+   * Handle the title change event
    *
-   * @param panel The tab panel
-   * @param title The tab title
+   * @param panel {string} The tab panel
+   * @param title {string} The tab title
    */
   handleTitle (panel, title) {
     let tab = this.panelMap.get(panel);

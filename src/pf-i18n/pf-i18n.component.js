@@ -1,10 +1,9 @@
 import {i18n} from 'pf-utils';
 
 /**
- * PfI18n element for Patternfly web components
+ * <b>&lt;pf-i18n&gt;</b> element for Patternfly Web Components
  *
- * Example with object literal:
- *
+ * @example <caption>Example with object literal:</caption> {@lang xml}
  * <script>
  *   var i18n = {
  *     "Hello World!": "Hello World! (de-DE)"
@@ -12,8 +11,7 @@ import {i18n} from 'pf-utils';
  * <script>
  * <pf-i18n mixin="i18n">
  *
- * Example with Jed and translated JSON files:
- *
+ * @example <caption>Example with Jed and translated JSON files:</caption> {@lang xml}
  * <link rel="localization" href="/app/i18n/fr/patternfly.json" hreflang="fr">
  * <link rel="localization" href="/app/i18n/de-DE/patternfly.json" hreflang="de-DE">
  * <script src="//cdnjs.cloudflare.com/ajax/libs/jed/1.1.1/jed.min.js"></script>
@@ -60,8 +58,7 @@ import {i18n} from 'pf-utils';
  * </script>
  * <pf-i18n mixin="i18n">
  *
- * Example task for compiling .po files to JSON, formatted for Jed:
- *
+ * @example <caption>Example task for compiling .po files to JSON, formatted for Jed:</caption>
  * gulp.task('gettext-compile', function() {
  *   return gulp.src('src/po/** /*.po')
  *     .pipe(po2json({
@@ -70,6 +67,8 @@ import {i18n} from 'pf-utils';
  *     }))
  *     .pipe(gulp.dest("dist/i18n"));
  * });
+ *
+ * @prop {string} mixin i18n or custom mixin name
  */
 export class PfI18n extends HTMLElement {
   /**

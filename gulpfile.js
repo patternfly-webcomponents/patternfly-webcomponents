@@ -14,6 +14,7 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   sitespeedio = require('gulp-sitespeedio'),
   runBundleAnalyzer = false,
+  jsdoc = require('gulp-jsdoc3'),
   BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 gulp.task('font', function(){
@@ -32,6 +33,12 @@ gulp.task('js', ['lint'], function () {
     ))
     // .pipe($.uglify())
     .pipe(gulp.dest('dist/es2015'));
+});
+
+gulp.task('doc', function (cb) {
+  var config = require('./jsdocConfig.json');
+  gulp.src(['README.md', './src/**/*.component.js', './src/pf-utils/pf-utils.js'], {read: false})
+    .pipe(jsdoc(config, cb));
 });
 
 gulp.task('lint', function () {

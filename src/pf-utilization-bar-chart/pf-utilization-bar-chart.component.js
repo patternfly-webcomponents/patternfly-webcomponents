@@ -1,12 +1,38 @@
 import {default as defaultTemplate} from 'pf-utilization-bar-chart.default.template';
 import {inline as inlineTemplate} from 'pf-utilization-bar-chart.inline.template';
 
+/**
+ * <b>&lt;pf-utilization-bar-chart&gt;</b> element for Patternfly Web Components
+ *
+ * @example <caption>Default Layout, no Thresholds</caption> {@lang xml}
+ * <pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB"></pf-utilization-bar-chart>
+ *
+ * @example <caption>Default Layout, no Thresholds</caption> {@lang xml}
+ * <pf-utilization-bar-chart chart-title="RAM Usage" used="8" total="24" units="MB"></pf-utilization-bar-chart>
+ *
+ * @example <caption>Inline Layout</caption> {@lang xml}
+ * <pf-utilization-bar-chart id="thresholdExample2" chart-title="Disk I/O" layout="inline" used="450" total="500" units="I/Ops" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
+ *
+ * @prop {string} chart-title the chart title
+ * @prop {string} layout 'inline' for inline layout
+ * @prop {number} used the percentage used
+ * @prop {number} total the percentage total
+ * @prop {string} units the display units
+ * @prop {number} threshold-warning the warning threshold
+ * @prop {number} threshold-error the error threshold
+ */
 export class PfUtilizationBarChart extends HTMLElement {
+  /**
+   * Called when an instance of the element is created
+   */
   createdCallback () {
     this._lastThresholdClass;
     this._layout;
   }
 
+  /**
+   * Called when an instance was inserted into the document
+   */
   attachedCallback () {
     this._layout = this.getAttribute('layout');
     if (this._layout && this._layout === 'inline') {
@@ -17,10 +43,20 @@ export class PfUtilizationBarChart extends HTMLElement {
     this.updateChart();
   }
 
+  /**
+   * Called when element's attribute value has changed
+   *
+   * @param {string} attrName The attribute name that has changed
+   * @param {string} oldValue The old attribute value
+   * @param {string} newValue The new attribute value
+   */
   attributeChangedCallback (attributeName, oldValue, newValue) {
     this.updateChart();
   }
 
+  /**
+   * Updates chart content
+   */
   updateChart () {
     let chartTitle = this.getAttribute('chart-title');
     if (chartTitle) {
@@ -53,6 +89,9 @@ export class PfUtilizationBarChart extends HTMLElement {
     }
   }
 
+  /**
+   * Sets the used bar threshold color, percentageUsed, errorThreshold, warnThreshold
+   */
   setUsedBarThresholdColor (usedBar, percentageUsed, errorThreshold, warnThreshold) {
     let thresholdClass;
 

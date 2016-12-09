@@ -1,8 +1,9 @@
-// ToDo: Add more utils here
+/**
+ * PfUtils JS Helper
+ * Common js helper methods used in Patternfly Web Components
+ */
 
 /**
- * Internationalization util.
- *
  * See pf-i18n element for initialization details.
  *
  * @constructor

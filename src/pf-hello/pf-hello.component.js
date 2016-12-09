@@ -2,9 +2,10 @@ import {default as tmpl} from 'pf-hello.template';
 import {i18n} from 'pf-utils';
 
 /**
- * PfHello element for Patternfly web components
+ * <b>&lt;pf-hello&gt;</b> element for Patternfly Web Components
  *
- * ToDo: Document attrbutes and examples.
+ * @example {@lang xml}
+ * <pf-hello></pf-hello>
  */
 export class PfHello extends HTMLElement {
   /**

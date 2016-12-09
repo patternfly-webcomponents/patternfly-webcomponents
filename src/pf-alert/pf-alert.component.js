@@ -1,9 +1,14 @@
 import {default as tmpl} from 'pf-alert.template';
 
 /**
- * PfAlert element for Patternfly web components
+ * <b>&lt;pf-alert&gt;</b> element for Patternfly Web Components
  *
- * ToDo: Document attrbutes and examples.
+ * @example {@lang xml}
+ * <pf-alert type="danger" persistent="true" persistentCallbackFn="alert('Danger alert closed');"></pf-alert>
+ *
+ * @prop {string} type danger, warning, success, info
+ * @prop {string} persistant true, false
+ * @prop {function} persistent-callback-fn
  */
 export class PfAlert extends HTMLElement {
   /**

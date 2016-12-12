@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - '4'
+
+before_install:
+  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+  - npm install patternfly-eng-release
+
+install: true
+
+script:
+  - sh -x ./node_modules/patternfly-eng-release/scripts/_build.sh -w
+
+after_success:

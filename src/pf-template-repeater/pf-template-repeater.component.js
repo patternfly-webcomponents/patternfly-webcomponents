@@ -1,9 +1,22 @@
 /**
- * This is a fork of a repeater: github.com/Nevraeka/template-repeater
+ * <b>&lt;pf-template-repeater&gt;</b> element for Patternfly Web Components
+ *
+ * This is a fork of a template-repeater: <a href="http://github.com/Nevraeka/template-repeater">http://github.com/Nevraeka/template-repeater</a>
+ *
+ * @example {@lang xml}
+ * <pf-template-repeater id="example1-content" content='[{"name": "Big Bird", "address": "1 Seaseme Street"}]'>
+ *
+ *
+ * @prop {string} content the json stringified content
  */
 
 class PFTemplateRepeater extends HTMLElement {
 
+  /**
+   * Renders the &lt;pf-template&gt; using PFTemplateRepeater
+   *
+   * @param {string} val The json content
+   */
   render (val) {
     const renderError = "Content should be an Array of objects.";
     let template = this.template;
@@ -22,6 +35,13 @@ class PFTemplateRepeater extends HTMLElement {
     return this.innerHTML;
   }
 
+  /**
+   * Called when element's attribute value has changed
+   *
+   * @param {string} attrName The attribute name that has changed
+   * @param {string} oldValue The old attribute value
+   * @param {string} newValue The new attribute value
+   */
   attributeChangedCallback (name, oldVal, newVal) {
     if (name === "content" && typeof newVal === 'string') {
       this.template = this.querySelector('pf-template');

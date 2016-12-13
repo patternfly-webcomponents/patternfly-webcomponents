@@ -1,7 +1,20 @@
 import {default as tmpl} from 'panel.template';
 
 /**
- * PfTab element for Patternfly web components
+ * <b>&lt;pf-tab&gt;</b> element for Patternfly Web Components
+ *
+ * @example {@lang xml}
+ * <pf-tabs>
+ *  <pf-tab title="Tab1" active="true">
+ *    <p>Tab1 content here</p>
+ *  </pf-tab>
+ *  <pf-tab title="Tab2">
+ *    <p>Tab2 content here</p>
+ *  </pf-tab>
+ * </pf-tabs>
+ *
+ * @prop {string} title the tab title
+ * @prop {string} active if attribute exists, tab will be active
  */
 export class PfTab extends HTMLElement {
   /**

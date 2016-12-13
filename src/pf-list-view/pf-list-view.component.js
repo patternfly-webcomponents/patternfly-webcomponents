@@ -2,7 +2,31 @@ import {default as defaultTemplate, itemRow} from './pf-list-view.template.js';
 
 let forEach = Array.prototype.forEach;
 
+/**
+ * <b>&lt;pf-list-view&gt;</b> element for Patternfly Web Components
+ *
+ * @example {@lang xml}
+ * <pf-list-view id="example1" show-checkboxes="true">
+ *  <pf-template-repeater id="example1-content" content='[{"name": "Big Bird", "address": "1 Seaseme Street"}]'>
+ *    <pf-template>
+ *      <div class="list-view-pf-description">
+ *        <div class="list-group-item-heading">
+ *          ${name}
+ *        </div>
+ *        <div class="list-group-item-text">
+ *          ${address}
+ *        </div>
+ *      </div>
+ *    </pf-template>
+ *  </pf-template-repeater>
+ * </pf-list-view>
+ *
+ * @prop {string} show-checkboxes whether to show list-view checkboxes
+ */
 export class PfListView extends HTMLElement {
+  /**
+   * Called when an instance of the element is created
+   */
   createdCallback () {
     // Listen for when the child template-repeater updates it's content
     // ie. repeates the user defined template and replaces $(name) with actual values
@@ -11,30 +35,41 @@ export class PfListView extends HTMLElement {
     });
   }
 
+  /**
+   * Called when element's attribute value has changed
+   *
+   * @param {string} attrName The attribute name that has changed
+   * @param {string} oldValue The old attribute value
+   * @param {string} newValue The new attribute value
+   */
   attributeChangedCallback (attributeName, oldValue, newValue) {
     if (attributeName === 'show-checkboxes') {
       this.showHideCheckboxes();
     }
   }
 
+  /**
+   * Called when repeater content changes (updates content)
+   */
   handleRepeaterContentChanged () {
     this.updateComponent();
     this.updateCheckboxes();
     this.updateActionButtons();
   }
 
+  /**
+   * This method updates the overall list view and each repeated row/item in the list.
+   * @example {@lang xml}
+   *  <pf-list-view>
+   *    <pf-template-repeater content='[{"name": "Fred Flintstone", "address": "20 Dinosaur Way"}, {"name": "John Smith", "address": "415 ...'
+   *      <pf-template>
+   *        <div class="list-view-pf-description">
+   *          <div class="list-group-item-heading">
+   *            ${name}
+   *          ...
+   */
   updateComponent() {
-    /**
-     * This method updates the overall list view and each repeated row/item in the list.
-     * Ie.
-     *  <pf-list-view>
-     *    <pf-template-repeater content='[{"name": "Fred Flintstone", "address": "20 Dinosaur Way"}, {"name": "John Smith", "address": "415 ...
-     *      <pf-template>
-     *        <div class="list-view-pf-description">
-     *          <div class="list-group-item-heading">
-     *            ${name}
-     *          ...
-     */
+
 
     this._template = document.createElement('template');
     this._template.innerHTML = defaultTemplate;

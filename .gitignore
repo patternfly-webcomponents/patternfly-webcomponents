@@ -13,3 +13,4 @@ npm-debug.log
 
 #Ignore generated performance metrics
 perf/localhost
+public

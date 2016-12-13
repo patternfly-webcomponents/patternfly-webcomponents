@@ -36,6 +36,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
+    "patternfly-eng-publish": "0.0.3",
     "patternfly-eng-release": "git+https://github.com/patternfly/patternfly-eng-release.git",
     "run-sequence": "^1.2.2",
     "webpack": "~1.13.2",
@@ -49,6 +50,9 @@
     "webcomponentsjs": "^1.0.2"
   },
   "scripts": {
+    "build-travis": "build.sh -w",
+    "publish": "publish-ghpages.sh public",
+    "publish-travis": "publish-ghpages.sh -t public",
     "test": "gulp test"
   },
   "repository": {

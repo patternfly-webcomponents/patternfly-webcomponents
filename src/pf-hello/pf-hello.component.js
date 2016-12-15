@@ -1,5 +1,5 @@
 import {default as tmpl} from 'pf-hello.template';
-import {i18n} from 'pf-utils';
+import {i18n} from 'i18n-utils';
 
 /**
  * <b>&lt;pf-hello&gt;</b> element for Patternfly Web Components

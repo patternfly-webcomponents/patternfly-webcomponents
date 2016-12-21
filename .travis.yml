@@ -11,7 +11,7 @@ env:
 
 before_install:
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-  - npm install patternfly-eng-release
+  - npm install git+https://github.com/patternfly/patternfly-eng-release.git
 
 install: true
 

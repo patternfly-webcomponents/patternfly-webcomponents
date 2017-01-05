@@ -7,10 +7,10 @@ import PfTab from 'pf-tab.component';
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab title="Tab1" active="true">
+ *  <pf-tab tabTitle="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab title="Tab2">
+ *  <pf-tab tabTitle="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
@@ -154,18 +154,31 @@ export class PfTabs extends HTMLElement {
   }
 
   /**
-   * Handle the title change event
+   * Handle the tabTitle change event
    *
    * @param panel {string} The tab panel
-   * @param title {string} The tab title
+   * @param tabTitle {string} The tab title
    */
-  handleTitle (panel, title) {
+  handleTitle (panel, tabTitle) {
     let tab = this.panelMap.get(panel);
     //attribute changes may fire as Angular is rendering
     //before this tab is in the panelMap, so check first
     if (tab) {
-      tab.textContent = panel.title;
+      tab.textContent = panel.tabTitle;
     }
+  }
+
+  /**
+   * Sets the active tab programmatically
+   * @param tabTitle
+   */
+  setActiveTab (tabTitle) {
+    this.tabMap.forEach((value, key) => {
+      let tabtitle = value.attributes.tabtitle ? value.attributes.tabtitle.value : value.tabtitle;
+      if (tabtitle === tabTitle) {
+        this._setTabStatus(key);
+      }
+    });
   }
 
   /**
@@ -203,8 +216,8 @@ export class PfTabs extends HTMLElement {
     let tab = frag.content.firstElementChild;
     let tabAnchor = tab.firstElementChild;
     //React gives us a node with attributes, Angular adds it as a property
-    tabAnchor.innerHTML = pfTab.attributes && pfTab.attributes.title ?
-      pfTab.attributes.title.value : pfTab.title;
+    tabAnchor.innerHTML = pfTab.attributes && pfTab.attributes.tabTitle ?
+      pfTab.attributes.tabTitle.value : pfTab.tabTitle;
     this.displayMap.set(pfTab, pfTab.style.display);
     return tab;
   }
@@ -240,19 +253,32 @@ export class PfTabs extends HTMLElement {
    * Helper function to set tab status
    *
    * @param {boolean} active True if active
+   * @param {string} tabtitle the tab title
    * @private
    */
   _setTabStatus (active) {
+    //dispatch the custom 'tabChanged' event for framework listeners
+    var eventObj = new CustomEvent('tabChanged', {
+      detail: activeTabTitle
+    });
+
     if (active === this.selected) {
       return;
     }
     this.selected = active;
 
+    let activeTabTitle;
     let tabs = this.querySelector('ul').children;
     [].forEach.call(tabs, function (tab) {
+      if (active === tab) {
+        activeTabTitle = tab.querySelector('a').text;
+      }
       let fn = active === tab ? this._makeActive : this._makeInactive;
       fn.call(this, tab);
     }.bind(this));
+
+
+    this.dispatchEvent(eventObj);
   }
 }
 (function () {

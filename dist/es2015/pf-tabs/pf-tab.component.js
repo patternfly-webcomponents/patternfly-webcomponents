@@ -24,15 +24,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab title="Tab1" active="true">
+ *  <pf-tab tabTitle="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab title="Tab2">
+ *  <pf-tab tabTitle="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
  *
- * @prop {string} title the tab title
+ * @prop {string} tabTitle the tab title
  * @prop {string} active if attribute exists, tab will be active
  */
 var PfTab = exports.PfTab = function (_HTMLElement) {
@@ -66,7 +66,7 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
     key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
       var parent = this.parentNode;
-      if (attrName === 'title' && parent && parent.handleTitle) {
+      if (attrName === 'tabTitle' && parent && parent.handleTitle) {
         parent.handleTitle(this, newValue);
       }
     }
@@ -83,27 +83,27 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
     }
 
     /**
-     * Get tab title
+     * Get tabTitle
      *
-     * @returns {string} The tab title
+     * @returns {string} The tabTitle
      */
 
   }, {
-    key: 'title',
+    key: 'tabTitle',
     get: function get() {
-      return this._title;
+      return this._tabTitle;
     }
 
     /**
-     * Set tab title
+     * Set tab tabTitle
      *
-     * @param {string} value The tab title
+     * @param {string} value The tab tabTitle
      */
     ,
     set: function set(value) {
-      if (this._title !== value) {
-        this._title = value;
-        this.setAttribute('title', value);
+      if (this._tabTitle !== value) {
+        this._tabTitle = value;
+        this.setAttribute('tabTitle', value);
       }
     }
 

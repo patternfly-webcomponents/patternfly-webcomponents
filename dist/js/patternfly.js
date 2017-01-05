@@ -778,10 +778,10 @@
 	 *
 	 * @example {@lang xml}
 	 * <pf-tabs>
-	 *  <pf-tab title="Tab1" active="true">
+	 *  <pf-tab tabTitle="Tab1" active="true">
 	 *    <p>Tab1 content here</p>
 	 *  </pf-tab>
-	 *  <pf-tab title="Tab2">
+	 *  <pf-tab tabTitle="Tab2">
 	 *    <p>Tab2 content here</p>
 	 *  </pf-tab>
 	 * </pf-tabs>
@@ -950,21 +950,39 @@
 	    }
 
 	    /**
-	     * Handle the title change event
+	     * Handle the tabTitle change event
 	     *
 	     * @param panel {string} The tab panel
-	     * @param title {string} The tab title
+	     * @param tabTitle {string} The tab title
 	     */
 
 	  }, {
 	    key: 'handleTitle',
-	    value: function handleTitle(panel, title) {
+	    value: function handleTitle(panel, tabTitle) {
 	      var tab = this.panelMap.get(panel);
 	      //attribute changes may fire as Angular is rendering
 	      //before this tab is in the panelMap, so check first
 	      if (tab) {
-	        tab.textContent = panel.title;
+	        tab.textContent = panel.tabTitle;
 	      }
+	    }
+
+	    /**
+	     * Sets the active tab programmatically
+	     * @param tabTitle
+	     */
+
+	  }, {
+	    key: 'setActiveTab',
+	    value: function setActiveTab(tabTitle) {
+	      var _this2 = this;
+
+	      this.tabMap.forEach(function (value, key) {
+	        var tabtitle = value.attributes.tabtitle ? value.attributes.tabtitle.value : value.tabtitle;
+	        if (tabtitle === tabTitle) {
+	          _this2._setTabStatus(key);
+	        }
+	      });
 	    }
 
 	    /**
@@ -1008,7 +1026,7 @@
 	      var tab = frag.content.firstElementChild;
 	      var tabAnchor = tab.firstElementChild;
 	      //React gives us a node with attributes, Angular adds it as a property
-	      tabAnchor.innerHTML = pfTab.attributes && pfTab.attributes.title ? pfTab.attributes.title.value : pfTab.title;
+	      tabAnchor.innerHTML = pfTab.attributes && pfTab.attributes.tabTitle ? pfTab.attributes.tabTitle.value : pfTab.tabTitle;
 	      this.displayMap.set(pfTab, pfTab.style.display);
 	      return tab;
 	    }
@@ -1050,22 +1068,34 @@
 	     * Helper function to set tab status
 	     *
 	     * @param {boolean} active True if active
+	     * @param {string} tabtitle the tab title
 	     * @private
 	     */
 
 	  }, {
 	    key: '_setTabStatus',
 	    value: function _setTabStatus(active) {
+	      //dispatch the custom 'tabChanged' event for framework listeners
+	      var eventObj = new CustomEvent('tabChanged', {
+	        detail: activeTabTitle
+	      });
+
 	      if (active === this.selected) {
 	        return;
 	      }
 	      this.selected = active;
 
+	      var activeTabTitle = void 0;
 	      var tabs = this.querySelector('ul').children;
 	      [].forEach.call(tabs, function (tab) {
+	        if (active === tab) {
+	          activeTabTitle = tab.querySelector('a').text;
+	        }
 	        var fn = active === tab ? this._makeActive : this._makeInactive;
 	        fn.call(this, tab);
 	      }.bind(this));
+
+	      this.dispatchEvent(eventObj);
 	    }
 	  }]);
 
@@ -1130,15 +1160,15 @@
 	 *
 	 * @example {@lang xml}
 	 * <pf-tabs>
-	 *  <pf-tab title="Tab1" active="true">
+	 *  <pf-tab tabTitle="Tab1" active="true">
 	 *    <p>Tab1 content here</p>
 	 *  </pf-tab>
-	 *  <pf-tab title="Tab2">
+	 *  <pf-tab tabTitle="Tab2">
 	 *    <p>Tab2 content here</p>
 	 *  </pf-tab>
 	 * </pf-tabs>
 	 *
-	 * @prop {string} title the tab title
+	 * @prop {string} tabTitle the tab title
 	 * @prop {string} active if attribute exists, tab will be active
 	 */
 	var PfTab = exports.PfTab = function (_HTMLElement) {
@@ -1172,7 +1202,7 @@
 	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      var parent = this.parentNode;
-	      if (attrName === 'title' && parent && parent.handleTitle) {
+	      if (attrName === 'tabTitle' && parent && parent.handleTitle) {
 	        parent.handleTitle(this, newValue);
 	      }
 	    }
@@ -1189,27 +1219,27 @@
 	    }
 
 	    /**
-	     * Get tab title
+	     * Get tabTitle
 	     *
-	     * @returns {string} The tab title
+	     * @returns {string} The tabTitle
 	     */
 
 	  }, {
-	    key: 'title',
+	    key: 'tabTitle',
 	    get: function get() {
-	      return this._title;
+	      return this._tabTitle;
 	    }
 
 	    /**
-	     * Set tab title
+	     * Set tab tabTitle
 	     *
-	     * @param {string} value The tab title
+	     * @param {string} value The tab tabTitle
 	     */
 	    ,
 	    set: function set(value) {
-	      if (this._title !== value) {
-	        this._title = value;
-	        this.setAttribute('title', value);
+	      if (this._tabTitle !== value) {
+	        this._tabTitle = value;
+	        this.setAttribute('tabTitle', value);
 	      }
 	    }
 

@@ -45,8 +45,11 @@ export class PfTabs extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
-    if (attrName === 'class') {
-      this.querySelector('ul').className = newValue;
+    if (attrName === 'class' && newValue !== 'ng-isolate-scope') {
+      let ul = this.querySelector('ul');
+      if (ul) {
+        ul.className = newValue;
+      }
     }
   }
 
@@ -77,6 +80,7 @@ export class PfTabs extends HTMLElement {
    */
   handleEvent (event) {
     if (event.target.tagName === 'A') {
+      event.preventDefault();
       this._setTabStatus(event.target.parentNode);
     }
   }
@@ -93,12 +97,12 @@ export class PfTabs extends HTMLElement {
     mutations.forEach(function (mutationRecord) {
       //child dom nodes have been added
       if ( mutationRecord.type === 'childList' ) {
-        forEach.call(mutationRecord.addedNodes, function (node) {
-          handlers.push(['add', node]);
-        });
-        forEach.call(mutationRecord.removedNodes, function (node) {
-          handlers.push(['remove', node]);
-        });
+        for (let i = 0; i < mutationRecord.addedNodes.length; i++) {
+          handlers.push(['add', mutationRecord.addedNodes[i]]);
+        }
+        for (let i = 0; i < mutationRecord.removedNodes.length; i++) {
+          handlers.push(['remove', mutationRecord.removedNodes[i]]);
+        }
       }  else if (mutationRecord.type === 'attributes') {
         //mutationRecord.attributeName contains changed attributes
         //note: we can ignore this for attributes as the v1 spec of custom
@@ -257,17 +261,12 @@ export class PfTabs extends HTMLElement {
    * @private
    */
   _setTabStatus (active) {
-    //dispatch the custom 'tabChanged' event for framework listeners
-    var eventObj = new CustomEvent('tabChanged', {
-      detail: activeTabTitle
-    });
-
     if (active === this.selected) {
       return;
     }
     this.selected = active;
 
-    let activeTabTitle;
+    let activeTabTitle = "";
     let tabs = this.querySelector('ul').children;
     [].forEach.call(tabs, function (tab) {
       if (active === tab) {
@@ -277,8 +276,8 @@ export class PfTabs extends HTMLElement {
       fn.call(this, tab);
     }.bind(this));
 
-
-    this.dispatchEvent(eventObj);
+    //dispatch the custom 'tabChanged' event for framework listeners
+    this.dispatchEvent(new CustomEvent('tabChanged', {detail: activeTabTitle}));
   }
 }
 (function () {

@@ -1,4 +1,4 @@
-import {i18n} from 'pf-utils';
+import {i18n} from 'i18n-utils';
 
 /**
  * <b>&lt;pf-i18n&gt;</b> element for Patternfly Web Components

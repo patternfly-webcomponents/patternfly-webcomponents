@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <title>pf-tooltip example</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
+    <link rel="stylesheet" href="/dist/css/patternfly.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
+    <script src="/dist/js/pf-utils.js"></script>
+    <script src="/dist/js/pf-tooltip.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Tooltips</h1>
+    </div>
+    <hr>
+
+    <pf-tooltip id="tooltip-left" placement="left" targetSelector="#btn-left">
+        Tooltip text on Left
+    </pf-tooltip>
+    <button id="btn-left" type="button" class="btn btn-primary" aria-describedby="tooltip-left">Left</button>
+
+    <pf-tooltip id="tooltip-top" placement="top" targetSelector="#btn-top">
+        <span>Tooltip on top</span>
+    </pf-tooltip>
+    <button id="btn-top" type="button" class="btn btn-secondary" aria-describedby="tooltip-top">Top</button>
+
+    <pf-tooltip id="tooltip-bottom" placement="bottom" targetSelector="#btn-bottom">
+        <span>Tooltip on bottom</span>
+    </pf-tooltip>
+    <button id="btn-bottom" type="button" class="btn btn-warning" aria-describedby="tooltip-bottom">Bottom</button>
+
+    <pf-tooltip id="tooltip-right" placement="right" targetSelector="#btn-right">
+        <span>Tooltip on right</span>
+    </pf-tooltip>
+    <button id="btn-right" type="button" class="btn btn-danger" aria-describedby="tooltip-right">Right</button>
+
+    <br/>
+    <br/>
+    <script>
+        setTimeout(function(){
+          var pfTooltipRight = document.querySelector('[targetSelector="#btn-right"]');
+          pfTooltipRight.setInnerHtml("<span>Right content changed!</span>");
+        });
+    </script>
+</div>
+</body>
+</html>

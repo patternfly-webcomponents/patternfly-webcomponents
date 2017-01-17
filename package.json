@@ -2,9 +2,6 @@
   "name": "patternfly-webcomponents",
   "version": "0.0.7",
   "description": "PatternFly Web Components",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "main": "dist/js/patternfly.js",
   "author": "Red Hat",
   "license": "Apache-2.0",

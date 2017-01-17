@@ -13,6 +13,9 @@ require('pf-template.component.js');
 /** PF Tabs Component **/
 require('pf-tabs.component.js');
 
+/** PF Tooltip Component **/
+require('pf-tooltip.component.js');
+
 /** PF Utilization Bar Chart **/
 require('pf-utilization-bar-chart.component.js');
 

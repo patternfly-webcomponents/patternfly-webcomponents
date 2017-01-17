@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: PfUtilizationBarChart</title>
+	<title>Documentation Class: PfTooltip</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,16 +65,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: PfUtilizationBarChart</h1>
+	<h1 class="page-title">Class: PfTooltip</h1>
 <section>
 
 <header>
     
         <h2>
-        PfUtilizationBarChart
+        PfTooltip
         </h2>
         
-            <div class="class-description"><p><b>&lt;pf-utilization-bar-chart&gt;</b> element for Patternfly Web Components</p></div>
+            <div class="class-description"><p><b>&lt;pf-tooltip&gt;</b> element for Patternfly Web Components</p></div>
         
     
 </header>
@@ -86,7 +86,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="PfUtilizationBarChart"><span class="type-signature"></span>new PfUtilizationBarChart()</h4>
+    <h4 class="name" id="PfTooltip"><span class="type-signature"></span>new PfTooltip()</h4>
     
     
 </dt>
@@ -131,7 +131,7 @@
 
         <tr>
             
-                <td class="name"><code>chart-title</code></td>
+                <td class="name"><code>animation</code></td>
             
 
             <td class="type">
@@ -148,14 +148,14 @@
 
             
 
-            <td class="description last"><p>the chart title</p></td>
+            <td class="description last"><p>the animation class</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>layout</code></td>
+                <td class="name"><code>targetSelector</code></td>
             
 
             <td class="type">
@@ -172,62 +172,14 @@
 
             
 
-            <td class="description last"><p>'inline' for inline layout</p></td>
+            <td class="description last"><p>the target element selector</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>used</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the percentage used</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>total</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the percentage total</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>units</code></td>
+                <td class="name"><code>placement</code></td>
             
 
             <td class="type">
@@ -244,14 +196,14 @@
 
             
 
-            <td class="description last"><p>the display units</p></td>
+            <td class="description last"><p>left, right, top, bottom</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>threshold-warning</code></td>
+                <td class="name"><code>delay</code></td>
             
 
             <td class="type">
@@ -268,14 +220,14 @@
 
             
 
-            <td class="description last"><p>the warning threshold</p></td>
+            <td class="description last"><p>animation delay (ms)</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>threshold-error</code></td>
+                <td class="name"><code>duration</code></td>
             
 
             <td class="type">
@@ -292,7 +244,31 @@
 
             
 
-            <td class="description last"><p>the error threshold</p></td>
+            <td class="description last"><p>animation duration (ms)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>containerSelector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the container element selector</p></td>
         </tr>
 
     
@@ -351,22 +327,10 @@
     
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-        <p class="code-caption">Default Layout, no Thresholds</p>
-    
     <pre class="sunlight-highlight-xml">
-&lt;pf-utilization-bar-chart chart-title=&quot;RAM Usage&quot; used=&quot;8&quot; total=&quot;24&quot; units=&quot;MB&quot;&gt;&lt;/pf-utilization-bar-chart&gt;</pre>
-
-        <p class="code-caption">Default Layout, no Thresholds</p>
-    
-    <pre class="sunlight-highlight-xml">
-&lt;pf-utilization-bar-chart chart-title=&quot;RAM Usage&quot; used=&quot;8&quot; total=&quot;24&quot; units=&quot;MB&quot;&gt;&lt;/pf-utilization-bar-chart&gt;</pre>
-
-        <p class="code-caption">Inline Layout</p>
-    
-    <pre class="sunlight-highlight-xml">
-&lt;pf-utilization-bar-chart id=&quot;thresholdExample2&quot; chart-title=&quot;Disk I/O&quot; layout=&quot;inline&quot; used=&quot;450&quot; total=&quot;500&quot; units=&quot;I/Ops&quot; threshold-warning=&quot;60&quot; threshold-error=&quot;85&quot;&gt;&lt;/pf-utilization-bar-chart&gt;</pre>
+&lt;pf-tooltip animation=&quot;fade&quot; targetSelector=&quot;#btn-left&quot; placement=&quot;left&quot; delay=&quot;100&quot; duration=&quot;150&quot; containerSelector=&quot;#container&quot;&gt;&lt;/pf-alert&gt;</pre>
 
 
     
@@ -385,6 +349,730 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="animation">
+    <h4 id="animation"><span class="type-signature"></span>animation<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the animation class</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="animation">
+    <h4 id="animation"><span class="type-signature"></span>animation<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set animation class</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="containerSelector">
+    <h4 id="containerSelector"><span class="type-signature"></span>containerSelector<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the tooltip containerSelector</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="containerSelector">
+    <h4 id="containerSelector"><span class="type-signature"></span>containerSelector<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set the tooltip containerSelector</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="delay">
+    <h4 id="delay"><span class="type-signature"></span>delay<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set the animation delay</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="delay">
+    <h4 id="delay"><span class="type-signature"></span>delay<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the animation delay</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="duration">
+    <h4 id="duration"><span class="type-signature"></span>duration<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the animation duration</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="duration">
+    <h4 id="duration"><span class="type-signature"></span>duration<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set the animation duration</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="placement">
+    <h4 id="placement"><span class="type-signature"></span>placement<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set placement position</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="placement">
+    <h4 id="placement"><span class="type-signature"></span>placement<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the placement position</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="targetSelector">
+    <h4 id="targetSelector"><span class="type-signature"></span>targetSelector<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the targetSelector</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="targetSelector">
+    <h4 id="targetSelector"><span class="type-signature"></span>targetSelector<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set targetSelector</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -648,6 +1336,84 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="close"><span class="type-signature"></span>close()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The tooltip close method</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="createdCallback"><span class="type-signature"></span>createdCallback()</h4>
     
     
@@ -726,7 +1492,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="setUsedBarThresholdColor"><span class="type-signature"></span>setUsedBarThresholdColor()</h4>
+    <h4 class="name" id="init"><span class="type-signature"></span>init()</h4>
     
     
 </dt>
@@ -734,7 +1500,7 @@
 
     
     <div class="description">
-        <p>Sets the used bar threshold color, percentageUsed, errorThreshold, warnThreshold</p>
+        <p>Reinitializes tooltip component with attribute values and resets content</p>
     </div>
     
 
@@ -804,7 +1570,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="updateChart"><span class="type-signature"></span>updateChart()</h4>
+    <h4 class="name" id="open"><span class="type-signature"></span>open()</h4>
     
     
 </dt>
@@ -812,7 +1578,7 @@
 
     
     <div class="description">
-        <p>Updates chart content</p>
+        <p>The tooltip open method</p>
     </div>
     
 
@@ -821,6 +1587,134 @@
     
 
     
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setInnerHtml"><span class="type-signature"></span>setInnerHtml(html)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Sets tooltip the inner HTML</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>html</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>string</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     

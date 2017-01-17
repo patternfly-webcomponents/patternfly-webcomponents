@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: PfAlert</title>
+	<title>Documentation Class: PfUtil</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,16 +65,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: PfAlert</h1>
+	<h1 class="page-title">Class: PfUtil</h1>
 <section>
 
 <header>
     
         <h2>
-        PfAlert
+        PfUtil
         </h2>
         
-            <div class="class-description"><p><b>&lt;pf-alert&gt;</b> element for Patternfly Web Components</p></div>
+            <div class="class-description"><hr>
+<p>PfUtil</p>
+<h2>Internal Utility Functions for Patternfly Web Components</h2></div>
         
     
 </header>
@@ -86,216 +88,12 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="PfAlert"><span class="type-signature"></span>new PfAlert()</h4>
+    <h4 class="name" id="PfUtil"><span class="type-signature"></span>new PfUtil()</h4>
     
     
 </dt>
 <dd>
 
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>danger, warning, success, info</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>persistant</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>true, false</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>persistent-callback-fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-xml">
-&lt;pf-alert type=&quot;danger&quot; persistent=&quot;true&quot; persistentCallbackFn=&quot;alert(&#x27;Danger alert closed&#x27;);&quot;&gt;&lt;/pf-alert&gt;</pre>
-
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id="attachedCallback"><span class="type-signature"></span>attachedCallback()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Called when an instance was inserted into the document</p>
-    </div>
     
 
     
@@ -360,166 +158,8 @@
     
 </dd>
 
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="attributeChangedCallback"><span class="type-signature"></span>attributeChangedCallback(attrName, oldValue, newValue)</h4>
     
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Called when element's attribute value has changed</p>
     </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>attrName</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The attribute name that has changed</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>oldValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The old attribute value</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The new attribute value</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
 
     
 
@@ -533,88 +173,6 @@
 
     
 
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="createdCallback"><span class="type-signature"></span>createdCallback()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        <p>Called when an instance of the element is created</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        </dl>
     
 
     

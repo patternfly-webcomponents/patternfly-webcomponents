@@ -48,63 +48,11 @@
 	'use strict';
 
 	/** PF i18n **/
-	__webpack_require__(16);
+	__webpack_require__(18);
 
 /***/ },
 
-/***/ 15:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * PfUtils JS Helper
-	 * Common js helper methods used in Patternfly Web Components
-	 */
-
-	/**
-	 * See pf-i18n element for initialization details.
-	 *
-	 * @constructor
-	 */
-	var I18nUtil = function I18nUtil() {
-	  var self = this;
-
-	  /**
-	   * Get localized text.
-	   *
-	   * @param {string} key The message key
-	   */
-	  this.gettext = function (key) {
-	    if (self.mixin !== undefined && typeof self.mixin.getMsg === 'function') {
-	      return self.mixin.getMsg(key);
-	    } else if (self.mixin !== undefined) {
-	      return self.mixin[key];
-	    }
-	    return key;
-	  };
-
-	  /**
-	   * Set an object literal containing translated messages or an object containing a getMsg() function to retrieve
-	   * translated messages.
-	   *
-	   * @param {Function} mixin The i18n mixin.
-	   */
-	  this.setMixin = function (mixin) {
-	    if (mixin === undefined) {
-	      throw new Error("I18nUtil: Mixin cannot be undefined.");
-	    }
-	    self.mixin = mixin;
-	  };
-	};
-	var i18n = exports.i18n = new I18nUtil();
-
-/***/ },
-
-/***/ 16:
+/***/ 18:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -116,7 +64,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfUtils = __webpack_require__(15);
+	var _i18nUtils = __webpack_require__(19);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -239,7 +187,7 @@
 	    value: function _init() {
 	      if (this.getAttribute('mixin') !== null) {
 	        var mixin = new Function('return ' + this.getAttribute('mixin'));
-	        _pfUtils.i18n.setMixin(mixin());
+	        _i18nUtils.i18n.setMixin(mixin());
 	      }
 	    }
 	  }]);
@@ -250,6 +198,59 @@
 	(function () {
 	  document.registerElement('pf-i18n', PfI18n);
 	})();
+
+/***/ },
+
+/***/ 19:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * i18n Utils JS Helper
+	 * Common i18n helper methods used in Patternfly Web Components
+	 */
+
+	/**
+	 * See pf-i18n element for initialization details.
+	 *
+	 * @constructor
+	 */
+	var I18nUtil = function I18nUtil() {
+	  var self = this;
+
+	  /**
+	   * Get localized text.
+	   *
+	   * @param {string} key The message key
+	   */
+	  this.gettext = function (key) {
+	    if (self.mixin !== undefined && typeof self.mixin.getMsg === 'function') {
+	      return self.mixin.getMsg(key);
+	    } else if (self.mixin !== undefined) {
+	      return self.mixin[key];
+	    }
+	    return key;
+	  };
+
+	  /**
+	   * Set an object literal containing translated messages or an object containing a getMsg() function to retrieve
+	   * translated messages.
+	   *
+	   * @param {Function} mixin The i18n mixin.
+	   */
+	  this.setMixin = function (mixin) {
+	    if (mixin === undefined) {
+	      throw new Error("I18nUtil: Mixin cannot be undefined.");
+	    }
+	    self.mixin = mixin;
+	  };
+	};
+	var i18n = new I18nUtil();
+	exports.i18n = i18n;
 
 /***/ }
 

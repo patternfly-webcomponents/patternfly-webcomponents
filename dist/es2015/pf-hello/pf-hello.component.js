@@ -11,7 +11,7 @@ var _pfHello = require('pf-hello.template');
 
 var _pfHello2 = _interopRequireDefault(_pfHello);
 
-var _pfUtils = require('pf-utils');
+var _i18nUtils = require('i18n-utils');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -102,7 +102,7 @@ var PfHello = exports.PfHello = function (_HTMLElement) {
     value: function refresh() {
       var nodes = this._getNodes('span');
       var el = nodes[nodes.length - 1];
-      el.innerHTML = _pfUtils.i18n.gettext("Hello World!");
+      el.innerHTML = _i18nUtils.i18n.gettext("Hello World!");
     }
   }]);
 

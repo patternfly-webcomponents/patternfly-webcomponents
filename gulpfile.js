@@ -37,7 +37,7 @@ gulp.task('js', ['lint'], function () {
 
 gulp.task('doc', function (cb) {
   var config = require('./jsdocConfig.json');
-  gulp.src(['README.md', './src/**/*.component.js', './src/pf-utils/pf-utils.js'], {read: false})
+  gulp.src(['README.md', './src/**/*.component.js', './src/pf-utils/*-utils.js'], {read: false})
     .pipe(jsdoc(config, cb));
 });
 
@@ -75,7 +75,8 @@ gulp.task('sitespeedio', ['serve'], function(done){
       baseUrl + '/app/app.html?file=pf-alert',
       baseUrl + '/app/app.html?file=pf-tabs',
       baseUrl + '/app/app.html?file=pf-utilization-bar-chart',
-      baseUrl + '/app/app.html?file=pf-list-view'
+      baseUrl + '/app/app.html?file=pf-list-view',
+      baseUrl + '/app/app.html?file=pf-tooltip'
     ],
     browser: 'chrome',
     resultBaseDir: './perf/',

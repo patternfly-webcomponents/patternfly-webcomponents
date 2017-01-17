@@ -48,11 +48,11 @@
 	'use strict';
 
 	/** PF Hello **/
-	__webpack_require__(17);
+	__webpack_require__(20);
 
 /***/ },
 
-/***/ 15:
+/***/ 19:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -61,8 +61,8 @@
 	  value: true
 	});
 	/**
-	 * PfUtils JS Helper
-	 * Common js helper methods used in Patternfly Web Components
+	 * i18n Utils JS Helper
+	 * Common i18n helper methods used in Patternfly Web Components
 	 */
 
 	/**
@@ -100,11 +100,12 @@
 	    self.mixin = mixin;
 	  };
 	};
-	var i18n = exports.i18n = new I18nUtil();
+	var i18n = new I18nUtil();
+	exports.i18n = i18n;
 
 /***/ },
 
-/***/ 17:
+/***/ 20:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -116,11 +117,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfHello = __webpack_require__(18);
+	var _pfHello = __webpack_require__(21);
 
 	var _pfHello2 = _interopRequireDefault(_pfHello);
 
-	var _pfUtils = __webpack_require__(15);
+	var _i18nUtils = __webpack_require__(19);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -211,7 +212,7 @@
 	    value: function refresh() {
 	      var nodes = this._getNodes('span');
 	      var el = nodes[nodes.length - 1];
-	      el.innerHTML = _pfUtils.i18n.gettext("Hello World!");
+	      el.innerHTML = _i18nUtils.i18n.gettext("Hello World!");
 	    }
 	  }]);
 
@@ -224,7 +225,7 @@
 
 /***/ },
 
-/***/ 18:
+/***/ 21:
 /***/ function(module, exports) {
 
 	"use strict";

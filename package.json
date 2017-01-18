@@ -34,7 +34,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "patternfly-eng-publish": "0.0.3",
-    "patternfly-eng-release": "3.17.0",
+    "patternfly-eng-release": "3.18.0",
     "run-sequence": "^1.2.2",
     "webpack": "~1.13.2",
     "webpack-bundle-analyzer": "^1.4.2",

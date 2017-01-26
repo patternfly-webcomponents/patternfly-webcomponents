@@ -1,3 +1,6 @@
+/* Require the HTML Element Shim */
+require('./customElementShim.js');
+
 /** PF Alert Component **/
 require('pf-alert.component.js');
 

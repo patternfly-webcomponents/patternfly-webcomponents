@@ -9,7 +9,7 @@ npm-debug.log
 .DS_Store
 
 #Ignore generated dist files
-/dist
+
 
 #Ignore generated performance metrics
 perf/localhost

@@ -41,9 +41,8 @@
     "webpack-stream": "~3.2.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
     "font-awesome": "^4.7.0",
-    "patternfly-css": "*",
+    "patternfly": "^3.18.1",
     "webcomponentsjs": "^1.0.2"
   },
   "scripts": {

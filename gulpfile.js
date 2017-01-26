@@ -25,7 +25,7 @@ gulp.task('font', function(){
     .pipe(gulp.dest('dist/fonts'));
 });
 
-gulp.task('js', ['lint'], function () {
+gulp.task('js', ['lint','copy'], function () {
   return gulp.src(['src/*/*.js', '!src/*/*.spec.js'])
     .pipe($.plumber())
     .pipe($.babel(
@@ -33,6 +33,11 @@ gulp.task('js', ['lint'], function () {
     ))
     // .pipe($.uglify())
     .pipe(gulp.dest('dist/es2015'));
+});
+
+gulp.task('copy', function() {
+  return gulp.src(['src/customElementShim.js'])
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('doc', function (cb) {

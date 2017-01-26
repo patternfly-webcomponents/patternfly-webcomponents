@@ -1,9 +1,24 @@
-# PatternFly Web Components for [PatternFly](https://www.patternfly.org)
-This project will provide a set of core web components for the PatternFly reference implementation.
+# PatternFly Web Components
+This project will provide the set of core web components for the [PatternFly](https://www.patternfly.org).
 
----
+![Image of PatternFly](https://raw.githubusercontent.com/patternfly-webcomponents/patternfly-webcomponents/master/icons/patternfly-webcomponents.png)
 
-## Getting started
+https://patternfly-webcomponents.github.io/
+
+Note: This project is in alpha state and currently makes use of [Patternfly 4](https://github.com/patternfly/patternfly) / Bootstrap 3 CSS. In future releases, 
+we will add support for Patternfly 5 / Bootstrap 4 Atomic CSS.
+
+https://github.com/patternfly/patternfly-atomic
+
+## Getting Started
+   npm install --save patternfly-webcomponents
+
+### JS
+Include `dist\js\patternfly.js` to load all components or load the `*.js` components individually.
+
+### CSS
+Load the web component CSS in `dist\css\patternfly-webcomponents.css` alongside Patternfly CSS.
+
 ### Build
     npm install
     gulp build
@@ -22,12 +37,6 @@ Repository uses the following:
 * Webpack - Webpack is a module bundler. Webpack takes modules with dependencies and generates static assets representing those modules.
 
 ## Gotchas
-Currently, when inheriting from HTMLElement with ES6/Babel, you may receive a `Super expression must either be null or a function` error in Safari. To circumvent this, you may want to include the following shim in you code (which will ensure HTMLElement is of type Function and not Object):
-```
-if (typeof HTMLElement !== 'function'){
-  var _HTMLElement = function(){};
-  _HTMLElement.prototype = HTMLElement.prototype;
-  HTMLElement = _HTMLElement;
-}
-```
+If you choose to include components individually, you will also want to include `dist\js\customElementShim.js`. This resolves an issue currently with the HTMLElement prototype in Safari.
+
 [Source](https://github.com/babel/babel/issues/1548)

@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>pf-utilization-bar-chart example</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly-additions.css">
-  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.18.1/css/patternfly.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.18.1/css/patternfly-additions.css">
+  <link rel="stylesheet" href="/dist/css/patternfly-webcomponents.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
   <script src="/dist/js/patternfly.js"></script>
 </head>
@@ -63,13 +63,13 @@
           var msg = threshold.substr(threshold.lastIndexOf('-') + 1);
           if (msg === 'warning') {
               msg = "Warning! You should look at this.";
-              thresholdChangedText.setAttribute("class", 'warning-text');
+              thresholdChangedText.setAttribute("class", 'text-warning');
           } else if (msg === 'danger') {
               msg = "Danger!!  Seriously, something's wrong!";
-              thresholdChangedText.setAttribute("class", 'danger-text');
+              thresholdChangedText.setAttribute("class", 'text-danger');
           } else if (msg === 'success') {
               msg = "Whew...Everythings normal :-)";
-              thresholdChangedText.setAttribute("class", 'ok-text');
+              thresholdChangedText.setAttribute("class", 'text-success');
           }
 
           thresholdChangedText.innerText = msg;

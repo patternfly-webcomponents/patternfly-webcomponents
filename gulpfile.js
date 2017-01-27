@@ -19,13 +19,12 @@ var gulp = require('gulp'),
 
 gulp.task('font', function(){
   return gulp.src([
-      'node_modules/font-awesome/fonts/*',
-      'node_modules/patternfly-css/source/fonts/*'
+      'node_modules/patternfly/dist/fonts/*'
     ])
     .pipe(gulp.dest('dist/fonts'));
 });
 
-gulp.task('js', ['lint'], function () {
+gulp.task('js', ['lint','copy'], function () {
   return gulp.src(['src/*/*.js', '!src/*/*.spec.js'])
     .pipe($.plumber())
     .pipe($.babel(
@@ -33,6 +32,11 @@ gulp.task('js', ['lint'], function () {
     ))
     // .pipe($.uglify())
     .pipe(gulp.dest('dist/es2015'));
+});
+
+gulp.task('copy', function() {
+  return gulp.src(['src/customElementShim.js', ''])
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('doc', function (cb) {
@@ -53,6 +57,12 @@ gulp.task('scss', function() {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist/css'));
 });
+
+gulp.task('css', function() {
+  return gulp.src(['node_modules/patternfly/dist/css/**/*'])
+    .pipe(gulp.dest('dist/css'));
+});
+
 
 gulp.task('test', function (done) {
   new karma({
@@ -120,7 +130,7 @@ gulp.task('gettext-extract', function () {
     .pipe(gulp.dest("dist/i18n"));
 });
 
-gulp.task('build', ['font', 'js', 'scss', 'gettext-extract', 'webpack']);
+gulp.task('build', ['font', 'js', 'scss', 'css', 'gettext-extract', 'webpack']);
 
 gulp.task('serve', function() {
   browserSync.init({

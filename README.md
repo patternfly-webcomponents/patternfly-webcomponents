@@ -37,7 +37,7 @@ URL: http://localhost:3000/index.html
 ## Tech Notes
 Repository uses the following:
 
-* Bable - Essentially an ECMAScript 6 to ECMAScript 5 Javascript compiler. It allows you to use ES6 features in your projects and then compiles ES5 for you to use in production.
+* Babel - Essentially an ECMAScript 6 to ECMAScript 5 Javascript compiler. It allows you to use ES6 features in your projects and then compiles ES5 for you to use in production.
 * Plumber - Prevent pipe breaking caused by errors from gulp plugins
 * Webpack - Webpack is a module bundler. Webpack takes modules with dependencies and generates static assets representing those modules.
 

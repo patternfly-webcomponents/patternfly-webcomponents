@@ -1,6 +1,6 @@
 {
   "name": "patternfly-webcomponents",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "PatternFly Web Components",
   "main": "dist/js/patternfly.js",
   "author": "Red Hat",

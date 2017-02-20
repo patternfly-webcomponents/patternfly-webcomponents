@@ -5,13 +5,12 @@ This project will provide a set of core web components for the [PatternFly](http
 
 https://patternfly-webcomponents.github.io/
 
-Note: This project is in alpha state and currently makes use of [Patternfly 4](https://github.com/patternfly/patternfly) / Bootstrap 3 CSS. In future releases, 
-we will add support for Patternfly 5 / Bootstrap 4 Atomic CSS.
-
-https://github.com/patternfly/patternfly-atomic
+Note: This project is in alpha state and currently makes use of [Patternfly 4](https://github.com/patternfly/patternfly) / Bootstrap 3 CSS. In future releases, we will add support for [Patternfly 5](https://github.com/patternfly/patternfly-css) / Bootstrap 4 Atomic CSS.
 
 ## Getting Started
+```
    npm install --save patternfly-webcomponents
+```
 
 ### JS
 Include `dist\js\patternfly.js` to load all components or load the `*.js` components individually.

@@ -48,11 +48,11 @@
 	'use strict';
 
 	/** PfTemplateRepeaterComponent **/
-	__webpack_require__(6);
+	__webpack_require__(7);
 
 /***/ },
 
-/***/ 6:
+/***/ 7:
 /***/ function(module, exports) {
 
 	"use strict";

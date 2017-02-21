@@ -46,38 +46,57 @@
 
 	'use strict';
 
-	/** PF Alert Component **/
+	/* Require the HTML Element Shim */
 	__webpack_require__(1);
 
+	/** PF Alert Component **/
+	__webpack_require__(2);
+
 	/** PfListView Component **/
-	__webpack_require__(3);
+	__webpack_require__(4);
 
 	/** PfTemplateRepeaterComponent **/
-	__webpack_require__(5);
-
-	/** PfTemplateComponent **/
 	__webpack_require__(6);
 
-	/** PF Tabs Component **/
+	/** PfTemplateComponent **/
 	__webpack_require__(7);
 
+	/** PF Tabs Component **/
+	__webpack_require__(8);
+
 	/** PF Tooltip Component **/
-	__webpack_require__(12);
+	__webpack_require__(13);
 
 	/** PF Utilization Bar Chart **/
-	__webpack_require__(15);
+	__webpack_require__(16);
 
 	/** PF Utils **/
-	__webpack_require__(14);
+	__webpack_require__(15);
 
 	/** PF I18N **/
-	__webpack_require__(18);
+	__webpack_require__(19);
 
 	/** PF Hello **/
-	__webpack_require__(20);
+	__webpack_require__(21);
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	//Shim for resolving current issue with extending HTMLElement in ES6 /Babel transpiled classes in Safari
+	//https://github.com/babel/babel/issues/1548
+	//https://github.com/babel/babel/issues/4480
+
+	if (typeof HTMLElement !== 'function') {
+	  var _HTMLElement = function _HTMLElement() {};
+	  _HTMLElement.prototype = HTMLElement.prototype;
+	  HTMLElement = _HTMLElement;
+	}
+
+/***/ },
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89,7 +108,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfAlert = __webpack_require__(2);
+	var _pfAlert = __webpack_require__(3);
 
 	var _pfAlert2 = _interopRequireDefault(_pfAlert);
 
@@ -301,7 +320,7 @@
 	})();
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -313,7 +332,7 @@
 	exports.default = PfAlertTemplate;
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -325,7 +344,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfListViewTemplate = __webpack_require__(4);
+	var _pfListViewTemplate = __webpack_require__(5);
 
 	var _pfListViewTemplate2 = _interopRequireDefault(_pfListViewTemplate);
 
@@ -584,7 +603,7 @@
 	})();
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -600,7 +619,7 @@
 	exports.itemRow = pfListItem;
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -718,7 +737,7 @@
 	document.registerElement("pf-template-repeater", PFTemplateRepeater);
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -744,7 +763,7 @@
 	document.registerElement("pf-template", PFTemplate);
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -756,15 +775,15 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfTab = __webpack_require__(8);
+	var _pfTab = __webpack_require__(9);
 
 	var _pfTab2 = _interopRequireDefault(_pfTab);
 
-	var _pfTabs = __webpack_require__(9);
+	var _pfTabs = __webpack_require__(10);
 
 	var _pfTabs2 = _interopRequireDefault(_pfTabs);
 
-	var _pfTab3 = __webpack_require__(10);
+	var _pfTab3 = __webpack_require__(11);
 
 	var _pfTab4 = _interopRequireDefault(_pfTab3);
 
@@ -1110,7 +1129,7 @@
 	})();
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1122,7 +1141,7 @@
 	exports.default = PfTabTemplate;
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1134,7 +1153,7 @@
 	exports.default = PfTabsTemplate;
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1146,7 +1165,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _panel = __webpack_require__(11);
+	var _panel = __webpack_require__(12);
 
 	var _panel2 = _interopRequireDefault(_panel);
 
@@ -1280,7 +1299,7 @@
 	})();
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1292,7 +1311,7 @@
 	exports.default = PfPanelTemplate;
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1304,11 +1323,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfTooltip = __webpack_require__(13);
+	var _pfTooltip = __webpack_require__(14);
 
 	var _pfTooltip2 = _interopRequireDefault(_pfTooltip);
 
-	var _pfUtils = __webpack_require__(14);
+	var _pfUtils = __webpack_require__(15);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1722,7 +1741,7 @@
 	})();
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1735,7 +1754,7 @@
 	exports.default = PfTooltipTemplate;
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1834,7 +1853,7 @@
 	exports.pfUtil = pfUtil;
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1846,11 +1865,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfUtilizationBarChartDefault = __webpack_require__(16);
+	var _pfUtilizationBarChartDefault = __webpack_require__(17);
 
 	var _pfUtilizationBarChartDefault2 = _interopRequireDefault(_pfUtilizationBarChartDefault);
 
-	var _pfUtilizationBarChartInline = __webpack_require__(17);
+	var _pfUtilizationBarChartInline = __webpack_require__(18);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2006,7 +2025,7 @@
 	})();
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2018,7 +2037,7 @@
 	exports.default = pfUtilzBarChartDefault;
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2030,7 +2049,7 @@
 	exports.inline = pfUtilzBarChartInline;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2042,7 +2061,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _i18nUtils = __webpack_require__(19);
+	var _i18nUtils = __webpack_require__(20);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2178,7 +2197,7 @@
 	})();
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2230,7 +2249,7 @@
 	exports.i18n = i18n;
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2242,11 +2261,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfHello = __webpack_require__(21);
+	var _pfHello = __webpack_require__(22);
 
 	var _pfHello2 = _interopRequireDefault(_pfHello);
 
-	var _i18nUtils = __webpack_require__(19);
+	var _i18nUtils = __webpack_require__(20);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2349,7 +2368,7 @@
 	})();
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	"use strict";

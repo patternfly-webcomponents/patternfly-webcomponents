@@ -48,11 +48,11 @@
 	'use strict';
 
 	/** PF Hello **/
-	__webpack_require__(20);
+	__webpack_require__(21);
 
 /***/ },
 
-/***/ 19:
+/***/ 20:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -105,7 +105,7 @@
 
 /***/ },
 
-/***/ 20:
+/***/ 21:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -117,11 +117,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfHello = __webpack_require__(21);
+	var _pfHello = __webpack_require__(22);
 
 	var _pfHello2 = _interopRequireDefault(_pfHello);
 
-	var _i18nUtils = __webpack_require__(19);
+	var _i18nUtils = __webpack_require__(20);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -225,7 +225,7 @@
 
 /***/ },
 
-/***/ 21:
+/***/ 22:
 /***/ function(module, exports) {
 
 	"use strict";

@@ -47,12 +47,13 @@
 	'use strict';
 
 	/** PfListView Component **/
-	__webpack_require__(3);
+	__webpack_require__(4);
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64,7 +65,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfListViewTemplate = __webpack_require__(4);
+	var _pfListViewTemplate = __webpack_require__(5);
 
 	var _pfListViewTemplate2 = _interopRequireDefault(_pfListViewTemplate);
 
@@ -323,7 +324,7 @@
 	})();
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	"use strict";

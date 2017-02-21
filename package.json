@@ -1,6 +1,6 @@
 {
   "name": "patternfly-webcomponents",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "PatternFly Web Components",
   "main": "dist/js/patternfly.js",
   "author": "Red Hat",
@@ -34,16 +34,15 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "patternfly-eng-publish": "0.0.3",
-    "patternfly-eng-release": "3.18.0",
+    "patternfly-eng-release": "3.21.0",
     "run-sequence": "^1.2.2",
     "webpack": "~1.13.2",
     "webpack-bundle-analyzer": "^1.4.2",
     "webpack-stream": "~3.2.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
     "font-awesome": "^4.7.0",
-    "patternfly-css": "*",
+    "patternfly": "^3.21.0",
     "webcomponentsjs": "^1.0.2"
   },
   "scripts": {

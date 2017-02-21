@@ -47,10 +47,11 @@
 	'use strict';
 
 	/** PF Alert Component **/
-	__webpack_require__(1);
+	__webpack_require__(2);
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -62,7 +63,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfAlert = __webpack_require__(2);
+	var _pfAlert = __webpack_require__(3);
 
 	var _pfAlert2 = _interopRequireDefault(_pfAlert);
 
@@ -274,7 +275,7 @@
 	})();
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 	"use strict";

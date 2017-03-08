@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>pf-dropdown example</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/patternfly/3.13.0/css/patternfly.css">
+  <link rel="stylesheet" href="/dist/css/patternfly.css">
+  <link rel="stylesheet" href="/dist/css/patternfly-webcomponents.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
+  <script src="/dist/js/patternfly.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Dropdown</h1>
+    </div>
+
+    <!-- Dropdown Button -->
+    <pf-dropdown class="dropdown" id="dropdown1">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Header</li>
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li class="disabled"><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Item 5</a></li>
+        </ul>
+    </pf-dropdown>
+
+    <h2>Dropup</h2>
+    <!-- Dropup Button -->
+    <pf-dropdown class="dropup" id="dropdown1">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropup
+        <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Header</li>
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li class="disabled"><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Item 5</a></li>
+        </ul>
+    </pf-dropdown>
+
+    <h2>Dropdown Kebab</h2>
+    <!-- Dropdown Kebab -->
+    <pf-dropdown class="dropdown dropdown-kebab-pf" id="dropdown2">
+        <button class="btn btn-link dropdown-toggle" type="button" id="button2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fa fa-ellipsis-v"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Header</li>
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li class="disabled"><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Item 5</a></li>
+        </ul>
+    </pf-dropdown>
+
+    <h2>Dropup Kebab</h2>
+    <!-- Dropup Kebab -->
+    <div class="col-xs-6 col-sm-4 col-md-2">    
+    <pf-dropdown class="dropup pull-right dropdown-kebab-pf" id="dropdown2">
+        <button class="btn btn-link dropdown-toggle" type="button" id="button2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fa fa-ellipsis-v"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Header</li>
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li class="disabled"><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Item 5</a></li>
+        </ul>
+    </pf-dropdown>
+
+    </div>
+
+  </div>
+  </div>
+  <script>
+    var dropdown = document.getElementById('dropdown1');
+    if (dropdown.initialized) {
+      dropdown.toggle();
+    }
+    else {
+      //wait for initialization
+      dropdown.addEventListener('initialized', function (event) {
+        dropdown.toggle();
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -30,3 +30,6 @@ require('pf-i18n.component.js');
 
 /** PF Hello **/
 require('pf-hello.component.js');
+
+/** PF Dropdown **/
+require('pf-dropdown.component.js');

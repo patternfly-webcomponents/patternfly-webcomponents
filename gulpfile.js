@@ -84,7 +84,8 @@ gulp.task('sitespeedio', ['serve'], function(done) {
       baseUrl + '/app/app.html?file=pf-tabs',
       baseUrl + '/app/app.html?file=pf-utilization-bar-chart',
       baseUrl + '/app/app.html?file=pf-list-view',
-      baseUrl + '/app/app.html?file=pf-tooltip'
+      baseUrl + '/app/app.html?file=pf-tooltip',
+      baseUrl + '/app/app.html?file=pf-modal'
     ],
     browser: 'chrome',
     resultBaseDir: './perf/',

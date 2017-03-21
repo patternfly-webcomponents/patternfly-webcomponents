@@ -35,6 +35,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "patternfly-eng-publish": "0.0.3",
     "patternfly-eng-release": "3.21.0",
+    "promise-polyfill": "^6.0.2",
     "run-sequence": "^1.2.2",
     "webpack": "~1.13.2",
     "webpack-bundle-analyzer": "^1.4.2",

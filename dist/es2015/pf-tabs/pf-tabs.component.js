@@ -103,8 +103,8 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
 
       this.selected = null;
       this.tabMap = new Map();
-      this.panelMap = new WeakMap();
-      this.displayMap = new WeakMap();
+      this.panelMap = new Map();
+      this.displayMap = new Map();
     }
 
     /**

@@ -257,7 +257,6 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
         this.tooltip.style.top = rect.top + scroll.y - tooltipDimensions.h / 2 + linkDimensions.h / 2 + 'px';
         this.tooltip.style.left = rect.left + scroll.x + linkDimensions.w + 'px';
       }
-      !this.tooltip.className.includes(this._placement) && (this.tooltip.className = this.tooltip.className.replace(this._tipPositions, this._placement));
     }
 
     /**

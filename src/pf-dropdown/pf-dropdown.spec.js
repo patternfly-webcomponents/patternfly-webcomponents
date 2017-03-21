@@ -12,7 +12,7 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("should open if closed or close if open the dropdown on toggle()", function () {
-    var button = document.querySelector('#button');
+    var button = customElement.querySelector('#button');
     //open dropdown
     customElement.toggle();
     customElement.addEventListener('shown.bs.dropdown', function () {
@@ -24,7 +24,34 @@ describe("Patternfly Dropdown Component Test", function () {
 
     customElement.addEventListener('hidden.bs.dropdown', function () {
       expect(button.parentNode.classList.contains('open')).toBe(false);
-      done();
     }, false);
+  });
+
+  it("disabled button should not open dropdown", function () {
+    var button = customElement.querySelector('.btn');
+    button.classList.add('disabled');
+    customElement.toggle();
+    expect(button.parentNode.classList.contains('open')).toBe(false);
+    button.dispatchEvent(new MouseEvent('click'));
+    expect(button.parentNode.classList.contains('open')).toBe(false);
+  });
+
+  it("should select an element", function () {
+    var buttonText = customElement.querySelector('.btn');
+    var item = customElement.querySelector('ul.dropdown-menu > li:nth-child(2)');
+    expect(buttonText.innerText).toBe('Dropdown');
+    expect(item.innerText).toBe('Item 1');
+  });
+
+  it("should not click disabled item", function () {
+    var item = customElement.querySelector('ul.dropdown-menu  li.disabled a');
+    var event = new MouseEvent('click',{
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    customElement.disableClick();
+    item.dispatchEvent(event);
+    expect(event.defaultPrevented).toEqual(true);
   });
 });

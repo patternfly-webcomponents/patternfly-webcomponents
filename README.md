@@ -33,6 +33,9 @@ URL: http://localhost:3000/index.html
 
 ![image](https://cloud.githubusercontent.com/assets/12733153/20062925/69b80140-a4d3-11e6-87d7-b2f523b1b869.png)
 
+### Testing
+Unit and Peformance test notes can be found in [TESTS.md](TESTS.md)
+
 ## Tech Notes
 Repository uses the following:
 

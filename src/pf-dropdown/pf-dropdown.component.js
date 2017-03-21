@@ -57,8 +57,12 @@ export class PfDropdown extends HTMLElement {
       }
     });
 
+    // disable click for disabled Items
+    this.disableClick();
+
     this.initialized = true;
     this.dispatchEvent(new CustomEvent('initialized', {}));
+
   }
 
   /**
@@ -84,6 +88,19 @@ export class PfDropdown extends HTMLElement {
    */
   toggle() {
     this._showDropdown();
+  }
+
+  /**
+   * Disable click on disabled items
+   */
+  disableClick() {
+    let disableItems = this.querySelectorAll('ul.dropdown-menu li.disabled a');
+    for (let i = 0; i < disableItems.length; i++) {
+      disableItems[i].addEventListener('click', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }, false);
+    }
   }
 
   /**
@@ -167,7 +184,7 @@ export class PfDropdown extends HTMLElement {
       if (keycode === 40 && index < menuItem.length - 1) {
         index++;
       }
-      if (!~index) {
+      if (index < 0) {
         index = 0;
       }
       menuItem[index].focus();

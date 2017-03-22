@@ -38,20 +38,30 @@ describe("Patternfly Dropdown Component Test", function () {
 
   it("should select an element", function () {
     var buttonText = customElement.querySelector('.btn');
-    var item = customElement.querySelector('ul.dropdown-menu > li:nth-child(2)');
+    var item = customElement.querySelector('ul.dropdown-menu > li:nth-child(2) a');
+    var result = false;
     expect(buttonText.innerText).toBe('Dropdown');
     expect(item.innerText).toBe('Item 1');
+    customElement.addEventListener('itemClicked', function () {
+      result = true;
+    });
+    item.dispatchEvent(new MouseEvent('click',{
+      bubbles:true,
+      cancelable:true,
+      view: window
+    }));
+    expect(result).toBe(true);
   });
 
   it("should not click disabled item", function () {
     var item = customElement.querySelector('ul.dropdown-menu  li.disabled a');
-    var event = new MouseEvent('click',{
-      bubbles: true,
-      cancelable: true,
-      view: window
+    var result = false;
+    // custom event is not fired for disabled item
+    customElement.addEventListener('itemClicked', function () {
+      result = true;
     });
-    customElement.disableClick();
-    item.dispatchEvent(event);
-    expect(event.defaultPrevented).toEqual(true);
+    item.click();
+    expect(item.onclick()).toEqual(false);
+    expect(result).toBe(false);
   });
 });

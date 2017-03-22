@@ -94,15 +94,18 @@ export class PfDropdown extends HTMLElement {
    * Disable click on disabled items
    */
   disableClick() {
-    let disableItems = this.querySelectorAll('ul.dropdown-menu li.disabled a');
-    for (let i = 0; i < disableItems.length; i++) {
-      disableItems[i].addEventListener('click', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
-      }, false);
+    let self = this;
+    let items = this.querySelectorAll('ul.dropdown-menu li a');
+    for (let i = 0; i < items.length; i++) {
+      items[i].onclick = function () {
+        if (items[i].parentNode.classList.contains('disabled')) {
+          return false;
+        }
+        self.dispatchEvent(new CustomEvent('itemClicked', {}));
+        return true;
+      };
     }
   }
-
   /**
    * Open the dropdown
    *

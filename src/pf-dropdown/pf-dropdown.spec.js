@@ -41,7 +41,7 @@ describe("Patternfly Dropdown Component Test", function () {
     button.classList.add('disabled');
     customElement.toggle();
     expect(button.parentNode.classList.contains('open')).toBe(false);
-    button.dispatchEvent(new MouseEvent('click'));
+    button.click();
     expect(button.parentNode.classList.contains('open')).toBe(false);
   });
 
@@ -66,7 +66,6 @@ describe("Patternfly Dropdown Component Test", function () {
       result = true;
     });
     item.click();
-    expect(item.onclick()).toEqual(false);
     expect(result).toBe(false);
   });
 });

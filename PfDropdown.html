@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: I18nUtil</title>
+	<title>Documentation Class: PfDropdown</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,14 +65,33 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: I18nUtil</h1>
+	<h1 class="page-title">Class: PfDropdown</h1>
 <section>
 
 <header>
     
         <h2>
-        I18nUtil
+        PfDropdown
         </h2>
+        
+            <div class="class-description"><p><b>&lt;pf-dropdown&gt;</b> element for Patternfly Web Components</p>
+<p><pf-dropdown id="dropdown1"><div class="dropdown">
+   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown2" data-toggle="dropdown" aria-haspopup="true"
+     aria-expanded="false">
+     Dropdown
+     <span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu">
+       <li class="dropdown-header">Header</li>
+       <li><a href="#">Item 1</a></li>
+       <li><a href="#">Item 2</a></li>
+       <li class="disabled"><a href="#">Item 3</a></li>
+       <li><a href="#">Item 4</a></li>
+       <li class="divider"></li>
+       <li><a href="#">Item 5</a></li>
+     </ul>
+     </div>
+ </pf-dropdown></p></div>
         
     
 </header>
@@ -84,16 +103,12 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="I18nUtil"><span class="type-signature"></span>new I18nUtil()</h4>
+    <h4 class="name" id="PfDropdown"><span class="type-signature"></span>new PfDropdown()</h4>
     
     
 </dt>
 <dd>
 
-    
-    <div class="description">
-        <p>See pf-i18n element for initialization details.</p>
-    </div>
     
 
     
@@ -180,7 +195,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="gettext"><span class="type-signature"></span>gettext(key)</h4>
+    <h4 class="name" id="_clearDropdown"><span class="type-signature"></span>_clearDropdown()</h4>
     
     
 </dt>
@@ -188,7 +203,163 @@
 
     
     <div class="description">
-        <p>Get localized text.</p>
+        <p>Close the dropdown</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_detectTouch"><span class="type-signature"></span>_detectTouch()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Support for phone browser</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_keyHandler"><span class="type-signature"></span>_keyHandler(event)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Support for accessibility</p>
     </div>
     
 
@@ -223,13 +394,13 @@
 
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>event</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Event</span>
 
 
 
@@ -240,7 +411,7 @@
 
             
 
-            <td class="description last"><p>The message key</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -308,7 +479,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="setMixin"><span class="type-signature"></span>setMixin(mixin)</h4>
+    <h4 class="name" id="_showDropdown"><span class="type-signature"></span>_showDropdown()</h4>
     
     
 </dt>
@@ -316,8 +487,163 @@
 
     
     <div class="description">
-        <p>Set an object literal containing translated messages or an object containing a getMsg() function to retrieve
-translated messages.</p>
+        <p>Open the dropdown</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="attachedCallback"><span class="type-signature"></span>attachedCallback()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Called when an instance was inserted into the document</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="attributeChangedCallback"><span class="type-signature"></span>attributeChangedCallback(attrName, oldValue, newValue)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Called when element's attribute value has changed</p>
     </div>
     
 
@@ -352,13 +678,13 @@ translated messages.</p>
 
         <tr>
             
-                <td class="name"><code>mixin</code></td>
+                <td class="name"><code>attrName</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">string</span>
 
 
 
@@ -369,13 +695,295 @@ translated messages.</p>
 
             
 
-            <td class="description last"><p>The i18n mixin.</p></td>
+            <td class="description last"><p>The attribute name that has changed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>oldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The old attribute value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The new attribute value</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="createdCallback"><span class="type-signature"></span>createdCallback()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Called when an instance of the element is created</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="disableClick"><span class="type-signature"></span>disableClick()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Disable click on disabled items</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toggle"><span class="type-signature"></span>toggle()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle the dropdown</p>
+    </div>
+    
+
+    
+
+    
+
+    
     
 
     

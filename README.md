@@ -36,6 +36,9 @@ URL: http://localhost:3000/index.html
 ### Testing
 Unit and Peformance test notes can be found in [TESTS.md](TESTS.md)
 
+Test pages for each component can also be found at the following url:
+https://rawgit.com/patternfly-webcomponents/patternfly-webcomponents/master-dist/index.html
+
 ## Tech Notes
 Repository uses the following:
 

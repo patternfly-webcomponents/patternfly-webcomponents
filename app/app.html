@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>Patternfly Doc Page</title>
-  <link rel="stylesheet" href="/dist/css/patternfly.css">
-  <link rel="stylesheet" href="/dist/css/patternfly-additions.css">
-  <link rel="stylesheet" href="/dist/css/patternfly-webcomponents.css">
+  <link rel="stylesheet" href="../dist/css/patternfly.css">
+  <link rel="stylesheet" href="../dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="../dist/css/patternfly-webcomponents.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="/dist/js/patternfly.js"></script>
+  <script src="../dist/js/patternfly.js"></script>
   <script type="text/javascript">
     function resizeIframe(obj) {
       obj.style.height = obj.contentWindow.document.body.scrollHeight + 100 + 'px';
@@ -55,7 +55,7 @@
         result[item[0]] = decodeURIComponent(item[1]);
       });
 
-      var pathToFile = "/src/" + result.dir + "/" + result.file;
+      var pathToFile = "../src/" + result.dir + "/" + result.file;
       document.getElementById('example').setAttribute('src', pathToFile);
 
       var rawFile = new XMLHttpRequest();

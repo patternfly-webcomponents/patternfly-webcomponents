@@ -35,6 +35,13 @@ class PFTemplateRepeater extends HTMLElement {
     return this.innerHTML;
   }
 
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['content'];
+  }
+
   /**
    * Called when element's attribute value has changed
    *
@@ -45,7 +52,9 @@ class PFTemplateRepeater extends HTMLElement {
   attributeChangedCallback (name, oldVal, newVal) {
     if (name === "content" && typeof newVal === 'string') {
       this.template = this.querySelector('pf-template');
-      this.render(newVal);
+      if (this.template) {
+        this.render(newVal);
+      }
     }
   }
 
@@ -81,4 +90,4 @@ class PFTemplateRepeater extends HTMLElement {
   }
 }
 
-document.registerElement("pf-template-repeater", PFTemplateRepeater);
+window.customElements.define("pf-template-repeater", PFTemplateRepeater);

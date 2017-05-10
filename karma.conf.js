@@ -2,7 +2,7 @@
 // Generated on Mon Oct 31 2016 14:37:35 GMT-0400 (EDT)
 
 module.exports = function(config) {
-  config.set({
+  var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -18,7 +18,7 @@ module.exports = function(config) {
       'node_modules/babel-polyfill/dist/polyfill.js',
       'node_modules/promise-polyfill/promise.js',
       'node_modules/jasmine-promises/dist/jasmine-promises.js',
-      'node_modules/webcomponentsjs/full.js',
+      'node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
       'dist/js/patternfly.js',
       'src/**/*.spec.js'
     ],
@@ -60,26 +60,18 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['HeadlessChrome'],
 
     // you can define custom flags
     customLaunchers: {
-      'PhantomJS_custom': {
-        base: 'PhantomJS',
-        options: {
-          windowName: 'my-window',
-          settings: {
-            webSecurityEnabled: false
-          },
-        },
-        flags: ['--load-images=true'],
-        debug: true
+      HeadlessChrome: {
+        base: 'Chrome',
+        flags: ['--no-sandbox', '--headless', '--disable-gpu', ' --remote-debugging-port=9222']
+      },
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
       }
-    },
-
-    phantomjsLauncher: {
-      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
-      exitOnResourceError: true
     },
 
 
@@ -90,5 +82,13 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  } else {
+    configuration.files.unshift('node_modules/@webcomponents/custom-elements/src/native-shim.js');
+  }
+
+  config.set(configuration);
+};

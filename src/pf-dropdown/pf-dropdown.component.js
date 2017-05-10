@@ -22,11 +22,10 @@
 
 export class PfDropdown extends HTMLElement {
 
-  /**
-   * Called when an instance was inserted into the document
+  /*
+   * Called every time the element is inserted into the DOM
    */
-  attachedCallback() {
-
+  connectedCallback() {
     this._button = this.querySelector('.btn');
     this._disabled = /\bdisabled/.test(this._button.className);
     let menu = this.querySelector('.dropdown-menu');
@@ -62,7 +61,6 @@ export class PfDropdown extends HTMLElement {
 
     this.initialized = true;
     this.dispatchEvent(new CustomEvent('initialized', {}));
-
   }
 
   /**
@@ -76,11 +74,11 @@ export class PfDropdown extends HTMLElement {
 
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback() {
-
+  constructor() {
+    super();
   }
 
   /**
@@ -195,6 +193,4 @@ export class PfDropdown extends HTMLElement {
   }
 }
 
-(function () {
-  document.registerElement('pf-dropdown', PfDropdown);
-}());
+window.customElements.define('pf-dropdown', PfDropdown);

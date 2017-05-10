@@ -5,8 +5,6 @@
   <link rel="stylesheet" href="../../dist/css/patternfly.css">
   <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
   <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="../../dist/js/patternfly.js"></script>
 </head>
 <body onload="startThresholdIncrements();">
   <div class="container">
@@ -25,6 +23,9 @@
     <pf-utilization-bar-chart id="thresholdExample3" chart-title="CPU Usage" layout="inline" used="350" total="500" units="MHz" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
     <pf-utilization-bar-chart id="thresholdExample4" chart-title="Memory" layout="inline" used="150" total="500" units="GB" threshold-warning="60" threshold-error="85"></pf-utilization-bar-chart>
   </div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+<script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+<script src="../../dist/js/patternfly.js"></script>
 <script type="text/javascript">
   var inlineLayout = {
     'type': 'inline'

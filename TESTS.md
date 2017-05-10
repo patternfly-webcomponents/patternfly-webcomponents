@@ -1,37 +1,49 @@
 # Testing Patternfly-Webcomponents
 
 ### Unit Tests
-Unit tests are run with [Karma](https://karma-runner.github.io/1.0/index.html) and [karma-phantomjs-launcher](https://github.com/karma-runner/karma-phantomjs-launcher).
+Unit tests are run with [Karma](https://karma-runner.github.io/1.0/index.html) and [karma-chrome-launcher](https://github.com/karma-runner/karma-chrome-launcher).
 
 To run unit tests, simply run:
 ```
 gulp test
 ```
 
-To debug unit tests locally with karma test server and Chrome, first edit `karma.conf.js` to target Chrome:
+To debug unit tests locally with karma test server and Headless Chrome, first add the following setting snippets to `karma.conf.js`:
 ```
-  browsers: ['Chrome'],
+  browsers: ['HeadlessChrome'],
+
+  customLaunchers: {
+    HeadlessChrome: {
+      base: 'Chrome',
+      flags: ['--no-sandbox', '--headless', '--disable-gpu', ' --remote-debugging-port=9222']
+    }
+  }
 ```
+
+**Note**: --headless flag is only available Chrome 59+.
+
 You can also change `logLevel` for futher debug logging:
 ```
 logLevel: config.LOG_DEBUG,
 ```
 
- you can then run the following to start a Karma debug server:
- ```
- karma start karma.conf.js
- ```
-(then hit the "DEBUG" button in the top right to debug)
-
- To debug unit tests locally with Phantom JS, target Phantom:
- ```
-karma start --browsers PhantomJS_custom
+you can then run the following to start a Karma debug server:
+```
+karma start karma.conf.js
 ```
 
-This will launch a local PhantomJS debug server, which you can access here:
+then you can access `http://localhost:9876/` and hit the "DEBUG" button in the top right to debug
+
+In addtion, if your target browers include Firefox, Opera, Safari , IE and so on. You can append these names to the "browsers" option.
 ```
-http://localhost:9000/webkit/inspector/inspector.html?page=2
+browsers: ['HeadlessChrome', 'FireFox', 'Opera', 'Safari', 'IE']
 ```
+
+Of course, you need to install the following launchers firstly:
+- Firefox (launcher requires karma-firefox-launcher plugin)
+- Opera (launcher requires karma-opera-launcher plugin)
+- Safari (launcher requires karma-safari-launcher plugin)
+- IE (launcher requires karma-ie-launcher plugin)
 
 ### Enabling Travis Builds
 We enable Travis builds in our forks so that test pages may be shared in our pull requests. To setup Travis, you can do the following:

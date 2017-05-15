@@ -5,7 +5,7 @@ var gulp = require('gulp'),
   eslint = require('gulp-eslint'),
   gettext = require("gulp-gettext-parser"),
   ignore = require('gulp-ignore'),
-  karma = require('karma').Server,
+  Karma = require('karma').Server,
   path = require('path'),
   rename = require("gulp-rename"),
   sass = require('gulp-sass'),
@@ -17,10 +17,8 @@ var gulp = require('gulp'),
   jsdoc = require('gulp-jsdoc3'),
   BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-gulp.task('font', function(){
-  return gulp.src([
-      'node_modules/patternfly/dist/fonts/*'
-    ])
+gulp.task('font', function() {
+  return gulp.src(['node_modules/patternfly/dist/fonts/*'])
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -47,7 +45,7 @@ gulp.task('doc', function (cb) {
 
 gulp.task('lint', function () {
   return gulp.src(['src/*/*.js'])
-    .pipe(eslint('eslint.json'))
+    .pipe(eslint('.eslintrc.json'))
     .pipe(eslint.failOnError());
 });
 
@@ -65,21 +63,21 @@ gulp.task('css', function() {
 
 
 gulp.task('test', function (done) {
-  new karma({
+  new Karma({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done).start();
 });
 
 gulp.task('test-debug', function (done) {
-  new karma({
+  new Karma({
     configFile: __dirname + '/karma.conf.js',
     singleRun: false,
     browsers: ['Chrome']
   }, done).start();
 });
 
-gulp.task('sitespeedio', ['serve'], function(done){
+gulp.task('sitespeedio', ['serve'], function(done) {
   var run = sitespeedio({
     urls: [
       baseUrl + '/app/app.html?file=pf-alert',
@@ -104,18 +102,18 @@ gulp.task('sitespeedio', ['serve'], function(done){
   run(done);
 });
 
-gulp.task('perf', function(done){
-  runSequence('build', 'sitespeedio', done)
+gulp.task('perf', function(done) {
+  runSequence('build', 'sitespeedio', done);
 });
 
-gulp.task('bundleAnalyzer', function(done){
+gulp.task('bundleAnalyzer', function(done) {
   runBundleAnalyzer = true;
-  runSequence('build', done)
+  runSequence('build', done);
 });
 
 gulp.task('webpack', ['js'], function() {
   var webpackConfig = require('./webpack.config.js');
-  if(runBundleAnalyzer){
+  if (runBundleAnalyzer) {
     webpackConfig.plugins.push(new BundleAnalyzerPlugin());
   }
   return gulp.src('src/patternfly.js')

@@ -44,19 +44,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PfTabs = exports.PfTabs = function (_HTMLElement) {
   _inherits(PfTabs, _HTMLElement);
 
-  function PfTabs() {
-    _classCallCheck(this, PfTabs);
-
-    return _possibleConstructorReturn(this, (PfTabs.__proto__ || Object.getPrototypeOf(PfTabs)).apply(this, arguments));
-  }
-
   _createClass(PfTabs, [{
-    key: 'attachedCallback',
+    key: 'connectedCallback',
 
-    /**
-     * Called when an instance was inserted into the document
+    /*
+     * Called every time the element is inserted into the DOM
      */
-    value: function attachedCallback() {
+    value: function connectedCallback() {
       this.insertBefore(this._tabsTemplate.content, this.firstChild);
 
       this._makeTabsFromPfTab();
@@ -72,6 +66,14 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
       }
     }
 
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+
+  }, {
+    key: 'attributeChangedCallback',
+
+
     /**
      * Called when element's attribute value has changed
      *
@@ -79,9 +81,6 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
       if (attrName === 'class' && newValue !== 'ng-isolate-scope') {
         var ul = this.querySelector('ul');
@@ -91,29 +90,40 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
       }
     }
 
-    /**
-     * Called when an instance of the element is created
+    /*
+     * An instance of the element is created or upgraded
      */
 
-  }, {
-    key: 'createdCallback',
-    value: function createdCallback() {
-      this._tabsTemplate = document.createElement('template');
-      this._tabsTemplate.innerHTML = _pfTabs2.default;
-
-      this.selected = null;
-      this.tabMap = new Map();
-      this.panelMap = new Map();
-      this.displayMap = new Map();
+  }], [{
+    key: 'observedAttributes',
+    get: function get() {
+      return ['class'];
     }
+  }]);
 
-    /**
-     * Called when the element is removed from the DOM
-     */
+  function PfTabs() {
+    _classCallCheck(this, PfTabs);
 
-  }, {
-    key: 'detachedCallback',
-    value: function detachedCallback() {
+    var _this = _possibleConstructorReturn(this, (PfTabs.__proto__ || Object.getPrototypeOf(PfTabs)).call(this));
+
+    _this._tabsTemplate = document.createElement('template');
+    _this._tabsTemplate.innerHTML = _pfTabs2.default;
+
+    _this.selected = null;
+    _this.tabMap = new Map();
+    _this.panelMap = new Map();
+    _this.displayMap = new Map();
+    return _this;
+  }
+
+  /**
+   * Called when the element is removed from the DOM
+   */
+
+
+  _createClass(PfTabs, [{
+    key: 'disconnectedCallback',
+    value: function disconnectedCallback() {
       this.querySelector('ul').removeEventListener('click', this);
     }
 
@@ -221,7 +231,7 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
       //attribute changes may fire as Angular is rendering
       //before this tab is in the panelMap, so check first
       if (tab) {
-        tab.textContent = panel.tabTitle;
+        tab.children[0].textContent = tabTitle;
       }
     }
 
@@ -356,6 +366,4 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
   return PfTabs;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-tabs', PfTabs);
-})();
+window.customElements.define('pf-tabs', PfTabs);

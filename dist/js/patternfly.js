@@ -53,25 +53,25 @@
 	__webpack_require__(2);
 
 	/** PfListView Component **/
-	__webpack_require__(4);
+	__webpack_require__(5);
 
 	/** PfTemplateRepeaterComponent **/
-	__webpack_require__(6);
-
-	/** PfTemplateComponent **/
 	__webpack_require__(7);
 
-	/** PF Tabs Component **/
+	/** PfTemplateComponent **/
 	__webpack_require__(8);
 
+	/** PF Tabs Component **/
+	__webpack_require__(9);
+
 	/** PF Tooltip Component **/
-	__webpack_require__(13);
+	__webpack_require__(14);
 
 	/** PF Utilization Bar Chart **/
 	__webpack_require__(16);
 
 	/** PF Utils **/
-	__webpack_require__(15);
+	__webpack_require__(4);
 
 	/** PF I18N **/
 	__webpack_require__(19);
@@ -102,7 +102,7 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -114,6 +114,8 @@
 	var _pfAlert = __webpack_require__(3);
 
 	var _pfAlert2 = _interopRequireDefault(_pfAlert);
+
+	var _pfUtils = __webpack_require__(4);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -136,21 +138,24 @@
 	var PfAlert = exports.PfAlert = function (_HTMLElement) {
 	  _inherits(PfAlert, _HTMLElement);
 
-	  function PfAlert() {
-	    _classCallCheck(this, PfAlert);
-
-	    return _possibleConstructorReturn(this, (PfAlert.__proto__ || Object.getPrototypeOf(PfAlert)).apply(this, arguments));
-	  }
-
 	  _createClass(PfAlert, [{
-	    key: "attachedCallback",
+	    key: 'connectedCallback',
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
+	      this.classList.add("alert");
 	      this.insertBefore(this._template.content, this.firstChild);
 	    }
+
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -159,9 +164,6 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: "attributeChangedCallback",
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      if (attrName === "type") {
 	        this._resetType(oldValue, newValue);
@@ -171,28 +173,38 @@
 	      }
 	    }
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: "createdCallback",
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _pfAlert2.default;
-	      this.classList.add("alert");
-	      this._initDefaults();
-	      this._initPersistent();
-	      this._initType();
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['type', 'persistent', 'persistent-callback-fn'];
 	    }
+	  }]);
 
-	    /**
-	     * Helper function to init defaults
-	     * @private
-	     */
+	  function PfAlert() {
+	    _classCallCheck(this, PfAlert);
 
-	  }, {
-	    key: "_initDefaults",
+	    var _this = _possibleConstructorReturn(this, (PfAlert.__proto__ || Object.getPrototypeOf(PfAlert)).call(this));
+
+	    _this._template = document.createElement('template');
+	    _this._template.innerHTML = _pfAlert2.default;
+	    _this._initDefaults();
+	    _this._initPersistent();
+	    _this._initType();
+	    return _this;
+	  }
+
+	  /**
+	   * Helper function to init defaults
+	   * @private
+	   */
+
+
+	  _createClass(PfAlert, [{
+	    key: '_initDefaults',
 	    value: function _initDefaults() {
 	      this._classNames = {
 	        "pfalert": {
@@ -216,7 +228,7 @@
 	     */
 
 	  }, {
-	    key: "_initPersistent",
+	    key: '_initPersistent',
 	    value: function _initPersistent() {
 	      var self = this;
 	      var nodes = this._getNodes('button.close');
@@ -241,7 +253,7 @@
 	     */
 
 	  }, {
-	    key: "_initType",
+	    key: '_initType',
 	    value: function _initType() {
 	      var nodes = this._getNodes('span.pficon');
 	      var el = nodes[nodes.length - 1];
@@ -272,7 +284,7 @@
 	     */
 
 	  }, {
-	    key: "_resetType",
+	    key: '_resetType',
 	    value: function _resetType(oldValue) {
 	      var nodes = this._getNodes('span.pficon');
 	      var el = nodes[nodes.length - 1];
@@ -305,7 +317,7 @@
 	     */
 
 	  }, {
-	    key: "_getNodes",
+	    key: '_getNodes',
 	    value: function _getNodes(selector) {
 	      var el = this.querySelectorAll(selector);
 	      if (el.length === 0) {
@@ -318,9 +330,7 @@
 	  return PfAlert;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-alert', PfAlert);
-	})();
+	window.customElements.define('pf-alert', PfAlert);
 
 /***/ },
 /* 3 */
@@ -336,6 +346,105 @@
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * --------------------------------------------------------------------------
+	 * PfUtil
+	 * Internal Utility Functions for Patternfly Web Components
+	 * --------------------------------------------------------------------------
+	 */
+
+	var PfUtil = function () {
+	  function PfUtil() {
+	    _classCallCheck(this, PfUtil);
+
+	    this.isMSIE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) !== null ? parseFloat(RegExp.$1) : false;
+	    this.isIE = /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
+	  }
+
+	  _createClass(PfUtil, [{
+	    key: 'addClass',
+	    value: function addClass(el, c) {
+	      // where modern browsers fail, use classList
+	      if (el.classList) {
+	        el.classList.add(c);
+	      } else {
+	        el.className += ' ' + c;
+	        el.offsetWidth;
+	      }
+	    }
+	  }, {
+	    key: 'removeClass',
+	    value: function removeClass(el, c) {
+	      if (el.classList) {
+	        el.classList.remove(c);
+	      } else {
+	        el.className = el.className.replace(c, '').replace(/^\s+|\s+$/g, '');
+	      }
+	    }
+	  }, {
+	    key: 'getClosest',
+	    value: function getClosest(el, s) {
+	      //el is the element and s the selector of the closest item to find
+	      // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
+	      var f = s.charAt(0);
+	      for (; el && el !== document; el = el.parentNode) {
+	        // Get closest match
+	        if (f === '.') {
+	          // If selector is a class
+	          if (document.querySelector(s) !== undefined) {
+	            return el;
+	          }
+	        }
+	        if (f === '#') {
+	          // If selector is an ID
+	          if (el.id === s.substr(1)) {
+	            return el;
+	          }
+	        }
+	      }
+	      return false;
+	    }
+
+	    // tooltip / popover stuff
+
+	  }, {
+	    key: 'isElementInViewport',
+	    value: function isElementInViewport(t) {
+	      // check if this.tooltip is in viewport
+	      var r = t.getBoundingClientRect();
+	      return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
+	    }
+	  }, {
+	    key: 'getScroll',
+	    value: function getScroll() {
+	      // also Affix and scrollSpy uses it
+	      return {
+	        y: window.pageYOffset || document.documentElement.scrollTop,
+	        x: window.pageXOffset || document.documentElement.scrollLeft
+	      };
+	    }
+	  }]);
+
+	  return PfUtil;
+	}();
+
+	var pfUtil = new PfUtil();
+	exports.pfUtil = pfUtil;
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -347,7 +456,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfListViewTemplate = __webpack_require__(5);
+	var _pfListViewTemplate = __webpack_require__(6);
 
 	var _pfListViewTemplate2 = _interopRequireDefault(_pfListViewTemplate);
 
@@ -386,25 +495,30 @@
 	var PfListView = exports.PfListView = function (_HTMLElement) {
 	  _inherits(PfListView, _HTMLElement);
 
+	  /*
+	   * An instance of the element is created or upgraded
+	   */
 	  function PfListView() {
 	    _classCallCheck(this, PfListView);
 
-	    return _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).apply(this, arguments));
+	    // Listen for when the child template-repeater updates it's content
+	    // ie. repeates the user defined template and replaces $(name) with actual values
+	    var _this = _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).call(this));
+
+	    _this.addEventListener("RepeaterContentChanged", function (e) {
+	      this.handleRepeaterContentChanged();
+	    });
+	    return _this;
 	  }
 
-	  _createClass(PfListView, [{
-	    key: 'createdCallback',
+	  /*
+	   * Only attributes listed in the observedAttributes property will receive this callback
+	   */
 
-	    /**
-	     * Called when an instance of the element is created
-	     */
-	    value: function createdCallback() {
-	      // Listen for when the child template-repeater updates it's content
-	      // ie. repeates the user defined template and replaces $(name) with actual values
-	      this.addEventListener("RepeaterContentChanged", function (e) {
-	        this.handleRepeaterContentChanged();
-	      });
-	    }
+
+	  _createClass(PfListView, [{
+	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -413,13 +527,8 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attributeName, oldValue, newValue) {
-	      if (attributeName === 'show-checkboxes') {
-	        this.showHideCheckboxes();
-	      }
+	      this.showHideCheckboxes();
 	    }
 
 	    /**
@@ -596,17 +705,20 @@
 	      }
 	      return obj;
 	    }
+	  }, {
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['show-checkboxes'];
+	    }
 	  }]);
 
 	  return PfListView;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-list-view', PfListView);
-	})();
+	window.customElements.define('pf-list-view', PfListView);
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -622,7 +734,7 @@
 	exports.itemRow = pfListItem;
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -685,6 +797,14 @@
 	      return this.innerHTML;
 	    }
 
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: "attributeChangedCallback",
+
+
 	    /**
 	     * Called when element's attribute value has changed
 	     *
@@ -692,13 +812,12 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: "attributeChangedCallback",
 	    value: function attributeChangedCallback(name, oldVal, newVal) {
 	      if (name === "content" && typeof newVal === 'string') {
 	        this.template = this.querySelector('pf-template');
-	        this.render(newVal);
+	        if (this.template) {
+	          this.render(newVal);
+	        }
 	      }
 	    }
 	  }], [{
@@ -732,15 +851,20 @@
 	      }
 	      return obj;
 	    }
+	  }, {
+	    key: "observedAttributes",
+	    get: function get() {
+	      return ['content'];
+	    }
 	  }]);
 
 	  return PFTemplateRepeater;
 	}(HTMLElement);
 
-	document.registerElement("pf-template-repeater", PFTemplateRepeater);
+	window.customElements.define("pf-template-repeater", PFTemplateRepeater);
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -763,10 +887,10 @@
 	  return PFTemplate;
 	}(HTMLElement);
 
-	document.registerElement("pf-template", PFTemplate);
+	window.customElements.define("pf-template", PFTemplate);
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -778,15 +902,15 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfTab = __webpack_require__(9);
+	var _pfTab = __webpack_require__(10);
 
 	var _pfTab2 = _interopRequireDefault(_pfTab);
 
-	var _pfTabs = __webpack_require__(10);
+	var _pfTabs = __webpack_require__(11);
 
 	var _pfTabs2 = _interopRequireDefault(_pfTabs);
 
-	var _pfTab3 = __webpack_require__(11);
+	var _pfTab3 = __webpack_require__(12);
 
 	var _pfTab4 = _interopRequireDefault(_pfTab3);
 
@@ -815,19 +939,13 @@
 	var PfTabs = exports.PfTabs = function (_HTMLElement) {
 	  _inherits(PfTabs, _HTMLElement);
 
-	  function PfTabs() {
-	    _classCallCheck(this, PfTabs);
-
-	    return _possibleConstructorReturn(this, (PfTabs.__proto__ || Object.getPrototypeOf(PfTabs)).apply(this, arguments));
-	  }
-
 	  _createClass(PfTabs, [{
-	    key: 'attachedCallback',
+	    key: 'connectedCallback',
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
 	      this.insertBefore(this._tabsTemplate.content, this.firstChild);
 
 	      this._makeTabsFromPfTab();
@@ -843,6 +961,14 @@
 	      }
 	    }
 
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
+
 	    /**
 	     * Called when element's attribute value has changed
 	     *
@@ -850,9 +976,6 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      if (attrName === 'class' && newValue !== 'ng-isolate-scope') {
 	        var ul = this.querySelector('ul');
@@ -862,29 +985,40 @@
 	      }
 	    }
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
-	      this._tabsTemplate = document.createElement('template');
-	      this._tabsTemplate.innerHTML = _pfTabs2.default;
-
-	      this.selected = null;
-	      this.tabMap = new Map();
-	      this.panelMap = new Map();
-	      this.displayMap = new Map();
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['class'];
 	    }
+	  }]);
 
-	    /**
-	     * Called when the element is removed from the DOM
-	     */
+	  function PfTabs() {
+	    _classCallCheck(this, PfTabs);
 
-	  }, {
-	    key: 'detachedCallback',
-	    value: function detachedCallback() {
+	    var _this = _possibleConstructorReturn(this, (PfTabs.__proto__ || Object.getPrototypeOf(PfTabs)).call(this));
+
+	    _this._tabsTemplate = document.createElement('template');
+	    _this._tabsTemplate.innerHTML = _pfTabs2.default;
+
+	    _this.selected = null;
+	    _this.tabMap = new Map();
+	    _this.panelMap = new Map();
+	    _this.displayMap = new Map();
+	    return _this;
+	  }
+
+	  /**
+	   * Called when the element is removed from the DOM
+	   */
+
+
+	  _createClass(PfTabs, [{
+	    key: 'disconnectedCallback',
+	    value: function disconnectedCallback() {
 	      this.querySelector('ul').removeEventListener('click', this);
 	    }
 
@@ -992,7 +1126,7 @@
 	      //attribute changes may fire as Angular is rendering
 	      //before this tab is in the panelMap, so check first
 	      if (tab) {
-	        tab.textContent = panel.tabTitle;
+	        tab.children[0].textContent = tabTitle;
 	      }
 	    }
 
@@ -1127,12 +1261,10 @@
 	  return PfTabs;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-tabs', PfTabs);
-	})();
+	window.customElements.define('pf-tabs', PfTabs);
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1144,7 +1276,7 @@
 	exports.default = PfTabTemplate;
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1156,7 +1288,7 @@
 	exports.default = PfTabsTemplate;
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1168,7 +1300,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _panel = __webpack_require__(12);
+	var _panel = __webpack_require__(13);
 
 	var _panel2 = _interopRequireDefault(_panel);
 
@@ -1199,21 +1331,23 @@
 	var PfTab = exports.PfTab = function (_HTMLElement) {
 	  _inherits(PfTab, _HTMLElement);
 
-	  function PfTab() {
-	    _classCallCheck(this, PfTab);
-
-	    return _possibleConstructorReturn(this, (PfTab.__proto__ || Object.getPrototypeOf(PfTab)).apply(this, arguments));
-	  }
-
 	  _createClass(PfTab, [{
-	    key: 'attachedCallback',
+	    key: 'connectedCallback',
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
 	      this.appendChild(this._template.content);
 	    }
+
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -1222,9 +1356,6 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      var parent = this.parentNode;
 	      if (attrName === 'tabTitle' && parent && parent.handleTitle) {
@@ -1232,24 +1363,35 @@
 	      }
 	    }
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _panel2.default;
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['tabTitle'];
 	    }
+	  }]);
 
-	    /**
-	     * Get tabTitle
-	     *
-	     * @returns {string} The tabTitle
-	     */
+	  function PfTab() {
+	    _classCallCheck(this, PfTab);
 
-	  }, {
+	    var _this = _possibleConstructorReturn(this, (PfTab.__proto__ || Object.getPrototypeOf(PfTab)).call(this));
+
+	    _this._template = document.createElement('template');
+	    _this._template.innerHTML = _panel2.default;
+	    return _this;
+	  }
+
+	  /**
+	   * Get tabTitle
+	   *
+	   * @returns {string} The tabTitle
+	   */
+
+
+	  _createClass(PfTab, [{
 	    key: 'tabTitle',
 	    get: function get() {
 	      return this._tabTitle;
@@ -1297,12 +1439,10 @@
 	  return PfTab;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-tab', PfTab);
-	})();
+	window.customElements.define('pf-tab', PfTab);
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1314,7 +1454,7 @@
 	exports.default = PfPanelTemplate;
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1326,11 +1466,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfTooltip = __webpack_require__(14);
+	var _pfTooltip = __webpack_require__(15);
 
 	var _pfTooltip2 = _interopRequireDefault(_pfTooltip);
 
-	var _pfUtils = __webpack_require__(15);
+	var _pfUtils = __webpack_require__(4);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1356,12 +1496,6 @@
 
 	var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
 	  _inherits(PfTooltip, _HTMLElement);
-
-	  function PfTooltip() {
-	    _classCallCheck(this, PfTooltip);
-
-	    return _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).apply(this, arguments));
-	  }
 
 	  _createClass(PfTooltip, [{
 	    key: 'init',
@@ -1405,8 +1539,8 @@
 	     */
 
 	  }, {
-	    key: 'attachedCallback',
-	    value: function attachedCallback() {
+	    key: 'connectedCallback',
+	    value: function connectedCallback() {
 	      var _this3 = this;
 
 	      this.init();
@@ -1417,6 +1551,14 @@
 	      }, false);
 	    }
 
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
+
 	    /**
 	     * Called when element's attribute value has changed
 	     *
@@ -1424,31 +1566,39 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      this.init();
 	    }
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _pfTooltip2.default;
-	      this._timer = 0;
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
 	    }
+	  }]);
 
-	    /**
-	     * Sets tooltip the inner HTML
-	     * @param {string} html string
-	     */
+	  function PfTooltip() {
+	    _classCallCheck(this, PfTooltip);
 
-	  }, {
+	    var _this = _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).call(this));
+
+	    _this._template = document.createElement('template');
+	    _this._template.innerHTML = _pfTooltip2.default;
+	    _this._timer = 0;
+	    return _this;
+	  }
+
+	  /**
+	   * Sets tooltip the inner HTML
+	   * @param {string} html string
+	   */
+
+
+	  _createClass(PfTooltip, [{
 	    key: 'setInnerHtml',
 	    value: function setInnerHtml(html) {
 	      this._innerHtml = html;
@@ -1738,12 +1888,10 @@
 	  return PfTooltip;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-tooltip', PfTooltip);
-	})();
+	window.customElements.define('pf-tooltip', PfTooltip);
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1754,105 +1902,6 @@
 	var PfTooltipTemplate = "\n<div role=\"tooltip\" class=\"tooltip\">\n    <div class=\"tooltip-arrow\"></div>\n    <div class=\"tooltip-inner\"></div>\n</div>\n";
 
 	exports.default = PfTooltipTemplate;
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * --------------------------------------------------------------------------
-	 * PfUtil
-	 * Internal Utility Functions for Patternfly Web Components
-	 * --------------------------------------------------------------------------
-	 */
-
-	var PfUtil = function () {
-	  function PfUtil() {
-	    _classCallCheck(this, PfUtil);
-
-	    this.isMSIE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) !== null ? parseFloat(RegExp.$1) : false;
-	    this.isIE = /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
-	  }
-
-	  _createClass(PfUtil, [{
-	    key: 'addClass',
-	    value: function addClass(el, c) {
-	      // where modern browsers fail, use classList
-	      if (el.classList) {
-	        el.classList.add(c);
-	      } else {
-	        el.className += ' ' + c;
-	        el.offsetWidth;
-	      }
-	    }
-	  }, {
-	    key: 'removeClass',
-	    value: function removeClass(el, c) {
-	      if (el.classList) {
-	        el.classList.remove(c);
-	      } else {
-	        el.className = el.className.replace(c, '').replace(/^\s+|\s+$/g, '');
-	      }
-	    }
-	  }, {
-	    key: 'getClosest',
-	    value: function getClosest(el, s) {
-	      //el is the element and s the selector of the closest item to find
-	      // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
-	      var f = s.charAt(0);
-	      for (; el && el !== document; el = el.parentNode) {
-	        // Get closest match
-	        if (f === '.') {
-	          // If selector is a class
-	          if (document.querySelector(s) !== undefined) {
-	            return el;
-	          }
-	        }
-	        if (f === '#') {
-	          // If selector is an ID
-	          if (el.id === s.substr(1)) {
-	            return el;
-	          }
-	        }
-	      }
-	      return false;
-	    }
-
-	    // tooltip / popover stuff
-
-	  }, {
-	    key: 'isElementInViewport',
-	    value: function isElementInViewport(t) {
-	      // check if this.tooltip is in viewport
-	      var r = t.getBoundingClientRect();
-	      return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
-	    }
-	  }, {
-	    key: 'getScroll',
-	    value: function getScroll() {
-	      // also Affix and scrollSpy uses it
-	      return {
-	        y: window.pageYOffset || document.documentElement.scrollTop,
-	        x: window.pageXOffset || document.documentElement.scrollLeft
-	      };
-	    }
-	  }]);
-
-	  return PfUtil;
-	}();
-
-	var pfUtil = new PfUtil();
-	exports.pfUtil = pfUtil;
 
 /***/ },
 /* 16 */
@@ -1904,30 +1953,27 @@
 	var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLElement) {
 	  _inherits(PfUtilizationBarChart, _HTMLElement);
 
+	  /*
+	   * An instance of the element is created or upgraded
+	   */
 	  function PfUtilizationBarChart() {
 	    _classCallCheck(this, PfUtilizationBarChart);
 
-	    return _possibleConstructorReturn(this, (PfUtilizationBarChart.__proto__ || Object.getPrototypeOf(PfUtilizationBarChart)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (PfUtilizationBarChart.__proto__ || Object.getPrototypeOf(PfUtilizationBarChart)).call(this));
+
+	    _this._lastThresholdClass;
+	    _this._layout;
+	    return _this;
 	  }
 
+	  /*
+	   * Called every time the element is inserted into the DOM
+	   */
+
+
 	  _createClass(PfUtilizationBarChart, [{
-	    key: 'createdCallback',
-
-	    /**
-	     * Called when an instance of the element is created
-	     */
-	    value: function createdCallback() {
-	      this._lastThresholdClass;
-	      this._layout;
-	    }
-
-	    /**
-	     * Called when an instance was inserted into the document
-	     */
-
-	  }, {
-	    key: 'attachedCallback',
-	    value: function attachedCallback() {
+	    key: 'connectedCallback',
+	    value: function connectedCallback() {
 	      this._layout = this.getAttribute('layout');
 	      if (this._layout && this._layout === 'inline') {
 	        this.innerHTML = _pfUtilizationBarChartInline.inline;
@@ -1937,6 +1983,14 @@
 	      this.updateChart();
 	    }
 
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
+
 	    /**
 	     * Called when element's attribute value has changed
 	     *
@@ -1944,11 +1998,10 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attributeName, oldValue, newValue) {
-	      this.updateChart();
+	      if (oldValue !== null) {
+	        this.updateChart();
+	      }
 	    }
 
 	    /**
@@ -2017,14 +2070,17 @@
 	        }
 	      }
 	    }
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['chart-title', 'used', 'total', 'units'];
+	    }
 	  }]);
 
 	  return PfUtilizationBarChart;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-utilization-bar-chart', PfUtilizationBarChart);
-	})();
+	window.customElements.define('pf-utilization-bar-chart', PfUtilizationBarChart);
 
 /***/ },
 /* 17 */
@@ -2144,14 +2200,9 @@
 	var PfI18n = exports.PfI18n = function (_HTMLElement) {
 	  _inherits(PfI18n, _HTMLElement);
 
-	  function PfI18n() {
-	    _classCallCheck(this, PfI18n);
-
-	    return _possibleConstructorReturn(this, (PfI18n.__proto__ || Object.getPrototypeOf(PfI18n)).apply(this, arguments));
-	  }
-
 	  _createClass(PfI18n, [{
 	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -2161,27 +2212,41 @@
 	     * @param {string} newValue The new attribute value
 	     */
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
-	      if (attrName === "mixin") {
-	        this._init();
-	      }
-	    }
-
-	    /**
-	     * Called when an instance of the element is created
-	     */
-
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
 	      this._init();
 	    }
 
-	    /**
-	     * Helper function to init i18n mixin
-	     * @private
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
+	  }], [{
+	    key: 'observedAttributes',
+
+
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+	    get: function get() {
+	      return ['mixin'];
+	    }
+	  }]);
+
+	  function PfI18n() {
+	    _classCallCheck(this, PfI18n);
+
+	    var _this = _possibleConstructorReturn(this, (PfI18n.__proto__ || Object.getPrototypeOf(PfI18n)).call(this));
+
+	    _this._init();
+	    return _this;
+	  }
+
+	  /**
+	   * Helper function to init i18n mixin
+	   * @private
+	   */
+
+
+	  _createClass(PfI18n, [{
 	    key: '_init',
 	    value: function _init() {
 	      if (this.getAttribute('mixin') !== null) {
@@ -2194,9 +2259,7 @@
 	  return PfI18n;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-i18n', PfI18n);
-	})();
+	window.customElements.define('pf-i18n', PfI18n);
 
 /***/ },
 /* 20 */
@@ -2286,21 +2349,23 @@
 	var PfHello = exports.PfHello = function (_HTMLElement) {
 	  _inherits(PfHello, _HTMLElement);
 
-	  function PfHello() {
-	    _classCallCheck(this, PfHello);
-
-	    return _possibleConstructorReturn(this, (PfHello.__proto__ || Object.getPrototypeOf(PfHello)).apply(this, arguments));
-	  }
-
 	  _createClass(PfHello, [{
-	    key: 'attachedCallback',
+	    key: 'connectedCallback',
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
 	      this.appendChild(this._template.content);
 	    }
+
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -2309,36 +2374,42 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
-	      if (attrName === "text") {
-	        this.refresh();
-	      }
-	    }
-
-	    /**
-	     * Called when an instance of the element is created
-	     */
-
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _pfHello2.default;
 	      this.refresh();
 	    }
 
-	    /**
-	     * Get nodes from given selector
-	     *
-	     * @param selector The query selector identifying the elements to retrieve
-	     * @returns {Element}
-	     * @private
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['text'];
+	    }
+	  }]);
+
+	  function PfHello() {
+	    _classCallCheck(this, PfHello);
+
+	    var _this = _possibleConstructorReturn(this, (PfHello.__proto__ || Object.getPrototypeOf(PfHello)).call(this));
+
+	    _this._template = document.createElement('template');
+	    _this._template.innerHTML = _pfHello2.default;
+	    _this.refresh();
+	    return _this;
+	  }
+
+	  /**
+	   * Get nodes from given selector
+	   *
+	   * @param selector The query selector identifying the elements to retrieve
+	   * @returns {Element}
+	   * @private
+	   */
+
+
+	  _createClass(PfHello, [{
 	    key: '_getNodes',
 	    value: function _getNodes(selector) {
 	      var el = this.querySelectorAll(selector);
@@ -2365,9 +2436,7 @@
 	  return PfHello;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-hello', PfHello);
-	})();
+	window.customElements.define('pf-hello', PfHello);
 
 /***/ },
 /* 22 */
@@ -2424,20 +2493,14 @@
 	var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
 	  _inherits(PfDropdown, _HTMLElement);
 
-	  function PfDropdown() {
-	    _classCallCheck(this, PfDropdown);
-
-	    return _possibleConstructorReturn(this, (PfDropdown.__proto__ || Object.getPrototypeOf(PfDropdown)).apply(this, arguments));
-	  }
-
 	  _createClass(PfDropdown, [{
-	    key: 'attachedCallback',
+	    key: 'connectedCallback',
 
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
 	      var _this2 = this;
 
 	      this._button = this.querySelector('.btn');
@@ -2489,19 +2552,24 @@
 	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {}
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {}
+	  }]);
 
-	    /**
-	     *Toggle the dropdown
-	     */
+	  function PfDropdown() {
+	    _classCallCheck(this, PfDropdown);
 
-	  }, {
+	    return _possibleConstructorReturn(this, (PfDropdown.__proto__ || Object.getPrototypeOf(PfDropdown)).call(this));
+	  }
+
+	  /**
+	   *Toggle the dropdown
+	   */
+
+
+	  _createClass(PfDropdown, [{
 	    key: 'toggle',
 	    value: function toggle() {
 	      this._showDropdown();
@@ -2635,9 +2703,7 @@
 	  return PfDropdown;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-dropdown', PfDropdown);
-	})();
+	window.customElements.define('pf-dropdown', PfDropdown);
 
 /***/ }
 /******/ ]);

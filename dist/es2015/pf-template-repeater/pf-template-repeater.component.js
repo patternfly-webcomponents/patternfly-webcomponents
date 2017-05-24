@@ -58,6 +58,14 @@ var PFTemplateRepeater = function (_HTMLElement) {
       return this.innerHTML;
     }
 
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+
+  }, {
+    key: "attributeChangedCallback",
+
+
     /**
      * Called when element's attribute value has changed
      *
@@ -65,13 +73,12 @@ var PFTemplateRepeater = function (_HTMLElement) {
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: "attributeChangedCallback",
     value: function attributeChangedCallback(name, oldVal, newVal) {
       if (name === "content" && typeof newVal === 'string') {
         this.template = this.querySelector('pf-template');
-        this.render(newVal);
+        if (this.template) {
+          this.render(newVal);
+        }
       }
     }
   }], [{
@@ -105,9 +112,14 @@ var PFTemplateRepeater = function (_HTMLElement) {
       }
       return obj;
     }
+  }, {
+    key: "observedAttributes",
+    get: function get() {
+      return ['content'];
+    }
   }]);
 
   return PFTemplateRepeater;
 }(HTMLElement);
 
-document.registerElement("pf-template-repeater", PFTemplateRepeater);
+window.customElements.define("pf-template-repeater", PFTemplateRepeater);

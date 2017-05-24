@@ -51,13 +51,20 @@ export class PfTooltip extends HTMLElement {
   /**
    * Called when an instance was inserted into the document
    */
-  attachedCallback () {
+  connectedCallback () {
     this.init();
 
     //handleContentChanged
     this.element.addEventListener('handleContentChanged', (e) => {
       this.init();
     }, false);
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
   }
 
   /**
@@ -71,10 +78,11 @@ export class PfTooltip extends HTMLElement {
     this.init();
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
     this._template = document.createElement('template');
     this._template.innerHTML = tmpl;
     this._timer = 0;
@@ -321,6 +329,5 @@ export class PfTooltip extends HTMLElement {
     !/\bin/.test(this.tooltip.className) && ( pfUtil.addClass(this.tooltip,'in') );
   }
 }
-(function () {
-  document.registerElement('pf-tooltip', PfTooltip);
-}());
+
+window.customElements.define('pf-tooltip', PfTooltip);

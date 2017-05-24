@@ -48,11 +48,11 @@
 	'use strict';
 
 	/** PfTemplateRepeaterComponent **/
-	__webpack_require__(6);
+	__webpack_require__(7);
 
 /***/ },
 
-/***/ 6:
+/***/ 7:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -115,6 +115,14 @@
 	      return this.innerHTML;
 	    }
 
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: "attributeChangedCallback",
+
+
 	    /**
 	     * Called when element's attribute value has changed
 	     *
@@ -122,13 +130,12 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: "attributeChangedCallback",
 	    value: function attributeChangedCallback(name, oldVal, newVal) {
 	      if (name === "content" && typeof newVal === 'string') {
 	        this.template = this.querySelector('pf-template');
-	        this.render(newVal);
+	        if (this.template) {
+	          this.render(newVal);
+	        }
 	      }
 	    }
 	  }], [{
@@ -162,12 +169,17 @@
 	      }
 	      return obj;
 	    }
+	  }, {
+	    key: "observedAttributes",
+	    get: function get() {
+	      return ['content'];
+	    }
 	  }]);
 
 	  return PFTemplateRepeater;
 	}(HTMLElement);
 
-	document.registerElement("pf-template-repeater", PFTemplateRepeater);
+	window.customElements.define("pf-template-repeater", PFTemplateRepeater);
 
 /***/ }
 

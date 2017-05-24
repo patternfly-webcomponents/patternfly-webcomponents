@@ -88,14 +88,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PfI18n = exports.PfI18n = function (_HTMLElement) {
   _inherits(PfI18n, _HTMLElement);
 
-  function PfI18n() {
-    _classCallCheck(this, PfI18n);
-
-    return _possibleConstructorReturn(this, (PfI18n.__proto__ || Object.getPrototypeOf(PfI18n)).apply(this, arguments));
-  }
-
   _createClass(PfI18n, [{
     key: 'attributeChangedCallback',
+
 
     /**
      * Called when element's attribute value has changed
@@ -105,27 +100,41 @@ var PfI18n = exports.PfI18n = function (_HTMLElement) {
      * @param {string} newValue The new attribute value
      */
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
-      if (attrName === "mixin") {
-        this._init();
-      }
-    }
-
-    /**
-     * Called when an instance of the element is created
-     */
-
-  }, {
-    key: 'createdCallback',
-    value: function createdCallback() {
       this._init();
     }
 
-    /**
-     * Helper function to init i18n mixin
-     * @private
+    /*
+     * An instance of the element is created or upgraded
      */
 
-  }, {
+  }], [{
+    key: 'observedAttributes',
+
+
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+    get: function get() {
+      return ['mixin'];
+    }
+  }]);
+
+  function PfI18n() {
+    _classCallCheck(this, PfI18n);
+
+    var _this = _possibleConstructorReturn(this, (PfI18n.__proto__ || Object.getPrototypeOf(PfI18n)).call(this));
+
+    _this._init();
+    return _this;
+  }
+
+  /**
+   * Helper function to init i18n mixin
+   * @private
+   */
+
+
+  _createClass(PfI18n, [{
     key: '_init',
     value: function _init() {
       if (this.getAttribute('mixin') !== null) {
@@ -138,6 +147,4 @@ var PfI18n = exports.PfI18n = function (_HTMLElement) {
   return PfI18n;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-i18n', PfI18n);
-})();
+window.customElements.define('pf-i18n', PfI18n);

@@ -54,7 +54,7 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -66,6 +66,8 @@
 	var _pfAlert = __webpack_require__(3);
 
 	var _pfAlert2 = _interopRequireDefault(_pfAlert);
+
+	var _pfUtils = __webpack_require__(4);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -88,21 +90,24 @@
 	var PfAlert = exports.PfAlert = function (_HTMLElement) {
 	  _inherits(PfAlert, _HTMLElement);
 
-	  function PfAlert() {
-	    _classCallCheck(this, PfAlert);
-
-	    return _possibleConstructorReturn(this, (PfAlert.__proto__ || Object.getPrototypeOf(PfAlert)).apply(this, arguments));
-	  }
-
 	  _createClass(PfAlert, [{
-	    key: "attachedCallback",
+	    key: 'connectedCallback',
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
+	      this.classList.add("alert");
 	      this.insertBefore(this._template.content, this.firstChild);
 	    }
+
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -111,9 +116,6 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: "attributeChangedCallback",
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      if (attrName === "type") {
 	        this._resetType(oldValue, newValue);
@@ -123,28 +125,38 @@
 	      }
 	    }
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: "createdCallback",
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _pfAlert2.default;
-	      this.classList.add("alert");
-	      this._initDefaults();
-	      this._initPersistent();
-	      this._initType();
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['type', 'persistent', 'persistent-callback-fn'];
 	    }
+	  }]);
 
-	    /**
-	     * Helper function to init defaults
-	     * @private
-	     */
+	  function PfAlert() {
+	    _classCallCheck(this, PfAlert);
 
-	  }, {
-	    key: "_initDefaults",
+	    var _this = _possibleConstructorReturn(this, (PfAlert.__proto__ || Object.getPrototypeOf(PfAlert)).call(this));
+
+	    _this._template = document.createElement('template');
+	    _this._template.innerHTML = _pfAlert2.default;
+	    _this._initDefaults();
+	    _this._initPersistent();
+	    _this._initType();
+	    return _this;
+	  }
+
+	  /**
+	   * Helper function to init defaults
+	   * @private
+	   */
+
+
+	  _createClass(PfAlert, [{
+	    key: '_initDefaults',
 	    value: function _initDefaults() {
 	      this._classNames = {
 	        "pfalert": {
@@ -168,7 +180,7 @@
 	     */
 
 	  }, {
-	    key: "_initPersistent",
+	    key: '_initPersistent',
 	    value: function _initPersistent() {
 	      var self = this;
 	      var nodes = this._getNodes('button.close');
@@ -193,7 +205,7 @@
 	     */
 
 	  }, {
-	    key: "_initType",
+	    key: '_initType',
 	    value: function _initType() {
 	      var nodes = this._getNodes('span.pficon');
 	      var el = nodes[nodes.length - 1];
@@ -224,7 +236,7 @@
 	     */
 
 	  }, {
-	    key: "_resetType",
+	    key: '_resetType',
 	    value: function _resetType(oldValue) {
 	      var nodes = this._getNodes('span.pficon');
 	      var el = nodes[nodes.length - 1];
@@ -257,7 +269,7 @@
 	     */
 
 	  }, {
-	    key: "_getNodes",
+	    key: '_getNodes',
 	    value: function _getNodes(selector) {
 	      var el = this.querySelectorAll(selector);
 	      if (el.length === 0) {
@@ -270,9 +282,7 @@
 	  return PfAlert;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-alert', PfAlert);
-	})();
+	window.customElements.define('pf-alert', PfAlert);
 
 /***/ },
 /* 3 */
@@ -285,6 +295,105 @@
 	});
 	var PfAlertTemplate = "\n<button type=\"button\" class=\"close hidden\" data-dismiss=\"alert\" aria-hidden=\"true\">\n  <span class=\"pficon pficon-close\"></span>\n</button>\n<span class=\"pficon\"></span>\n";
 	exports.default = PfAlertTemplate;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * --------------------------------------------------------------------------
+	 * PfUtil
+	 * Internal Utility Functions for Patternfly Web Components
+	 * --------------------------------------------------------------------------
+	 */
+
+	var PfUtil = function () {
+	  function PfUtil() {
+	    _classCallCheck(this, PfUtil);
+
+	    this.isMSIE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) !== null ? parseFloat(RegExp.$1) : false;
+	    this.isIE = /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
+	  }
+
+	  _createClass(PfUtil, [{
+	    key: 'addClass',
+	    value: function addClass(el, c) {
+	      // where modern browsers fail, use classList
+	      if (el.classList) {
+	        el.classList.add(c);
+	      } else {
+	        el.className += ' ' + c;
+	        el.offsetWidth;
+	      }
+	    }
+	  }, {
+	    key: 'removeClass',
+	    value: function removeClass(el, c) {
+	      if (el.classList) {
+	        el.classList.remove(c);
+	      } else {
+	        el.className = el.className.replace(c, '').replace(/^\s+|\s+$/g, '');
+	      }
+	    }
+	  }, {
+	    key: 'getClosest',
+	    value: function getClosest(el, s) {
+	      //el is the element and s the selector of the closest item to find
+	      // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
+	      var f = s.charAt(0);
+	      for (; el && el !== document; el = el.parentNode) {
+	        // Get closest match
+	        if (f === '.') {
+	          // If selector is a class
+	          if (document.querySelector(s) !== undefined) {
+	            return el;
+	          }
+	        }
+	        if (f === '#') {
+	          // If selector is an ID
+	          if (el.id === s.substr(1)) {
+	            return el;
+	          }
+	        }
+	      }
+	      return false;
+	    }
+
+	    // tooltip / popover stuff
+
+	  }, {
+	    key: 'isElementInViewport',
+	    value: function isElementInViewport(t) {
+	      // check if this.tooltip is in viewport
+	      var r = t.getBoundingClientRect();
+	      return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
+	    }
+	  }, {
+	    key: 'getScroll',
+	    value: function getScroll() {
+	      // also Affix and scrollSpy uses it
+	      return {
+	        y: window.pageYOffset || document.documentElement.scrollTop,
+	        x: window.pageXOffset || document.documentElement.scrollLeft
+	      };
+	    }
+	  }]);
+
+	  return PfUtil;
+	}();
+
+	var pfUtil = new PfUtil();
+	exports.pfUtil = pfUtil;
 
 /***/ }
 /******/ ]);

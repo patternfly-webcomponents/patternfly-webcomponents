@@ -48,11 +48,111 @@
 	'use strict';
 
 	/** PF Tooltip Component **/
-	__webpack_require__(13);
+	__webpack_require__(14);
 
 /***/ },
 
-/***/ 13:
+/***/ 4:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * --------------------------------------------------------------------------
+	 * PfUtil
+	 * Internal Utility Functions for Patternfly Web Components
+	 * --------------------------------------------------------------------------
+	 */
+
+	var PfUtil = function () {
+	  function PfUtil() {
+	    _classCallCheck(this, PfUtil);
+
+	    this.isMSIE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) !== null ? parseFloat(RegExp.$1) : false;
+	    this.isIE = /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
+	  }
+
+	  _createClass(PfUtil, [{
+	    key: 'addClass',
+	    value: function addClass(el, c) {
+	      // where modern browsers fail, use classList
+	      if (el.classList) {
+	        el.classList.add(c);
+	      } else {
+	        el.className += ' ' + c;
+	        el.offsetWidth;
+	      }
+	    }
+	  }, {
+	    key: 'removeClass',
+	    value: function removeClass(el, c) {
+	      if (el.classList) {
+	        el.classList.remove(c);
+	      } else {
+	        el.className = el.className.replace(c, '').replace(/^\s+|\s+$/g, '');
+	      }
+	    }
+	  }, {
+	    key: 'getClosest',
+	    value: function getClosest(el, s) {
+	      //el is the element and s the selector of the closest item to find
+	      // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
+	      var f = s.charAt(0);
+	      for (; el && el !== document; el = el.parentNode) {
+	        // Get closest match
+	        if (f === '.') {
+	          // If selector is a class
+	          if (document.querySelector(s) !== undefined) {
+	            return el;
+	          }
+	        }
+	        if (f === '#') {
+	          // If selector is an ID
+	          if (el.id === s.substr(1)) {
+	            return el;
+	          }
+	        }
+	      }
+	      return false;
+	    }
+
+	    // tooltip / popover stuff
+
+	  }, {
+	    key: 'isElementInViewport',
+	    value: function isElementInViewport(t) {
+	      // check if this.tooltip is in viewport
+	      var r = t.getBoundingClientRect();
+	      return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
+	    }
+	  }, {
+	    key: 'getScroll',
+	    value: function getScroll() {
+	      // also Affix and scrollSpy uses it
+	      return {
+	        y: window.pageYOffset || document.documentElement.scrollTop,
+	        x: window.pageXOffset || document.documentElement.scrollLeft
+	      };
+	    }
+	  }]);
+
+	  return PfUtil;
+	}();
+
+	var pfUtil = new PfUtil();
+	exports.pfUtil = pfUtil;
+
+/***/ },
+
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64,11 +164,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfTooltip = __webpack_require__(14);
+	var _pfTooltip = __webpack_require__(15);
 
 	var _pfTooltip2 = _interopRequireDefault(_pfTooltip);
 
-	var _pfUtils = __webpack_require__(15);
+	var _pfUtils = __webpack_require__(4);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -94,12 +194,6 @@
 
 	var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
 	  _inherits(PfTooltip, _HTMLElement);
-
-	  function PfTooltip() {
-	    _classCallCheck(this, PfTooltip);
-
-	    return _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).apply(this, arguments));
-	  }
 
 	  _createClass(PfTooltip, [{
 	    key: 'init',
@@ -143,8 +237,8 @@
 	     */
 
 	  }, {
-	    key: 'attachedCallback',
-	    value: function attachedCallback() {
+	    key: 'connectedCallback',
+	    value: function connectedCallback() {
 	      var _this3 = this;
 
 	      this.init();
@@ -155,6 +249,14 @@
 	      }, false);
 	    }
 
+	    /*
+	     * Only attributes listed in the observedAttributes property will receive this callback
+	     */
+
+	  }, {
+	    key: 'attributeChangedCallback',
+
+
 	    /**
 	     * Called when element's attribute value has changed
 	     *
@@ -162,31 +264,39 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {
 	      this.init();
 	    }
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {
-	      this._template = document.createElement('template');
-	      this._template.innerHTML = _pfTooltip2.default;
-	      this._timer = 0;
+	  }], [{
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
 	    }
+	  }]);
 
-	    /**
-	     * Sets tooltip the inner HTML
-	     * @param {string} html string
-	     */
+	  function PfTooltip() {
+	    _classCallCheck(this, PfTooltip);
 
-	  }, {
+	    var _this = _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).call(this));
+
+	    _this._template = document.createElement('template');
+	    _this._template.innerHTML = _pfTooltip2.default;
+	    _this._timer = 0;
+	    return _this;
+	  }
+
+	  /**
+	   * Sets tooltip the inner HTML
+	   * @param {string} html string
+	   */
+
+
+	  _createClass(PfTooltip, [{
 	    key: 'setInnerHtml',
 	    value: function setInnerHtml(html) {
 	      this._innerHtml = html;
@@ -476,13 +586,11 @@
 	  return PfTooltip;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-tooltip', PfTooltip);
-	})();
+	window.customElements.define('pf-tooltip', PfTooltip);
 
 /***/ },
 
-/***/ 14:
+/***/ 15:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -493,106 +601,6 @@
 	var PfTooltipTemplate = "\n<div role=\"tooltip\" class=\"tooltip\">\n    <div class=\"tooltip-arrow\"></div>\n    <div class=\"tooltip-inner\"></div>\n</div>\n";
 
 	exports.default = PfTooltipTemplate;
-
-/***/ },
-
-/***/ 15:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * --------------------------------------------------------------------------
-	 * PfUtil
-	 * Internal Utility Functions for Patternfly Web Components
-	 * --------------------------------------------------------------------------
-	 */
-
-	var PfUtil = function () {
-	  function PfUtil() {
-	    _classCallCheck(this, PfUtil);
-
-	    this.isMSIE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) !== null ? parseFloat(RegExp.$1) : false;
-	    this.isIE = /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
-	  }
-
-	  _createClass(PfUtil, [{
-	    key: 'addClass',
-	    value: function addClass(el, c) {
-	      // where modern browsers fail, use classList
-	      if (el.classList) {
-	        el.classList.add(c);
-	      } else {
-	        el.className += ' ' + c;
-	        el.offsetWidth;
-	      }
-	    }
-	  }, {
-	    key: 'removeClass',
-	    value: function removeClass(el, c) {
-	      if (el.classList) {
-	        el.classList.remove(c);
-	      } else {
-	        el.className = el.className.replace(c, '').replace(/^\s+|\s+$/g, '');
-	      }
-	    }
-	  }, {
-	    key: 'getClosest',
-	    value: function getClosest(el, s) {
-	      //el is the element and s the selector of the closest item to find
-	      // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
-	      var f = s.charAt(0);
-	      for (; el && el !== document; el = el.parentNode) {
-	        // Get closest match
-	        if (f === '.') {
-	          // If selector is a class
-	          if (document.querySelector(s) !== undefined) {
-	            return el;
-	          }
-	        }
-	        if (f === '#') {
-	          // If selector is an ID
-	          if (el.id === s.substr(1)) {
-	            return el;
-	          }
-	        }
-	      }
-	      return false;
-	    }
-
-	    // tooltip / popover stuff
-
-	  }, {
-	    key: 'isElementInViewport',
-	    value: function isElementInViewport(t) {
-	      // check if this.tooltip is in viewport
-	      var r = t.getBoundingClientRect();
-	      return r.top >= 0 && r.left >= 0 && r.bottom <= (window.innerHeight || document.documentElement.clientHeight) && r.right <= (window.innerWidth || document.documentElement.clientWidth);
-	    }
-	  }, {
-	    key: 'getScroll',
-	    value: function getScroll() {
-	      // also Affix and scrollSpy uses it
-	      return {
-	        y: window.pageYOffset || document.documentElement.scrollTop,
-	        x: window.pageXOffset || document.documentElement.scrollLeft
-	      };
-	    }
-	  }]);
-
-	  return PfUtil;
-	}();
-
-	var pfUtil = new PfUtil();
-	exports.pfUtil = pfUtil;
 
 /***/ }
 

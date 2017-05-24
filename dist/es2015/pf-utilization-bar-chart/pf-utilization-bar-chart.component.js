@@ -44,30 +44,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLElement) {
   _inherits(PfUtilizationBarChart, _HTMLElement);
 
+  /*
+   * An instance of the element is created or upgraded
+   */
   function PfUtilizationBarChart() {
     _classCallCheck(this, PfUtilizationBarChart);
 
-    return _possibleConstructorReturn(this, (PfUtilizationBarChart.__proto__ || Object.getPrototypeOf(PfUtilizationBarChart)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (PfUtilizationBarChart.__proto__ || Object.getPrototypeOf(PfUtilizationBarChart)).call(this));
+
+    _this._lastThresholdClass;
+    _this._layout;
+    return _this;
   }
 
+  /*
+   * Called every time the element is inserted into the DOM
+   */
+
+
   _createClass(PfUtilizationBarChart, [{
-    key: 'createdCallback',
-
-    /**
-     * Called when an instance of the element is created
-     */
-    value: function createdCallback() {
-      this._lastThresholdClass;
-      this._layout;
-    }
-
-    /**
-     * Called when an instance was inserted into the document
-     */
-
-  }, {
-    key: 'attachedCallback',
-    value: function attachedCallback() {
+    key: 'connectedCallback',
+    value: function connectedCallback() {
       this._layout = this.getAttribute('layout');
       if (this._layout && this._layout === 'inline') {
         this.innerHTML = _pfUtilizationBarChartInline.inline;
@@ -77,6 +74,14 @@ var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLEleme
       this.updateChart();
     }
 
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+
+  }, {
+    key: 'attributeChangedCallback',
+
+
     /**
      * Called when element's attribute value has changed
      *
@@ -84,11 +89,10 @@ var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLEleme
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attributeName, oldValue, newValue) {
-      this.updateChart();
+      if (oldValue !== null) {
+        this.updateChart();
+      }
     }
 
     /**
@@ -157,11 +161,14 @@ var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLEleme
         }
       }
     }
+  }], [{
+    key: 'observedAttributes',
+    get: function get() {
+      return ['chart-title', 'used', 'total', 'units'];
+    }
   }]);
 
   return PfUtilizationBarChart;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-utilization-bar-chart', PfUtilizationBarChart);
-})();
+window.customElements.define('pf-utilization-bar-chart', PfUtilizationBarChart);

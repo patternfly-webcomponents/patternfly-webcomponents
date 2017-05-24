@@ -46,25 +46,30 @@ var forEach = Array.prototype.forEach;
 var PfListView = exports.PfListView = function (_HTMLElement) {
   _inherits(PfListView, _HTMLElement);
 
+  /*
+   * An instance of the element is created or upgraded
+   */
   function PfListView() {
     _classCallCheck(this, PfListView);
 
-    return _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).apply(this, arguments));
+    // Listen for when the child template-repeater updates it's content
+    // ie. repeates the user defined template and replaces $(name) with actual values
+    var _this = _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).call(this));
+
+    _this.addEventListener("RepeaterContentChanged", function (e) {
+      this.handleRepeaterContentChanged();
+    });
+    return _this;
   }
 
-  _createClass(PfListView, [{
-    key: 'createdCallback',
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
 
-    /**
-     * Called when an instance of the element is created
-     */
-    value: function createdCallback() {
-      // Listen for when the child template-repeater updates it's content
-      // ie. repeates the user defined template and replaces $(name) with actual values
-      this.addEventListener("RepeaterContentChanged", function (e) {
-        this.handleRepeaterContentChanged();
-      });
-    }
+
+  _createClass(PfListView, [{
+    key: 'attributeChangedCallback',
+
 
     /**
      * Called when element's attribute value has changed
@@ -73,13 +78,8 @@ var PfListView = exports.PfListView = function (_HTMLElement) {
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attributeName, oldValue, newValue) {
-      if (attributeName === 'show-checkboxes') {
-        this.showHideCheckboxes();
-      }
+      this.showHideCheckboxes();
     }
 
     /**
@@ -256,11 +256,14 @@ var PfListView = exports.PfListView = function (_HTMLElement) {
       }
       return obj;
     }
+  }, {
+    key: 'observedAttributes',
+    get: function get() {
+      return ['show-checkboxes'];
+    }
   }]);
 
   return PfListView;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-list-view', PfListView);
-})();
+window.customElements.define('pf-list-view', PfListView);

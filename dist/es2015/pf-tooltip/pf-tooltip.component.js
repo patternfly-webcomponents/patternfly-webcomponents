@@ -38,12 +38,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
   _inherits(PfTooltip, _HTMLElement);
 
-  function PfTooltip() {
-    _classCallCheck(this, PfTooltip);
-
-    return _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).apply(this, arguments));
-  }
-
   _createClass(PfTooltip, [{
     key: 'init',
 
@@ -86,8 +80,8 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
      */
 
   }, {
-    key: 'attachedCallback',
-    value: function attachedCallback() {
+    key: 'connectedCallback',
+    value: function connectedCallback() {
       var _this3 = this;
 
       this.init();
@@ -98,6 +92,14 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       }, false);
     }
 
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+
+  }, {
+    key: 'attributeChangedCallback',
+
+
     /**
      * Called when element's attribute value has changed
      *
@@ -105,31 +107,39 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
       this.init();
     }
 
-    /**
-     * Called when an instance of the element is created
+    /*
+     * An instance of the element is created or upgraded
      */
 
-  }, {
-    key: 'createdCallback',
-    value: function createdCallback() {
-      this._template = document.createElement('template');
-      this._template.innerHTML = _pfTooltip2.default;
-      this._timer = 0;
+  }], [{
+    key: 'observedAttributes',
+    get: function get() {
+      return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
     }
+  }]);
 
-    /**
-     * Sets tooltip the inner HTML
-     * @param {string} html string
-     */
+  function PfTooltip() {
+    _classCallCheck(this, PfTooltip);
 
-  }, {
+    var _this = _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).call(this));
+
+    _this._template = document.createElement('template');
+    _this._template.innerHTML = _pfTooltip2.default;
+    _this._timer = 0;
+    return _this;
+  }
+
+  /**
+   * Sets tooltip the inner HTML
+   * @param {string} html string
+   */
+
+
+  _createClass(PfTooltip, [{
     key: 'setInnerHtml',
     value: function setInnerHtml(html) {
       this._innerHtml = html;
@@ -419,6 +429,4 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
   return PfTooltip;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-tooltip', PfTooltip);
-})();
+window.customElements.define('pf-tooltip', PfTooltip);

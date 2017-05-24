@@ -17,11 +17,18 @@ import {default as tmpl} from 'panel.template';
  * @prop {string} active if attribute exists, tab will be active
  */
 export class PfTab extends HTMLElement {
-  /**
-   * Called when an instance was inserted into the document
+  /*
+   * Called every time the element is inserted into the DOM
    */
-  attachedCallback () {
+  connectedCallback () {
     this.appendChild(this._template.content);
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['tabTitle'];
   }
 
   /**
@@ -38,10 +45,11 @@ export class PfTab extends HTMLElement {
     }
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
     this._template = document.createElement('template');
     this._template.innerHTML = tmpl;
   }
@@ -88,6 +96,5 @@ export class PfTab extends HTMLElement {
     }
   }
 }
-(function () {
-  document.registerElement('pf-tab', PfTab);
-}());
+
+window.customElements.define('pf-tab', PfTab);

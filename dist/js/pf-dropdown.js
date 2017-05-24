@@ -94,20 +94,14 @@
 	var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
 	  _inherits(PfDropdown, _HTMLElement);
 
-	  function PfDropdown() {
-	    _classCallCheck(this, PfDropdown);
-
-	    return _possibleConstructorReturn(this, (PfDropdown.__proto__ || Object.getPrototypeOf(PfDropdown)).apply(this, arguments));
-	  }
-
 	  _createClass(PfDropdown, [{
-	    key: 'attachedCallback',
+	    key: 'connectedCallback',
 
 
-	    /**
-	     * Called when an instance was inserted into the document
+	    /*
+	     * Called every time the element is inserted into the DOM
 	     */
-	    value: function attachedCallback() {
+	    value: function connectedCallback() {
 	      var _this2 = this;
 
 	      this._button = this.querySelector('.btn');
@@ -159,19 +153,24 @@
 	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attrName, oldValue, newValue) {}
 
-	    /**
-	     * Called when an instance of the element is created
+	    /*
+	     * An instance of the element is created or upgraded
 	     */
 
-	  }, {
-	    key: 'createdCallback',
-	    value: function createdCallback() {}
+	  }]);
 
-	    /**
-	     *Toggle the dropdown
-	     */
+	  function PfDropdown() {
+	    _classCallCheck(this, PfDropdown);
 
-	  }, {
+	    return _possibleConstructorReturn(this, (PfDropdown.__proto__ || Object.getPrototypeOf(PfDropdown)).call(this));
+	  }
+
+	  /**
+	   *Toggle the dropdown
+	   */
+
+
+	  _createClass(PfDropdown, [{
 	    key: 'toggle',
 	    value: function toggle() {
 	      this._showDropdown();
@@ -305,9 +304,7 @@
 	  return PfDropdown;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-dropdown', PfDropdown);
-	})();
+	window.customElements.define('pf-dropdown', PfDropdown);
 
 /***/ }
 

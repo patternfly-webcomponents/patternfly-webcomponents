@@ -30,21 +30,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PfHello = exports.PfHello = function (_HTMLElement) {
   _inherits(PfHello, _HTMLElement);
 
-  function PfHello() {
-    _classCallCheck(this, PfHello);
-
-    return _possibleConstructorReturn(this, (PfHello.__proto__ || Object.getPrototypeOf(PfHello)).apply(this, arguments));
-  }
-
   _createClass(PfHello, [{
-    key: 'attachedCallback',
+    key: 'connectedCallback',
 
-    /**
-     * Called when an instance was inserted into the document
+    /*
+     * Called every time the element is inserted into the DOM
      */
-    value: function attachedCallback() {
+    value: function connectedCallback() {
       this.appendChild(this._template.content);
     }
+
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+
+  }, {
+    key: 'attributeChangedCallback',
+
 
     /**
      * Called when element's attribute value has changed
@@ -53,36 +55,42 @@ var PfHello = exports.PfHello = function (_HTMLElement) {
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
-      if (attrName === "text") {
-        this.refresh();
-      }
-    }
-
-    /**
-     * Called when an instance of the element is created
-     */
-
-  }, {
-    key: 'createdCallback',
-    value: function createdCallback() {
-      this._template = document.createElement('template');
-      this._template.innerHTML = _pfHello2.default;
       this.refresh();
     }
 
-    /**
-     * Get nodes from given selector
-     *
-     * @param selector The query selector identifying the elements to retrieve
-     * @returns {Element}
-     * @private
+    /*
+     * An instance of the element is created or upgraded
      */
 
-  }, {
+  }], [{
+    key: 'observedAttributes',
+    get: function get() {
+      return ['text'];
+    }
+  }]);
+
+  function PfHello() {
+    _classCallCheck(this, PfHello);
+
+    var _this = _possibleConstructorReturn(this, (PfHello.__proto__ || Object.getPrototypeOf(PfHello)).call(this));
+
+    _this._template = document.createElement('template');
+    _this._template.innerHTML = _pfHello2.default;
+    _this.refresh();
+    return _this;
+  }
+
+  /**
+   * Get nodes from given selector
+   *
+   * @param selector The query selector identifying the elements to retrieve
+   * @returns {Element}
+   * @private
+   */
+
+
+  _createClass(PfHello, [{
     key: '_getNodes',
     value: function _getNodes(selector) {
       var el = this.querySelectorAll(selector);
@@ -109,6 +117,4 @@ var PfHello = exports.PfHello = function (_HTMLElement) {
   return PfHello;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-hello', PfHello);
-})();
+window.customElements.define('pf-hello', PfHello);

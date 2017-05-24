@@ -38,21 +38,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PfTab = exports.PfTab = function (_HTMLElement) {
   _inherits(PfTab, _HTMLElement);
 
-  function PfTab() {
-    _classCallCheck(this, PfTab);
-
-    return _possibleConstructorReturn(this, (PfTab.__proto__ || Object.getPrototypeOf(PfTab)).apply(this, arguments));
-  }
-
   _createClass(PfTab, [{
-    key: 'attachedCallback',
+    key: 'connectedCallback',
 
-    /**
-     * Called when an instance was inserted into the document
+    /*
+     * Called every time the element is inserted into the DOM
      */
-    value: function attachedCallback() {
+    value: function connectedCallback() {
       this.appendChild(this._template.content);
     }
+
+    /*
+     * Only attributes listed in the observedAttributes property will receive this callback
+     */
+
+  }, {
+    key: 'attributeChangedCallback',
+
 
     /**
      * Called when element's attribute value has changed
@@ -61,9 +63,6 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
      * @param {string} oldValue The old attribute value
      * @param {string} newValue The new attribute value
      */
-
-  }, {
-    key: 'attributeChangedCallback',
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
       var parent = this.parentNode;
       if (attrName === 'tabTitle' && parent && parent.handleTitle) {
@@ -71,24 +70,35 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
       }
     }
 
-    /**
-     * Called when an instance of the element is created
+    /*
+     * An instance of the element is created or upgraded
      */
 
-  }, {
-    key: 'createdCallback',
-    value: function createdCallback() {
-      this._template = document.createElement('template');
-      this._template.innerHTML = _panel2.default;
+  }], [{
+    key: 'observedAttributes',
+    get: function get() {
+      return ['tabTitle'];
     }
+  }]);
 
-    /**
-     * Get tabTitle
-     *
-     * @returns {string} The tabTitle
-     */
+  function PfTab() {
+    _classCallCheck(this, PfTab);
 
-  }, {
+    var _this = _possibleConstructorReturn(this, (PfTab.__proto__ || Object.getPrototypeOf(PfTab)).call(this));
+
+    _this._template = document.createElement('template');
+    _this._template.innerHTML = _panel2.default;
+    return _this;
+  }
+
+  /**
+   * Get tabTitle
+   *
+   * @returns {string} The tabTitle
+   */
+
+
+  _createClass(PfTab, [{
     key: 'tabTitle',
     get: function get() {
       return this._tabTitle;
@@ -136,6 +146,4 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
   return PfTab;
 }(HTMLElement);
 
-(function () {
-  document.registerElement('pf-tab', PfTab);
-})();
+window.customElements.define('pf-tab', PfTab);

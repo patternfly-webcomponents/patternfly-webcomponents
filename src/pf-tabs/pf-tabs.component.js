@@ -17,10 +17,10 @@ import PfTab from 'pf-tab.component';
  *
  */
 export class PfTabs extends HTMLElement {
-  /**
-   * Called when an instance was inserted into the document
+  /*
+   * Called every time the element is inserted into the DOM
    */
-  attachedCallback () {
+  connectedCallback () {
     this.insertBefore(this._tabsTemplate.content, this.firstChild);
 
     this._makeTabsFromPfTab();
@@ -35,6 +35,13 @@ export class PfTabs extends HTMLElement {
       this.mutationObserver = new MutationObserver(this._handleMutations.bind(this));
       this.mutationObserver.observe(this, { childList: true, attributes: true });
     }
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['class'];
   }
 
   /**
@@ -53,10 +60,11 @@ export class PfTabs extends HTMLElement {
     }
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
     this._tabsTemplate = document.createElement('template');
     this._tabsTemplate.innerHTML = tabsTemplate;
 
@@ -69,7 +77,7 @@ export class PfTabs extends HTMLElement {
   /**
    * Called when the element is removed from the DOM
    */
-  detachedCallback () {
+  disconnectedCallback () {
     this.querySelector('ul').removeEventListener('click', this);
   }
 
@@ -168,7 +176,7 @@ export class PfTabs extends HTMLElement {
     //attribute changes may fire as Angular is rendering
     //before this tab is in the panelMap, so check first
     if (tab) {
-      tab.textContent = panel.tabTitle;
+      tab.children[0].textContent = tabTitle;
     }
   }
 
@@ -280,6 +288,5 @@ export class PfTabs extends HTMLElement {
     this.dispatchEvent(new CustomEvent('tabChanged', {detail: activeTabTitle}));
   }
 }
-(function () {
-  document.registerElement('pf-tabs', PfTabs);
-}());
+
+window.customElements.define('pf-tabs', PfTabs);

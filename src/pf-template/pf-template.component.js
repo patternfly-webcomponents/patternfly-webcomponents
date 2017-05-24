@@ -1,2 +1,2 @@
 class PFTemplate extends HTMLElement {}
-document.registerElement("pf-template", PFTemplate);
+window.customElements.define("pf-template", PFTemplate);

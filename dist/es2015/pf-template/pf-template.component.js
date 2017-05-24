@@ -18,4 +18,4 @@ var PFTemplate = function (_HTMLElement) {
   return PFTemplate;
 }(HTMLElement);
 
-document.registerElement("pf-template", PFTemplate);
+window.customElements.define("pf-template", PFTemplate);

@@ -47,13 +47,14 @@
 	'use strict';
 
 	/** PfListView Component **/
-	__webpack_require__(4);
+	__webpack_require__(5);
 
 /***/ },
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65,7 +66,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _pfListViewTemplate = __webpack_require__(5);
+	var _pfListViewTemplate = __webpack_require__(6);
 
 	var _pfListViewTemplate2 = _interopRequireDefault(_pfListViewTemplate);
 
@@ -104,25 +105,30 @@
 	var PfListView = exports.PfListView = function (_HTMLElement) {
 	  _inherits(PfListView, _HTMLElement);
 
+	  /*
+	   * An instance of the element is created or upgraded
+	   */
 	  function PfListView() {
 	    _classCallCheck(this, PfListView);
 
-	    return _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).apply(this, arguments));
+	    // Listen for when the child template-repeater updates it's content
+	    // ie. repeates the user defined template and replaces $(name) with actual values
+	    var _this = _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).call(this));
+
+	    _this.addEventListener("RepeaterContentChanged", function (e) {
+	      this.handleRepeaterContentChanged();
+	    });
+	    return _this;
 	  }
 
-	  _createClass(PfListView, [{
-	    key: 'createdCallback',
+	  /*
+	   * Only attributes listed in the observedAttributes property will receive this callback
+	   */
 
-	    /**
-	     * Called when an instance of the element is created
-	     */
-	    value: function createdCallback() {
-	      // Listen for when the child template-repeater updates it's content
-	      // ie. repeates the user defined template and replaces $(name) with actual values
-	      this.addEventListener("RepeaterContentChanged", function (e) {
-	        this.handleRepeaterContentChanged();
-	      });
-	    }
+
+	  _createClass(PfListView, [{
+	    key: 'attributeChangedCallback',
+
 
 	    /**
 	     * Called when element's attribute value has changed
@@ -131,13 +137,8 @@
 	     * @param {string} oldValue The old attribute value
 	     * @param {string} newValue The new attribute value
 	     */
-
-	  }, {
-	    key: 'attributeChangedCallback',
 	    value: function attributeChangedCallback(attributeName, oldValue, newValue) {
-	      if (attributeName === 'show-checkboxes') {
-	        this.showHideCheckboxes();
-	      }
+	      this.showHideCheckboxes();
 	    }
 
 	    /**
@@ -314,17 +315,20 @@
 	      }
 	      return obj;
 	    }
+	  }, {
+	    key: 'observedAttributes',
+	    get: function get() {
+	      return ['show-checkboxes'];
+	    }
 	  }]);
 
 	  return PfListView;
 	}(HTMLElement);
 
-	(function () {
-	  document.registerElement('pf-list-view', PfListView);
-	})();
+	window.customElements.define('pf-list-view', PfListView);
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	"use strict";

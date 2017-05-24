@@ -48,11 +48,11 @@
 	'use strict';
 
 	/** PfTemplateRepeaterComponent **/
-	__webpack_require__(7);
+	__webpack_require__(8);
 
 /***/ },
 
-/***/ 7:
+/***/ 8:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -75,7 +75,7 @@
 	  return PFTemplate;
 	}(HTMLElement);
 
-	document.registerElement("pf-template", PFTemplate);
+	window.customElements.define("pf-template", PFTemplate);
 
 /***/ }
 

@@ -8,11 +8,18 @@ import {i18n} from 'i18n-utils';
  * <pf-hello></pf-hello>
  */
 export class PfHello extends HTMLElement {
-  /**
-   * Called when an instance was inserted into the document
+  /*
+   * Called every time the element is inserted into the DOM
    */
-  attachedCallback () {
+  connectedCallback () {
     this.appendChild(this._template.content);
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['text'];
   }
 
   /**
@@ -23,15 +30,15 @@ export class PfHello extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
-    if (attrName === "text") {
-      this.refresh();
-    }
+    this.refresh();
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
+
     this._template = document.createElement('template');
     this._template.innerHTML = tmpl;
     this.refresh();
@@ -62,6 +69,5 @@ export class PfHello extends HTMLElement {
     el.innerHTML = i18n.gettext("Hello World!");
   }
 }
-(function () {
-  document.registerElement('pf-hello', PfHello);
-}());
+
+window.customElements.define('pf-hello', PfHello);

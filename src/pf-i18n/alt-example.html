@@ -5,9 +5,6 @@
   <link rel="stylesheet" href="../../dist/css/patternfly.css">
   <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
   <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jed/1.1.1/jed.min.js"></script>
-  <script src="../../dist/js/patternfly.js"></script>
   <script>
     var locale = "de-DE";
     var i18n = {
@@ -32,6 +29,10 @@
     </pf-alert>
     <a onclick="toggleLocale()">Toggle</a> pf-i18n locale from German to French.<br>
   </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jed/1.1.1/jed.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+  <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
   <script>
     function toggleLocale() {
       var pfi18n = document.getElementById("pfi18n");

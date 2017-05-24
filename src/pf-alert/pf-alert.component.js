@@ -1,4 +1,5 @@
 import {default as tmpl} from 'pf-alert.template';
+import {pfUtil} from 'pf-utils.js';
 
 /**
  * <b>&lt;pf-alert&gt;</b> element for Patternfly Web Components
@@ -11,11 +12,19 @@ import {default as tmpl} from 'pf-alert.template';
  * @prop {function} persistent-callback-fn
  */
 export class PfAlert extends HTMLElement {
-  /**
-   * Called when an instance was inserted into the document
+  /*
+   * Called every time the element is inserted into the DOM
    */
-  attachedCallback () {
+  connectedCallback () {
+    this.classList.add("alert");
     this.insertBefore(this._template.content, this.firstChild);
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['type', 'persistent', 'persistent-callback-fn'];
   }
 
   /**
@@ -34,13 +43,14 @@ export class PfAlert extends HTMLElement {
     }
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
+
     this._template = document.createElement('template');
     this._template.innerHTML = tmpl;
-    this.classList.add("alert");
     this._initDefaults();
     this._initPersistent();
     this._initType();
@@ -159,6 +169,5 @@ export class PfAlert extends HTMLElement {
     return el;
   }
 }
-(function () {
-  document.registerElement('pf-alert', PfAlert);
-}());
+
+window.customElements.define('pf-alert', PfAlert);

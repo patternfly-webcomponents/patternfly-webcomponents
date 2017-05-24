@@ -71,6 +71,14 @@ import {i18n} from 'i18n-utils';
  * @prop {string} mixin i18n or custom mixin name
  */
 export class PfI18n extends HTMLElement {
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['mixin'];
+  }
+
   /**
    * Called when element's attribute value has changed
    *
@@ -79,15 +87,15 @@ export class PfI18n extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
-    if (attrName === "mixin") {
-      this._init();
-    }
+    this._init();
   }
 
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
+
     this._init();
   }
 
@@ -102,6 +110,5 @@ export class PfI18n extends HTMLElement {
     }
   }
 }
-(function () {
-  document.registerElement('pf-i18n', PfI18n);
-}());
+
+window.customElements.define('pf-i18n', PfI18n);

@@ -22,18 +22,19 @@ import {inline as inlineTemplate} from 'pf-utilization-bar-chart.inline.template
  * @prop {number} threshold-error the error threshold
  */
 export class PfUtilizationBarChart extends HTMLElement {
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
     this._lastThresholdClass;
     this._layout;
   }
 
-  /**
-   * Called when an instance was inserted into the document
+  /*
+   * Called every time the element is inserted into the DOM
    */
-  attachedCallback () {
+  connectedCallback () {
     this._layout = this.getAttribute('layout');
     if (this._layout && this._layout === 'inline') {
       this.innerHTML = inlineTemplate;
@@ -41,6 +42,13 @@ export class PfUtilizationBarChart extends HTMLElement {
       this.innerHTML = defaultTemplate;
     }
     this.updateChart();
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['chart-title','used','total', 'units'];
   }
 
   /**
@@ -51,7 +59,9 @@ export class PfUtilizationBarChart extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attributeName, oldValue, newValue) {
-    this.updateChart();
+    if (oldValue !== null) {
+      this.updateChart();
+    }
   }
 
   /**
@@ -115,6 +125,5 @@ export class PfUtilizationBarChart extends HTMLElement {
     }
   }
 }
-(function () {
-  document.registerElement('pf-utilization-bar-chart', PfUtilizationBarChart);
-})();
+
+window.customElements.define('pf-utilization-bar-chart', PfUtilizationBarChart);

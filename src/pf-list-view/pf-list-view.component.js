@@ -24,15 +24,23 @@ let forEach = Array.prototype.forEach;
  * @prop {string} show-checkboxes whether to show list-view checkboxes
  */
 export class PfListView extends HTMLElement {
-  /**
-   * Called when an instance of the element is created
+  /*
+   * An instance of the element is created or upgraded
    */
-  createdCallback () {
+  constructor () {
+    super();
     // Listen for when the child template-repeater updates it's content
     // ie. repeates the user defined template and replaces $(name) with actual values
     this.addEventListener("RepeaterContentChanged", function (e) {
       this.handleRepeaterContentChanged();
     });
+  }
+
+  /*
+   * Only attributes listed in the observedAttributes property will receive this callback
+   */
+  static get observedAttributes() {
+    return ['show-checkboxes'];
   }
 
   /**
@@ -43,9 +51,7 @@ export class PfListView extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attributeName, oldValue, newValue) {
-    if (attributeName === 'show-checkboxes') {
-      this.showHideCheckboxes();
-    }
+    this.showHideCheckboxes();
   }
 
   /**
@@ -205,6 +211,5 @@ export class PfListView extends HTMLElement {
     return obj;
   }
 }
-(function () {
-  document.registerElement('pf-list-view', PfListView);
-})();
+
+window.customElements.define('pf-list-view', PfListView);

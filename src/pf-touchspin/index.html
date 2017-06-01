@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>pf-touchspin example</title>
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Touchspin</h1>
+    </div>
+
+    <!-- pf-touchspin -->
+    <pf-touchspin id="touchspin" class="input-group bootstrap-touchspin" decimals="2" step="0.1">
+      <span class="input-group-btn">
+    <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+  </span>
+      <input value="50.00" type="text" class="form-control">
+      <span class="input-group-btn">
+    <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+  </span>
+    </pf-touchspin>
+  </div>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+  <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
+  <script>
+    var touchspin = this.querySelector('input');
+    touchspin.addEventListener('pf-touchspin.stopdownspin', function (event) {
+      alert('stoped');
+    });
+  </script>
+</body>
+
+</html>

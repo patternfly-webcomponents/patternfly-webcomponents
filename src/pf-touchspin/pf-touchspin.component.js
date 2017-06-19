@@ -17,6 +17,7 @@ export class PfTouchspin extends HTMLElement {
     this._maxBoostedStep = this.getAttribute('maxboostedstep') ? this.getAttribute('maxboostedstep') : false;
     this._stepInterval = this.getAttribute('stepinterval') ? this.getAttribute('stepinterval') : 100;
     this._stepIntervalDelay = this.getAttribute('stepintervaldelay') ? this.getAttribute('stepintervaldelay') : 500;
+    this._spinning = false;
   }
 
   connectedCallback() {
@@ -24,7 +25,7 @@ export class PfTouchspin extends HTMLElement {
     var input = this.querySelector('input');
     var down = this.querySelector('.bootstrap-touchspin-down');
     var up = this.querySelector('.bootstrap-touchspin-up');
-
+    this.spincount = 0;
     this.init();
 
     input.addEventListener('keydown', function (event) {
@@ -54,7 +55,7 @@ export class PfTouchspin extends HTMLElement {
     });
 
     down.addEventListener('mousedown', function (event) {
-      if (input.classList.contains('disabled')) {
+      if (input.classList.contains(':disabled')) {
         return;
       }
 
@@ -65,15 +66,50 @@ export class PfTouchspin extends HTMLElement {
       event.stopPropagation();
     });
 
-    down.addEventListener('mouseup', function (event) {
-      if (!this._spinning) {
-        return;
-      }
+    document.addEventListener('mouseup', function () {
 
-      event.selfPropagation();
+      event.preventDefault();
+      clearInterval(this._downSpinTimer);
       self._stop();
     });
 
+    up.addEventListener('mousedown', function (event) {
+      if (input.classList.contains(':disabled')) {
+        return;
+      }
+
+      self._up();
+      self._upSpin();
+
+      event.preventDefault();
+      event.stopPropagation();
+    });
+
+    down.addEventListener('mouseout', function (event) {
+
+      event.stopPropagation();
+      self._stop();
+    });
+
+    up.addEventListener('mouseout', function (event) {
+
+      event.stopPropagation();
+      self._stop();
+    });
+
+    document.addEventListener('wheel', function (event) {
+      var delta =  -event.deltaY;
+      if (input !== document.activeElement) {
+        return;
+      }
+      event.stopPropagation();
+      event.preventDefault();
+      if (delta < 0) {
+        self._down();
+      } else {
+        self._up();
+      }
+    });
   }
 
   /**
@@ -96,16 +132,67 @@ export class PfTouchspin extends HTMLElement {
 
   /**
    *
+   */
+  _checkValue() {
+    var val, parsedval, returnval;
+
+    val = this.querySelector('input').value;
+
+    if (val === '') {
+      if (this.replacementval !== '') {
+        this.querySelector('input').value = this.replacementval;
+      }
+      return;
+    }
+
+    if (this._decimals > 0 && val === '.') {
+      return;
+    }
+
+    parsedval = parseFloat(val);
+
+    if (isNaN(parsedval)) {
+      if (this.replacementval !== '') {
+        parsedval = this.replacementval;
+      } else {
+        parsedval = 0;
+      }
+    }
+
+    returnval = parsedval;
+
+    if (parsedval.toString() !== val) {
+      returnval = parsedval;
+    }
+
+    if (parsedval < this.min) {
+      returnval = this.min;
+    }
+
+    if (parsedval > this.max) {
+      returnval = this.max;
+    }
+
+    //returnval = _forcestepdivisibility(returnval);
+
+    if (Number(val).toString() !== returnval.toString()) {
+      this.querySelector('input').value = returnval;
+    }
+  }
+
+
+  /**
+   *
    * @param {*} value
    */
   _boostedStep(value) {
     if (!this._booster) {
       return this._step;
     }
-    if (isNaN(this._spincount)) {
-      this._spincount = 0;
+    if (isNaN(this.spincount)) {
+      this.spincount = 0;
     }
-    let boosted = Math.pow(2, Math.floor(this._spincount / this._boostat)) * this._step;
+    let boosted = Math.pow(2, Math.floor(this.spincount / this._boostat)) * this._step;
 
     if (this._maxBoostedStep) {
       if (boosted > this._maxBoostedstep) {
@@ -123,6 +210,9 @@ export class PfTouchspin extends HTMLElement {
    */
   _up() {
     let val, boostedStep;
+
+    this._checkValue();
+
     val = parseFloat(this.querySelector('input').value);
     if (isNaN(val)) {
       val = 0;
@@ -146,6 +236,9 @@ export class PfTouchspin extends HTMLElement {
    */
   _down() {
     let val, boostedStep;
+
+    this._checkValue();
+
     val = parseFloat(this.querySelector('input').value);
     if (isNaN(val)) {
       val = 0;
@@ -171,7 +264,7 @@ export class PfTouchspin extends HTMLElement {
     let self = this;
     this._stop();
 
-    this._spincount = 0;
+    this.spincount = 0;
     this._spinning = 'down';
 
     this.dispatchEvent(new CustomEvent('pf-touchspin.startspin', {}));
@@ -179,7 +272,7 @@ export class PfTouchspin extends HTMLElement {
 
     this._downDelayTimeout = setTimeout(function () {
       this._downSpinTimer = setInterval(function () {
-        this._spincount++;
+        self.spincount++;
         self._down();
       }, this._stepInterval);
     }, this._stepIntervalDelay);
@@ -192,7 +285,7 @@ export class PfTouchspin extends HTMLElement {
     let self = this;
     this._stop();
 
-    this._spincount = 0;
+    this.spincount = 0;
     this._spinning = 'up';
 
     this.dispatchEvent(new CustomEvent('pf-touchspin.startspin', {}));
@@ -200,7 +293,7 @@ export class PfTouchspin extends HTMLElement {
 
     this._upDelayTimeout = setTimeout(function () {
       this._upSpinTimer = setInterval(function () {
-        this._spincount++;
+        self.spincount++;
         self._up();
       }, this._stepInterval);
     }, this._stepIntervalDelay);
@@ -228,7 +321,7 @@ export class PfTouchspin extends HTMLElement {
         break;
     }
 
-    this._spincount = 0;
+    this.spincount = 0;
     this._spinning = false;
   }
 

@@ -48,11 +48,11 @@
 	'use strict';
 
 	/* pf-dropdown webcomponent */
-	__webpack_require__(23);
+	__webpack_require__(30);
 
 /***/ },
 
-/***/ 23:
+/***/ 30:
 /***/ function(module, exports) {
 
 	'use strict';

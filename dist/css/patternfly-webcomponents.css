@@ -34,3 +34,16 @@ pf-tooltip {
 
 pf-dropdown {
   display: block; }
+
+pf-modal[open] {
+  display: block; }
+
+pf-modal-dialog,
+pf-modal-content,
+pf-modal-header,
+pf-modal-body,
+pf-modal-footer {
+  display: block; }
+
+pf-modal-header .modal-title {
+  display: inline-block; }

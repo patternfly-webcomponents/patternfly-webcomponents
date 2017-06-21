@@ -49,7 +49,7 @@
 
 	/** PF Utils **/
 	__webpack_require__(4);
-	__webpack_require__(20);
+	__webpack_require__(27);
 
 /***/ },
 
@@ -106,18 +106,23 @@
 	    value: function getClosest(el, s) {
 	      //el is the element and s the selector of the closest item to find
 	      // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
-	      var f = s.charAt(0);
+	      var former = s.charAt(0);
+	      var latter = s.substr(1);
 	      for (; el && el !== document; el = el.parentNode) {
 	        // Get closest match
-	        if (f === '.') {
-	          // If selector is a class
-	          if (document.querySelector(s) !== undefined) {
+	        if (former === '#') {
+	          // If selector is an ID
+	          if (el.id === latter) {
 	            return el;
 	          }
-	        }
-	        if (f === '#') {
-	          // If selector is an ID
-	          if (el.id === s.substr(1)) {
+	        } else if (former === '.') {
+	          // If selector is a class
+	          if (new RegExp(latter).test(el.className)) {
+	            return el;
+	          }
+	        } else {
+	          // we assume other selector is tag name
+	          if (el.nodeName === s) {
 	            return el;
 	          }
 	        }
@@ -143,6 +148,25 @@
 	        x: window.pageXOffset || document.documentElement.scrollLeft
 	      };
 	    }
+	  }, {
+	    key: 'reflow',
+	    value: function reflow(el) {
+	      // force reflow
+	      return el.offsetHeight;
+	    }
+	  }, {
+	    key: 'once',
+	    value: function once(el, type, listener, self) {
+	      var one = function one(e) {
+	        try {
+	          listener.call(self, e);
+	        } finally {
+	          el.removeEventListener(type, one);
+	        }
+	      };
+
+	      el.addEventListener(type, one);
+	    }
 	  }]);
 
 	  return PfUtil;
@@ -153,7 +177,7 @@
 
 /***/ },
 
-/***/ 20:
+/***/ 27:
 /***/ function(module, exports) {
 
 	"use strict";

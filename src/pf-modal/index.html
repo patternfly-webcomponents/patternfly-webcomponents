@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <title>pf-modal example</title>
+    <link rel="stylesheet" href="../../dist/css/patternfly.css">
+    <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
+    <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+      <h1>Modals</h1>
+    </div>
+    
+    <button class="btn btn-default" id="btn-toggle-modal">Launch demo modal</button>
+    <pf-modal targetSelector="#btn-toggle-modal" backdrop keyboard>
+      <pf-modal-dialog>
+        <pf-modal-content>
+          <pf-modal-header modalTitle="Modal Title"></pf-modal-header>
+          <pf-modal-body>
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="textInput">Field One</label>
+                <div class="col-sm-9">
+                  <input type="text" id="textInput" class="form-control"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="textInput2">Field Two</label>
+                <div class="col-sm-9">
+                  <input type="text" id="textInput2" class="form-control"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="textInput3">Field Three</label>
+                <div class="col-sm-9">
+                  <input type="text" id="textInput3" class="form-control"/>
+                </div>
+              </div>
+            </form>
+          </pf-modal-body>
+          <pf-modal-footer cancelCaption="Cancel" saveCaption="Save"></pf-modal-footer>
+        </pf-modal-content>
+      </pf-modal-dialog>
+    </pf-modal>
+
+    <br/>
+    <br/>
+    <label>Events: </label>
+    <br/>
+    <textarea id="console" rows="15" cols="50" readonly style="resize: none;"></textarea>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+<script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+<script src="../../dist/js/patternfly.js"></script>
+<script type="text/javascript">
+  (function() {
+    var modal = document.querySelector('pf-modal');
+    var console = document.querySelector('#console');
+    function monitorModalEvents (e) {
+      console.value += e.type + ' fired\n';
+    }
+    // It's a little trick for outputing unambiguous event trigger sequence
+    function getAdjustedSeq (msg) {
+      var logs = console.value.split('\n');
+      var seq = '';
+      if (logs[logs.length - 2].indexOf('hide fired') > -1) {
+        seq = console.value.split('\n').slice(0,-2).join('\n') +
+            '\n- - - ' + msg + ' - - -\npf-modal.hide fired\n';
+      } else {
+        seq = console.value + '- - - ' + msg + ' - - -\n';
+      }
+      return seq;
+    }
+    window.onload = function () {
+      document.querySelector('pf-modal-header .pf-hide-modal').addEventListener('click', function () {
+        console.value += '- - - cancel button of pf-modal-header is clicked - - -\n';
+      }, false);
+      document.querySelector('pf-modal-footer .pf-hide-modal').addEventListener('click', function () {
+        console.value += '- - - cancel button of pf-modal-footer is clicked - - -\n';
+      }, false);
+      modal.addEventListener('click', function (e) {
+        if (modal.backdrop && e.target === modal) {
+          console.value = getAdjustedSeq('Region outside of modal dialog is clicked');
+        }
+      }, false);
+      modal.addEventListener('keydown', function (e) {
+        if (!modal.keyboard && modal.open) {
+          return;
+        }
+        var isEscape = (e.key && e.key === 'Escape') || (e.keyIdentifier && e.keyIdentifier === 'U+001B') || (e.keyCode && e.keyCode === 27) || (e.which && e.which === 27);
+        if (isEscape) {
+          console.value = getAdjustedSeq('Escape key is pressed');
+        }
+      }, false);
+      modal.addEventListener('pf-modal.show', monitorModalEvents, false);
+      modal.addEventListener('pf-modal.shown', monitorModalEvents, false);
+      modal.addEventListener('pf-modal.hide', monitorModalEvents, false);
+      modal.addEventListener('pf-modal.hidden', monitorModalEvents, false);
+
+    };
+  }());
+</script>
+</body>
+</html>

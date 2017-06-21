@@ -24,6 +24,132 @@
     <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
   </span>
     </pf-touchspin>
+
+    <h2>Touchspin with min: 15  max: 500  step: 5</h2>
+    <pf-touchspin id="touchspin" class="input-group bootstrap-touchspin" min="15" max="500" step="5">
+      <span class="input-group-btn">
+    <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+  </span>
+      <input value="50" type="text" class="form-control">
+      <span class="input-group-btn">
+    <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+  </span>
+    </pf-touchspin>
+
+    <!-- pf-touxhspin with postfix-->
+    <h2> Example with Postfix </h2>
+    <pf-touchspin class="input-group bootstrap-touchspin">
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+      </span>
+      <input type="text" value="55" class="form-control" style="display: block;">
+      <span class="input-group-addon bootstrap-touchspin-postfix">%</span>
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+      </span>
+    </pf-touchspin>
+
+    <!-- pf-touxhspin with prefix-->
+    <h2> With Prefix </h2>
+    <pf-touchspin class="input-group bootstrap-touchspin">
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+      </span>
+      <span class="input-group-addon bootstrap-touchspin-prefix">$</span>
+      <input id="demo2" type="text" value="0" class="form-control" style="display: block;">
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+      </span>
+    </pf-touchspin>
+
+    <!-- Vertical button alignment-->
+    <h2>Vertical button alignment</h2>
+    <pf-touchspin class="input-group bootstrap-touchspin">
+      <input id="demo_vertical" type="text" value="" class="form-control" style="display: block;">
+      <span class="input-group-btn-vertical">
+        <button class="btn btn-default bootstrap-touchspin-up" type="button">
+          <i class="glyphicon glyphicon-chevron-up"></i>
+        </button>
+        <button class="btn btn-default bootstrap-touchspin-down" type="button">
+          <i class="glyphicon glyphicon-chevron-down"></i>
+        </button>
+      </span>
+    </pf-touchspin>
+
+    <h2>Vertical buttons with custom icons</h2>
+    <pf-touchspin class="input-group bootstrap-touchspin">
+      <input id="demo_vertical2" type="text" value="" class="form-control" style="display: block;">
+      <span class="input-group-btn-vertical">
+        <button class="btn btn-default bootstrap-touchspin-up" type="button">
+          <i class="glyphicon glyphicon-plus"></i>
+        </button>
+        <button class="btn btn-default bootstrap-touchspin-down" type="button">
+          <i class="glyphicon glyphicon-minus"></i>
+        </button>
+      </span>
+    </pf-touchspin>
+
+    <h2>with Empty Value</h2>
+    <pf-touchspin class="input-group bootstrap-touchspin">
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+      </span>
+      <input id="demo3" type="text" value="" class="form-control" style="display: block;">
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+      </span>
+    </pf-touchspin>
+
+    <h2>Button postfix (small)</h2>
+    <pf-touchspin class="input-group bootstrap-touchspin input-group-sm">
+      <span class="input-group-btn">
+        <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+      </span>
+      <input id="demo4" type="text" value="" class="input-sm form-control" style="display: block;">
+      <span class="input-group-addon bootstrap-touchspin-postfix btn btn-default">a button</span>
+      <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+      </span>
+    </pf-touchspin>
+
+    <h2>Button postfix (large)</h2>
+    <pf-touchspin class="input-group input-group-lg bootstrap-touchspin">
+        <span class="input-group-btn">
+          <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+        </span>
+        <input id="demo4_2" type="text" value="" class="form-control input-lg" style="display: block;">
+        <span class="input-group-addon bootstrap-touchspin-postfix btn btn-default">a button</span>
+        <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+        </span>
+    </pf-touchspin>
+
+      <h2>Change button class</h2>
+      <pf-touchspin class="input-group bootstrap-touchspin">
+        <span class="input-group-btn">
+          <button class="btn btn-link bootstrap-touchspin-down" type="button">-</button>
+        </span>
+        <input id="demo6" type="text" value="50" class="form-control" style="display: block;">
+        <span class="input-group-btn">
+          <button class="btn btn-link bootstrap-touchspin-up" type="button">+</button>
+        </span>
+      </pf-touchspin>
+
+      <h2>Event Demo</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <pf-touchspin id="touchspin-eventdemo" class="input-group bootstrap-touchspin">
+            <span class="input-group-btn">
+              <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+            </span>
+            <input id="demo7" type="text" value="50" class="form-control" style="display: block;">
+            <span class="input-group-btn">
+              <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+            </span>
+          </pf-touchspin>
+        </div>
+        <div class="col-md-9">
+          <pre id="eventdemoarea" style="height:200px;overflow:auto;"></pre>
+        </div>
+      </div>
   </div>
 
 
@@ -31,10 +157,39 @@
   <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
   <script src="../../dist/js/patternfly.js"></script>
   <script>
-    //var touchspin = document.getElementById('touchspin');
-    /*touchspin.addEventListener('pf-touchspin.stopdownspin', function (event) {
-      alert('stoped');
-    });*/
+    var touchSpin = document.getElementById("touchspin-eventdemo"),
+      demoarea = document.querySelector("#eventdemoarea"),
+      text = "";
+    console.log(touchSpin);
+    function writeLine(line) {
+      text += line + "\n";
+      demoarea.innerHTML = text;
+      demoarea.scrollTop = demoarea.scrollHeight - 200;
+    }
+    touchSpin.addEventListener("pf-touchspin.startspin", function () {
+      writeLine("pf-touchspin.startspin");
+    });
+    touchSpin.addEventListener("pf-touchspin.startupspin", function () {
+      writeLine("pf-touchspin.startupspin");
+    });
+    touchSpin.addEventListener("pf-touchspin.startdownspin", function () {
+      writeLine("pf-touchspin.startdownspin");
+    });
+    touchSpin.addEventListener("pf-touchspin.stopspin", function () {
+      writeLine("pf-touchspin.stopspin");
+    });
+    touchSpin.addEventListener("pf-touchspin.stopupspin", function () {
+      writeLine("pf-touchspin.stopupspin");
+    });
+    touchSpin.addEventListener("pf-touchspin.stopdownspin", function () {
+      writeLine("pf-touchspin.stopdownspin");
+    });
+    touchSpin.addEventListener("pf-touchspin.min", function () {
+      writeLine("pf-touchspin.min");
+    });
+    touchSpin.addEventListener("pf-touchspin.max", function () {
+      writeLine("pf-touchspin.max");
+    });
   </script>
 </body>
 

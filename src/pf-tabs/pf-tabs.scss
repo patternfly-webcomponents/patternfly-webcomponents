@@ -1,0 +1,23 @@
+pf-tabs.nav.nav-tabs .nav.nav-tabs-pf {
+  & > li {
+    font-size: 12px;
+
+    &:first-child > a {
+      padding-left: 15px;
+
+      &:before {
+        left: 15px!important;
+      }
+    }
+  }
+}
+
+pf-tabs.nav.nav-tabs li,
+pf-tabs.nav.nav-tabs li a {
+  cursor: pointer;
+}
+
+pf-tab > *:not(ul):not(pf-tab):not(pf-tabs) {
+  font-size: 14px;
+  padding: 15px;
+}

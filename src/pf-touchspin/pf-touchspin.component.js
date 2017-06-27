@@ -43,9 +43,9 @@ export class PfTouchspin extends HTMLElement {
 
   connectedCallback() {
     let self = this;
-    var input = this.querySelector('input');
-    var down = this.querySelector('.bootstrap-touchspin-down');
-    var up = this.querySelector('.bootstrap-touchspin-up');
+    let input = this.querySelector('input');
+    let down = this.querySelector('.bootstrap-touchspin-down');
+    let up = this.querySelector('.bootstrap-touchspin-up');
     this.init();
 
     // support for up/down keys
@@ -119,7 +119,7 @@ export class PfTouchspin extends HTMLElement {
 
     //support for mouse scroll
     document.addEventListener('wheel', function (event) {
-      var delta = -event.deltaY;
+      let delta = -event.deltaY;
       if (input !== document.activeElement) {
         return;
       }
@@ -131,6 +131,11 @@ export class PfTouchspin extends HTMLElement {
         self._up();
       }
     });
+
+    this._bindEvents();
+
+    this.initialized = true;
+    this.dispatchEvent(new CustomEvent('initialized', {}));
   }
 
   /**
@@ -149,6 +154,33 @@ export class PfTouchspin extends HTMLElement {
    */
   constructor() {
     super();
+  }
+
+  /**
+   *
+   */
+  _bindEvents() {
+    this.addEventListener('pf-touchspin.downonce', function () {
+      this._down();
+    });
+
+    this.addEventListener('pf-touchspin.uponce', function () {
+      this._up();
+    });
+
+    this.addEventListener('pf-touchspin.downspin', function () {
+      this._downSpin();
+    });
+
+    this.addEventListener('pf-touchspin.upspin', function () {
+      this._upSpin();
+    });
+
+    this.addEventListener('pf-touchspin.stop', function () {
+      this._stop();
+    });
+
+
   }
 
   /**
@@ -173,7 +205,7 @@ export class PfTouchspin extends HTMLElement {
    * check the value before change in value
    */
   _checkValue() {
-    var val, parsedval, returnval;
+    let val, parsedval, returnval;
 
     val = this.querySelector('input').value;
 
@@ -188,10 +220,6 @@ export class PfTouchspin extends HTMLElement {
     }
 
     returnval = parsedval;
-
-    if (parsedval.toString() !== val) {
-      returnval = parsedval;
-    }
 
     if (parsedval < this.min) {
       returnval = this.min;

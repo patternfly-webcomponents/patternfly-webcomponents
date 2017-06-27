@@ -17,7 +17,7 @@
     <!-- pf-touchspin -->
     <pf-touchspin id="touchspin" class="input-group bootstrap-touchspin" decimals="2" step="0.1">
       <span class="input-group-btn">
-    <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+    <button id="downs" class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
   </span>
       <input value="50.00" type="text" class="form-control">
       <span class="input-group-btn">
@@ -25,7 +25,7 @@
   </span>
     </pf-touchspin>
 
-    <h2>Touchspin with min: 15  max: 500  step: 5</h2>
+    <h2>Touchspin with min: 15 max: 500 step: 5</h2>
     <pf-touchspin id="touchspin" class="input-group bootstrap-touchspin" min="15" max="500" step="5">
       <span class="input-group-btn">
     <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
@@ -113,43 +113,43 @@
 
     <h2>Button postfix (large)</h2>
     <pf-touchspin class="input-group input-group-lg bootstrap-touchspin">
-        <span class="input-group-btn">
+      <span class="input-group-btn">
           <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
         </span>
-        <input id="demo4_2" type="text" value="" class="form-control input-lg" style="display: block;">
-        <span class="input-group-addon bootstrap-touchspin-postfix btn btn-default">a button</span>
-        <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+      <input id="demo4_2" type="text" value="" class="form-control input-lg" style="display: block;">
+      <span class="input-group-addon bootstrap-touchspin-postfix btn btn-default">a button</span>
+      <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
         </span>
     </pf-touchspin>
 
-      <h2>Change button class</h2>
-      <pf-touchspin class="input-group bootstrap-touchspin">
-        <span class="input-group-btn">
+    <h2>Change button class</h2>
+    <pf-touchspin class="input-group bootstrap-touchspin">
+      <span class="input-group-btn">
           <button class="btn btn-link bootstrap-touchspin-down" type="button">-</button>
         </span>
-        <input id="demo6" type="text" value="50" class="form-control" style="display: block;">
-        <span class="input-group-btn">
+      <input id="demo6" type="text" value="50" class="form-control" style="display: block;">
+      <span class="input-group-btn">
           <button class="btn btn-link bootstrap-touchspin-up" type="button">+</button>
         </span>
-      </pf-touchspin>
+    </pf-touchspin>
 
-      <h2>Event Demo</h2>
-      <div class="row">
-        <div class="col-md-3">
-          <pf-touchspin id="touchspin-eventdemo" class="input-group bootstrap-touchspin">
-            <span class="input-group-btn">
+    <h2>Event Demo</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <pf-touchspin id="touchspin-eventdemo" class="input-group bootstrap-touchspin">
+          <span class="input-group-btn">
               <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
             </span>
-            <input id="demo7" type="text" value="50" class="form-control" style="display: block;">
-            <span class="input-group-btn">
+          <input id="demo7" type="text" value="50" class="form-control" style="display: block;">
+          <span class="input-group-btn">
               <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
             </span>
-          </pf-touchspin>
-        </div>
-        <div class="col-md-9">
-          <pre id="eventdemoarea" style="height:200px;overflow:auto;"></pre>
-        </div>
+        </pf-touchspin>
       </div>
+      <div class="col-md-9">
+        <pre id="eventdemoarea" style="height:200px;overflow:auto;"></pre>
+      </div>
+    </div>
   </div>
 
 
@@ -160,7 +160,6 @@
     var touchSpin = document.getElementById("touchspin-eventdemo"),
       demoarea = document.querySelector("#eventdemoarea"),
       text = "";
-    console.log(touchSpin);
     function writeLine(line) {
       text += line + "\n";
       demoarea.innerHTML = text;
@@ -174,6 +173,7 @@
     });
     touchSpin.addEventListener("pf-touchspin.startdownspin", function () {
       writeLine("pf-touchspin.startdownspin");
+      touchSpin.dispatchEvent(new CustomEvent('downonce', {}));
     });
     touchSpin.addEventListener("pf-touchspin.stopspin", function () {
       writeLine("pf-touchspin.stopspin");

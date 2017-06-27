@@ -39,7 +39,7 @@ export class PfTab extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
-    var parent = this.parentNode;
+    let parent = this.parentNode;
     if (attrName === 'tabTitle' && parent && parent.handleTitle) {
       parent.handleTitle(this, newValue);
     }

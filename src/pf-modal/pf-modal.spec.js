@@ -1,14 +1,14 @@
 describe ('PatternFly Moadl Component Tests', function () {
-  var customElement, button;
+  let customElement, button;
 
   function render(html) {
-    var template = document.createElement('template');
+    let template = document.createElement('template');
     template.innerHTML = html;
     document.body.appendChild(document.importNode(template.content, true));
   }
 
   beforeEach(function (done) {
-    var mo = new MutationObserver(function () {
+    let mo = new MutationObserver(function () {
       mo.disconnect();
       done();
     });
@@ -116,7 +116,7 @@ describe ('PatternFly Moadl Component Tests', function () {
   });
 
   describe('Events testing', function () {
-    var callback = null;
+    let callback = null;
 
     beforeEach(function () {
       callback = jasmine.createSpy();

@@ -34,6 +34,7 @@
     "guard-for-in": 2,
     "no-else-return": 2,
     "no-loop-func": 2,
+    "no-var": 2,
     "vars-on-top": 2,
     "no-debugger": 2,
     "no-cond-assign": 2,

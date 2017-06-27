@@ -1,7 +1,10 @@
 language: node_js
 node_js:
-  - '4'
-
+  - '7'
+dist: trusty # needs Ubuntu Trusty
+sudo: false  # no need for virtualization.
+addons:
+  chrome: stable # have Travis install chrome stable.
 env:
   global:
     - ENCRYPTION_LABEL: "d7ffc1eaa225"

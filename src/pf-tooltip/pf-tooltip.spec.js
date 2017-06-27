@@ -1,8 +1,8 @@
 describe ("PatternFly Tooltip Component Tests", function () {
-  var customElement, button;
+  let customElement, button;
 
   function render(html) {
-    var template = document.createElement('template');
+    let template = document.createElement('template');
     template.innerHTML = html;
     document.body.appendChild(document.importNode(template.content, true));
   }
@@ -24,8 +24,8 @@ describe ("PatternFly Tooltip Component Tests", function () {
     customElement.open();
 
     customElement.addEventListener('tooltipOpened', function () {
-      var tooltip = document.querySelector('.tooltip');
-      var tooltipText = tooltip.innerText.replace(/(\r\n|\n|\r)/gm,""); //remove any newlines rendered in Phantom
+      let tooltip = document.querySelector('.tooltip');
+      let tooltipText = tooltip.innerText.replace(/(\r\n|\n|\r)/gm,""); //remove any newlines rendered in Phantom
 
       expect(tooltip.classList.contains('left')).toBe(true);
       expect(tooltipText).toBe("Would you look at that!");

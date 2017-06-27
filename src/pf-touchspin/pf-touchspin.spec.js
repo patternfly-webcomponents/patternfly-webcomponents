@@ -1,5 +1,5 @@
 describe("Patternfly Touchspin Component Tests", function () {
-  var customElement, downbtn, upbtn, input, eventCallback, result;
+  let customElement, downbtn, upbtn, input, eventCallback, result;
 
   function buildHtml(html) {
     template = document.createElement('template');
@@ -42,13 +42,13 @@ describe("Patternfly Touchspin Component Tests", function () {
 
   it("should decrement or increment value on click", function (done) {
     downbtn.dispatchEvent(new MouseEvent('mousedown'));
-    customElement.addEventListener('pf-touchspin.startdownspin', () => {
+    customElement.addEventListener('pf-touchspin.startdownspin', function () {
       documen.addEventListener(new MouseEvent('mouseup'));
     });
     expect(input.value).toEqual('49');
 
     upbtn.dispatchEvent(new MouseEvent('mousedown'));
-    customElement.addEventListener('pf-touchspin.startupspin', () => {
+    customElement.addEventListener('pf-touchspin.startupspin', function () {
       documen.addEventListener(new MouseEvent('mouseup'));
     });
     expect(input.value).toEqual('50');

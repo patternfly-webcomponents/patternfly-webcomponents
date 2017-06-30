@@ -1,0 +1,49 @@
+pf-alert {
+  display: block; }
+  pf-alert .hidden {
+    display: none; }
+
+pf-tabs.nav.nav-tabs .nav.nav-tabs-pf > li {
+  font-size: 12px; }
+  pf-tabs.nav.nav-tabs .nav.nav-tabs-pf > li:first-child > a {
+    padding-left: 15px; }
+    pf-tabs.nav.nav-tabs .nav.nav-tabs-pf > li:first-child > a:before {
+      left: 15px !important; }
+
+pf-tabs.nav.nav-tabs li,
+pf-tabs.nav.nav-tabs li a {
+  cursor: pointer; }
+
+pf-tab > *:not(ul):not(pf-tab):not(pf-tabs) {
+  font-size: 14px;
+  padding: 15px; }
+
+pf-tooltip {
+  display: none; }
+
+.label-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  display: block; }
+
+.doc-bottom-label {
+  position: relative;
+  top: -16px;
+  left: 94px; }
+
+pf-dropdown {
+  display: block; }
+
+pf-modal[open] {
+  display: block; }
+
+pf-modal-dialog,
+pf-modal-content,
+pf-modal-header,
+pf-modal-body,
+pf-modal-footer {
+  display: block; }
+
+pf-modal-header .modal-title {
+  display: inline-block; }

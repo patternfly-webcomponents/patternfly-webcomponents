@@ -49,7 +49,9 @@
   "scripts": {
     "publish": "publish-ghpages.sh public",
     "publish-travis": "publish-ghpages.sh -t public",
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "gulp build; gulp serve & open http://localhost:3000/index.html;",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",

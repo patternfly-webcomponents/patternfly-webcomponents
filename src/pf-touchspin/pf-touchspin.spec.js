@@ -70,13 +70,13 @@ describe("Patternfly Touchspin Component Tests", function () {
   });
 
   it("should fire pf-touchspin.min event", function () {
-    downbtn.dispatchEvent(new MouseEvent('mouseup'));
+    downbtn.dispatchEvent(new MouseEvent('mousedown'));
     customElement.addEventListener('pf-touchspin.min', eventCallback.eventHandle());
     expect(eventCallback.eventHandle).toHaveBeenCalled();
   });
 
   it("should fire pf-touchspin.stopspin", function (done) {
-    downbtn.dispatchEvent(new MouseEvent('mouseDown'));
+    downbtn.dispatchEvent(new MouseEvent('mousedown'));
     document.dispatchEvent(new MouseEvent('mouseup'));
     customElement.addEventListener('pf-touchspin.stopspin', eventCallback.eventFakeHandle());
     expect(eventCallback.eventFakeHandle).toHaveBeenCalled();

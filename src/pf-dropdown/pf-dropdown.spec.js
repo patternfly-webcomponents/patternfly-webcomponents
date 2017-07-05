@@ -1,5 +1,5 @@
 describe("Patternfly Dropdown Component Test", function () {
-  var customElement;
+  let customElement;
 
   beforeEach(function (done) {
     customElement = document.createElement('pf-dropdown');
@@ -20,7 +20,7 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("should open if closed or close if open the dropdown on toggle()", function (done) {
-    var button = customElement.querySelector('#button');
+    let button = customElement.querySelector('#button');
     //open dropdown
     customElement.toggle();
     customElement.addEventListener('shown.bs.dropdown', function () {
@@ -37,7 +37,7 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("disabled button should not open dropdown", function () {
-    var button = customElement.querySelector('.btn');
+    let button = customElement.querySelector('.btn');
     button.classList.add('disabled');
     customElement.toggle();
     expect(button.parentNode.classList.contains('open')).toBe(false);
@@ -46,9 +46,9 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("should select an element", function () {
-    var buttonText = customElement.querySelector('.btn');
-    var item = customElement.querySelector('ul.dropdown-menu > li:nth-child(2) a');
-    var result = false;
+    let buttonText = customElement.querySelector('.btn');
+    let item = customElement.querySelector('ul.dropdown-menu > li:nth-child(2) a');
+    let result = false;
     expect(buttonText.innerText).toBe('Dropdown');
     expect(item.innerText).toBe('Item 1');
     customElement.addEventListener('itemClicked', function () {
@@ -59,8 +59,8 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("should not click disabled item", function () {
-    var item = customElement.querySelector('ul.dropdown-menu  li.disabled a');
-    var result = false;
+    let item = customElement.querySelector('ul.dropdown-menu  li.disabled a');
+    let result = false;
     // custom event is not fired for disabled item
     customElement.addEventListener('itemClicked', function () {
       result = true;

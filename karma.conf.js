@@ -19,6 +19,7 @@ module.exports = function(config) {
       'node_modules/promise-polyfill/promise.js',
       'node_modules/jasmine-promises/dist/jasmine-promises.js',
       'node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js',
+      'node_modules/@webcomponents/custom-elements/src/native-shim.js',
       'dist/js/patternfly.js',
       'src/**/*.spec.js'
     ],

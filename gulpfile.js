@@ -10,36 +10,37 @@ var gulp = require('gulp'),
   rename = require("gulp-rename"),
   sass = require('gulp-sass'),
   $ = require('gulp-load-plugins')(),
-  webpack = require('webpack-stream'),
+  webpack = require('webpack'),
+  webpackStream = require('webpack-stream'),
   runSequence = require('run-sequence'),
   sitespeedio = require('gulp-sitespeedio'),
   runBundleAnalyzer = false,
   jsdoc = require('gulp-jsdoc3'),
   BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-gulp.task('font', function() {
+gulp.task('font', function () {
   return gulp.src(['node_modules/patternfly/dist/fonts/*'])
     .pipe(gulp.dest('dist/fonts'));
 });
 
-gulp.task('js', ['lint','copy'], function () {
+gulp.task('js', ['lint', 'copy'], function () {
   return gulp.src(['src/*/*.js', '!src/*/*.spec.js'])
     .pipe($.plumber())
     .pipe($.babel(
-      {presets: ['es2015']}
+      { presets: ['es2015'] }
     ))
     // .pipe($.uglify())
     .pipe(gulp.dest('dist/es2015'));
 });
 
-gulp.task('copy', function() {
+gulp.task('copy', function () {
   return gulp.src(['src/customElementShim.js', ''])
     .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('doc', function (cb) {
   var config = require('./jsdocConfig.json');
-  gulp.src(['README.md', './src/**/*.component.js', './src/pf-utils/*-utils.js'], {read: false})
+  gulp.src(['README.md', './src/**/*.component.js', './src/pf-utils/*-utils.js'], { read: false })
     .pipe(jsdoc(config, cb));
 });
 
@@ -49,14 +50,14 @@ gulp.task('lint', function () {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('scss', function() {
+gulp.task('scss', function () {
   return gulp.src(['src/scss/*.scss'])
     .pipe($.plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('css', function() {
+gulp.task('css', function () {
   return gulp.src(['node_modules/patternfly/dist/css/**/*'])
     .pipe(gulp.dest('dist/css'));
 });
@@ -77,7 +78,7 @@ gulp.task('test-debug', function (done) {
   }, done).start();
 });
 
-gulp.task('sitespeedio', ['serve'], function(done) {
+gulp.task('sitespeedio', ['serve'], function (done) {
   var run = sitespeedio({
     urls: [
       baseUrl + '/app/app.html?file=pf-alert',
@@ -93,7 +94,7 @@ gulp.task('sitespeedio', ['serve'], function(done) {
     html: true,
     budget: {
       page: {
-        pageWeight:1000000,
+        pageWeight: 1000000,
         imageWeight: 300000,
         jsWeight: 500000,
         cssWeight: 500000
@@ -103,22 +104,22 @@ gulp.task('sitespeedio', ['serve'], function(done) {
   run(done);
 });
 
-gulp.task('perf', function(done) {
+gulp.task('perf', function (done) {
   runSequence('build', 'sitespeedio', done);
 });
 
-gulp.task('bundleAnalyzer', function(done) {
+gulp.task('bundleAnalyzer', function (done) {
   runBundleAnalyzer = true;
   runSequence('build', done);
 });
 
-gulp.task('webpack', ['js'], function() {
+gulp.task('webpack', ['js'], function () {
   var webpackConfig = require('./webpack.config.js');
   if (runBundleAnalyzer) {
     webpackConfig.plugins.push(new BundleAnalyzerPlugin());
   }
   return gulp.src('src/patternfly.js')
-    .pipe(webpack( webpackConfig ))
+    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest('dist/js'));
 });
 
@@ -131,7 +132,7 @@ gulp.task('gettext-extract', function () {
 
 gulp.task('build', ['font', 'js', 'scss', 'css', 'gettext-extract', 'webpack']);
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
   browserSync.init({
     server: {
       baseDir: './'

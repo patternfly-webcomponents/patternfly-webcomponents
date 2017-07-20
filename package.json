@@ -1,12 +1,12 @@
 {
   "name": "patternfly-webcomponents",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "PatternFly Web Components",
   "main": "dist/js/index.js",
   "author": "Red Hat",
   "license": "Apache-2.0",
   "devDependencies": {
-    "babel-loader": "^6.2.7",
+    "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.14.0",
     "browser-sync": "^2.14.3",
     "gulp": "~3.9.1",

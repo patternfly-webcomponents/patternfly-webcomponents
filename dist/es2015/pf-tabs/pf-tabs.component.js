@@ -51,19 +51,22 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
      * Called every time the element is inserted into the DOM
      */
     value: function connectedCallback() {
-      this.insertBefore(this._tabsTemplate.content, this.firstChild);
+      if (!this._initialized) {
+        this.insertBefore(this._tabsTemplate.content, this.firstChild);
 
-      this._makeTabsFromPfTab();
+        this._makeTabsFromPfTab();
 
-      this.querySelector('ul').addEventListener('click', this);
+        this.querySelector('ul').addEventListener('click', this);
 
-      // Add the ul class if specified
-      this.querySelector('ul').className = this.attributes.class ? this.attributes.class.value : 'nav nav-tabs';
+        // Add the ul class if specified
+        this.querySelector('ul').className = this.attributes.class ? this.attributes.class.value : 'nav nav-tabs';
 
-      if (!this.mutationObserver) {
-        this.mutationObserver = new MutationObserver(this._handleMutations.bind(this));
-        this.mutationObserver.observe(this, { childList: true, attributes: true });
+        if (!this.mutationObserver) {
+          this.mutationObserver = new MutationObserver(this._handleMutations.bind(this));
+          this.mutationObserver.observe(this, { childList: true, attributes: true });
+        }
       }
+      this._initialized = true;
     }
 
     /*

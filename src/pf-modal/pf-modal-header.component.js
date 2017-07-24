@@ -5,7 +5,7 @@ import {default as tmpl} from 'pf-modal-header.template';
  * <b>&lt;pf-modal-header&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal-header modalTitle="Modal Title"></pf-modal-header>
+ * <pf-modal-header modal-title="Modal Title"></pf-modal-header>
  */
 
 export class PfModalHeader extends HTMLElement {
@@ -45,24 +45,24 @@ export class PfModalHeader extends HTMLElement {
   }
 
   /*
-   * Get modalTitle
+   * Get modal-title
    *
    * @returns {string} The modal title
    */
   get modalTitle () {
-    return this.getAttribute('modalTitle');
+    return this.getAttribute('modal-title');
   }
 
   /*
-   * Set modalTitle
+   * Set modal-title
    *
    * @param {string} val Modal title
    */
   set modalTitle (val) {
     if (val) {
-      this.setAttribute('modalTitle', val);
+      this.setAttribute('modal-title', val);
     } else {
-      this.removeAttribute('modalTitle');
+      this.removeAttribute('modal-title');
     }
   }
 
@@ -70,7 +70,7 @@ export class PfModalHeader extends HTMLElement {
    * Only attributes listed in the observedAttributes property will receive this callback
    */
   static get observedAttributes() {
-    return ['modaltitle'];
+    return ['modal-title'];
   }
 
   /*
@@ -81,7 +81,7 @@ export class PfModalHeader extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
-    if (attrName === 'modaltitle') {
+    if (attrName === 'modal-title') {
       if (newValue && !oldValue) {
         this._addModalTitle();
       }

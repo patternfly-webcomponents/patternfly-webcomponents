@@ -9,17 +9,17 @@ import PfModalFooter from 'pf-modal-footer.component';
  * <b>&lt;pf-modal&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal targetSelector="#btn-toggle-modal" backdrop keyboard>
+ * <pf-modal target-selector="#btn-toggle-modal" backdrop keyboard>
  *   <pf-modal-dialog>
  *     <pf-modal-content>
- *       <pf-modal-header modalTitle="Modal Title"></pf-modal-header>
+ *       <pf-modal-header modal-title="Modal Title"></pf-modal-header>
  *       <pf-modal-body>custom content</pf-modal-body>
  *       <pf-modal-footer></pf-modal-footer>
  *     </pf-modal-content>
  *   </pf-modal-dialog>
  * </pf-modal>
  *
- * @prop {string} targetSelector Indicating which element will fireup the modal
+ * @prop {string} target-selector Indicating which element will fireup the modal
  * @prop {boolean} backdrop Indicating whether Clicking the backdrop could hide the modal or not
  * @prop {boolean} keyboard Indicating whether clicking the escape key could hide the modal or not
  * @prop {boolean} open Indicating whether or not the modal is opend
@@ -118,7 +118,7 @@ export class PfModal extends HTMLElement {
    * Only attributes listed in the observedAttributes property will receive this callback
    */
   static get observedAttributes() {
-    return ['targetselector', 'open', 'keyboard', 'backdrop'];
+    return ['target-selector', 'open', 'keyboard', 'backdrop'];
   }
 
   /*
@@ -129,7 +129,7 @@ export class PfModal extends HTMLElement {
    * @param {string} newValue The new attribute value
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
-    if (attrName === 'targetselector' && newValue !== null && oldValue === null) {
+    if (attrName === 'target-selector' && newValue !== null && oldValue === null) {
       this._target = document.querySelector(newValue);
       if (this._target) {
         this._target.addEventListener('click', this.show.bind(this), false);
@@ -168,8 +168,8 @@ export class PfModal extends HTMLElement {
       this._showModal();
     }
 
-    if (this.getAttribute('targetSelector')) {
-      this._target = document.querySelector(this.getAttribute('targetSelector'));
+    if (this.getAttribute('target-selector')) {
+      this._target = document.querySelector(this.getAttribute('target-selector'));
       if (this._target && !(this._target.getAttribute('data-bound') === 'bound')) {
         this._target.addEventListener('click', this.show.bind(this), false);
       }

@@ -19,6 +19,7 @@ module.exports = {
     'pf-touchspin': './src/pf-touchspin/index',
     'pf-utilization-bar-chart': './src/pf-utilization-bar-chart/index',
     'pf-modal': './src/pf-modal/index',
+    'pf-popover': './src/pf-popover/index',
     'pf-utils': './src/pf-utils/index',
     'index': './src/index'
   },
@@ -37,6 +38,7 @@ module.exports = {
       path.join(__dirname, "src/pf-touchspin"),
       path.join(__dirname, "src/pf-utilization-bar-chart"),
       path.join(__dirname, "src/pf-modal"),
+      path.join(__dirname, "src/pf-popover"),
       path.join(__dirname, "src/pf-utils")
     ]
   },

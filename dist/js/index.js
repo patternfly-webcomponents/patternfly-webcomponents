@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 45);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3321,7 +3321,9 @@ window.customElements.define('pf-touchspin', PfTouchspin);
 /* 27 */,
 /* 28 */,
 /* 29 */,
-/* 30 */
+/* 30 */,
+/* 31 */,
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3331,7 +3333,7 @@ window.customElements.define('pf-touchspin', PfTouchspin);
 __webpack_require__(2);
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3341,7 +3343,7 @@ __webpack_require__(2);
 __webpack_require__(4);
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3351,7 +3353,7 @@ __webpack_require__(4);
 __webpack_require__(9);
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3361,7 +3363,7 @@ __webpack_require__(9);
 __webpack_require__(21);
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3371,7 +3373,7 @@ __webpack_require__(21);
 __webpack_require__(22);
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3381,7 +3383,7 @@ __webpack_require__(22);
 __webpack_require__(11);
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3391,15 +3393,16 @@ __webpack_require__(11);
 __webpack_require__(14);
 
 /***/ }),
-/* 37 */,
-/* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
 /* 43 */,
 /* 44 */,
-/* 45 */
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3409,7 +3412,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(30);
+var _index = __webpack_require__(32);
 
 Object.defineProperty(exports, 'PfAlert', {
   enumerable: true,
@@ -3418,7 +3421,7 @@ Object.defineProperty(exports, 'PfAlert', {
   }
 });
 
-var _index2 = __webpack_require__(33);
+var _index2 = __webpack_require__(35);
 
 Object.defineProperty(exports, 'PfDropdown', {
   enumerable: true,
@@ -3427,7 +3430,7 @@ Object.defineProperty(exports, 'PfDropdown', {
   }
 });
 
-var _index3 = __webpack_require__(36);
+var _index3 = __webpack_require__(38);
 
 Object.defineProperty(exports, 'PfModal', {
   enumerable: true,
@@ -3436,7 +3439,7 @@ Object.defineProperty(exports, 'PfModal', {
   }
 });
 
-var _index4 = __webpack_require__(31);
+var _index4 = __webpack_require__(33);
 
 Object.defineProperty(exports, 'PfTabs', {
   enumerable: true,
@@ -3445,7 +3448,7 @@ Object.defineProperty(exports, 'PfTabs', {
   }
 });
 
-var _index5 = __webpack_require__(32);
+var _index5 = __webpack_require__(34);
 
 Object.defineProperty(exports, 'PfTooltip', {
   enumerable: true,
@@ -3454,7 +3457,7 @@ Object.defineProperty(exports, 'PfTooltip', {
   }
 });
 
-var _index6 = __webpack_require__(34);
+var _index6 = __webpack_require__(36);
 
 Object.defineProperty(exports, 'PfTouchspin', {
   enumerable: true,
@@ -3463,7 +3466,7 @@ Object.defineProperty(exports, 'PfTouchspin', {
   }
 });
 
-var _index7 = __webpack_require__(35);
+var _index7 = __webpack_require__(37);
 
 Object.defineProperty(exports, 'PfUtilizationBarChart', {
   enumerable: true,

@@ -1,0 +1,11 @@
+{
+  "name": "pf-utilization-bar-chart",
+  "version": "1.0.0",
+  "description": "the pf-popover webcomponent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

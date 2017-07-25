@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -190,33 +190,7 @@ exports.pfUtil = pfUtil;
 
 /***/ }),
 
-/***/ 10:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var PfTooltipTemplate = "\n<div role=\"tooltip\" class=\"tooltip\">\n    <div class=\"tooltip-arrow\"></div>\n    <div class=\"tooltip-inner\"></div>\n</div>\n";
-
-exports.default = PfTooltipTemplate;
-
-/***/ }),
-
-/***/ 34:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/** PF Tooltip Component **/
-__webpack_require__(9);
-
-/***/ }),
-
-/***/ 9:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -225,13 +199,13 @@ __webpack_require__(9);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PfTooltip = undefined;
+exports.PfPopover = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfTooltip = __webpack_require__(10);
+var _pfPopover = __webpack_require__(31);
 
-var _pfTooltip2 = _interopRequireDefault(_pfTooltip);
+var _pfPopover2 = _interopRequireDefault(_pfPopover);
 
 var _pfUtils = __webpack_require__(0);
 
@@ -244,55 +218,65 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * <b>&lt;pf-tooltip&gt;</b> element for Patternfly Web Components
+ * <b>&lt;pf-popover&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-tooltip animation="fade" targetSelector="#btn-left" placement="left" delay="100" duration="150" containerSelector="#container"></pf-alert>
+ * <pf-popover animation="fade" target-selector="#btn-left" placement="left" delay="100" duration="150" popover-title="Popover Title" dismissible="true" container-selector="#container"></pf-alert>
  *
  * @prop {string} animation the animation class
- * @prop {string} targetSelector the target element selector
+ * @prop {string} target-selector the target element selector
  * @prop {string} placement left, right, top, bottom
+ * @prop {string} popover-title the title of popover
+ * @prop {string} dismissible true, false
  * @prop {number} delay animation delay (ms)
  * @prop {number} duration animation duration (ms)
- * @prop {string} containerSelector the container element selector
+ * @prop {string} container-selector the container element selector
  */
 
-var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
-  _inherits(PfTooltip, _HTMLElement);
+var PfPopover = exports.PfPopover = function (_HTMLElement) {
+  _inherits(PfPopover, _HTMLElement);
 
-  _createClass(PfTooltip, [{
+  _createClass(PfPopover, [{
     key: 'init',
 
 
     /**
-     * Reinitializes tooltip component with attribute values and resets content
+     * Reinitializes popover component with attribute values and resets content
      */
     value: function init() {
       var _this2 = this;
 
       this.element = this;
       this.content = this._innerHtml || this.element.innerHTML;
-      this.tooltip = null;
-      this._targetSelector = this.getAttribute('targetSelector');
+      this.popover = null;
+      this._targetSelector = this.getAttribute('target-selector');
       this._target = this._targetSelector ? document.querySelector(this._targetSelector) : this;
       this._animation = this.getAttribute('animation') ? this.getAttribute('animation') : 'fade';
+      this._popoverTitle = this.getAttribute('popover-title') ? this.getAttribute('popover-title') : '';
+      this._dismissible = this.getAttribute('dismissible') ? this.getAttribute('dismissible') : false;
       this._placement = this.getAttribute('placement') ? this.getAttribute('placement') : 'right';
       this._delay = parseInt(this.getAttribute('delay')) || 100;
-      this._mouseHover = 'onmouseleave' in document ? ['mouseenter', 'mouseleave'] : ['mouseover', 'mouseout'];
-      this._tipPositions = /\b(top|bottom|left|top)+/;
       this._duration = _pfUtils.pfUtil.isMSIE && _pfUtils.pfUtil.isMSIE < 10 ? 0 : parseInt(this.getAttribute('duration')) || 150;
-      this._containerSelector = this.getAttribute('containerSelector');
+      this._containerSelector = this.getAttribute('container-selector');
       this._container = this._containerSelector ? document.querySelector(this._containerSelector) : document.body;
 
       if (this._target) {
         //create open event listeners
-        this._target.addEventListener(this._mouseHover[0], function (e) {
-          _this2.open(e);
+        this._target.addEventListener('click', function (e) {
+          if (_this2.popover !== null) {
+            _this2.close(e);
+          } else {
+            _this2.open(e);
+          }
         }, false);
+      }
 
-        //create close event listener
-        this._target.addEventListener(this._mouseHover[1], function (e) {
-          _this2.close(e);
+      if (this._dismissible) {
+
+        document.addEventListener('click', function (event) {
+          if (_this2.popover !== null && event.target === _this2.popover.querySelector('div.popover > h3.popover-title .close > span.pficon-close')) {
+            _this2.close();
+          }
         }, false);
       }
     }
@@ -333,39 +317,54 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       this.init();
     }
 
-    /*
+    /**
      * An instance of the element is created or upgraded
      */
 
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
+      return ['animation', 'target-selector', 'placement', 'delay', 'duration', 'container-selector', 'popover-title'];
     }
   }]);
 
-  function PfTooltip() {
-    _classCallCheck(this, PfTooltip);
+  function PfPopover() {
+    _classCallCheck(this, PfPopover);
 
-    var _this = _possibleConstructorReturn(this, (PfTooltip.__proto__ || Object.getPrototypeOf(PfTooltip)).call(this));
+    var _this = _possibleConstructorReturn(this, (PfPopover.__proto__ || Object.getPrototypeOf(PfPopover)).call(this));
 
     _this._template = document.createElement('template');
-    _this._template.innerHTML = _pfTooltip2.default;
+    _this._template.innerHTML = _pfPopover2.default;
     _this._timer = 0;
     return _this;
   }
 
   /**
-   * Sets tooltip the inner HTML
+   * Sets popover the inner HTML
    * @param {string} html string
    */
 
 
-  _createClass(PfTooltip, [{
+  _createClass(PfPopover, [{
     key: 'setInnerHtml',
     value: function setInnerHtml(html) {
       this._innerHtml = html;
       this.element.dispatchEvent(new CustomEvent('handleContentChanged', {}));
+    }
+
+    /**
+     * public handler
+     */
+
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      this.init();
+      if (this.popover === null) {
+        this.open();
+      } else {
+        this.close();
+      }
     }
 
     /**
@@ -379,25 +378,26 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
 
 
     /**
-     * The tooltip open method
-     */
+       * The popover open method
+       */
     value: function open() {
       var _this4 = this;
 
       clearTimeout(this._timer);
       this._timer = setTimeout(function () {
-        if (_this4.tooltip === null) {
-          _this4._createTooltip();
-          _this4._styleTooltip();
-          _this4._showTooltip();
+        if (_this4.popover === null) {
+          _this4._createPopover();
+          _this4._stylePopover();
+          _this4._checkPlacement();
+          _this4._showPopover();
           //notify frameworks
-          _this4.dispatchEvent(new CustomEvent('tooltipOpened', {}));
+          _this4.dispatchEvent(new CustomEvent('pf-popover.opened', {}));
         }
       }, 20);
     }
 
     /**
-     * The tooltip close method
+     * The popover close method
      */
 
   }, {
@@ -407,61 +407,97 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
 
       clearTimeout(this._timer);
       this._timer = setTimeout(function () {
-        if (_this5.tooltip && _this5.tooltip !== null) {
-          _pfUtils.pfUtil.removeClass(_this5.tooltip, 'in');
+        if (_this5.popover && _this5.popover !== null) {
+          _pfUtils.pfUtil.removeClass(_this5.popover, 'in');
           setTimeout(function () {
-            _this5._removeTooltip();
+            _this5._removePopover();
             //notify frameworks
-            _this5.dispatchEvent(new CustomEvent('tooltipClosed', {}));
+            _this5.dispatchEvent(new CustomEvent('pf-popover.closed', {}));
+            // reset position after popover is closed
+            _this5._placement = _this5.getAttribute('placement') ? _this5.getAttribute('placement') : 'right';
           }, _this5._duration);
         }
       }, this._delay + this._duration);
     }
 
     /**
-     * Removes the tooltip
+     * Removes the popover
      * @private
      */
 
   }, {
-    key: '_removeTooltip',
-    value: function _removeTooltip() {
-      this.tooltip && this._container.removeChild(this.tooltip);
-      this.tooltip = null;
+    key: '_removePopover',
+    value: function _removePopover() {
+      this.popover && this._container.removeChild(this.popover);
+      this.popover = null;
     }
 
     /**
-     * Creates the tooltip
+     * Creates the popover
      * @private
      */
 
   }, {
-    key: '_createTooltip',
-    value: function _createTooltip() {
+    key: '_createPopover',
+    value: function _createPopover() {
       var clone = document.importNode(this._template.content, true);
-      var tooltipInner = clone.querySelector('.tooltip-inner');
+      var popoverInner = clone.querySelector('.popover-content');
+      var popovertitle = clone.querySelector('.popover-title');
+      var closeButton = document.createElement('template');
+      closeButton.innerHTML = '<button type="button" class="close"><span class="pficon pficon-close"></span></button>';
 
-      //set tooltip content
-      tooltipInner.innerHTML = this.content;
+      if (this._popoverTitle === '' && !this._dismissible) {
+        popovertitle.parentNode.removeChild(popovertitle);
+      } else {
+        //set popover title
+        popovertitle.innerHTML = this._popoverTitle;
+
+        if (this._dismissible) {
+          popovertitle.appendChild(closeButton.content);
+        }
+      }
+      //set popover content
+      popoverInner.innerHTML = this.content;
 
       //append to the container
       this._container.appendChild(clone);
 
       //set reference to appended node
-      var tooltips = this._container.querySelectorAll('.tooltip');
-      this.tooltip = tooltips[tooltips.length - 1];
-      this.tooltip.setAttribute('class', 'tooltip ' + this._placement + ' ' + this._animation);
+      this.popover = this._container.querySelectorAll('.popover:last-child')[0];
+      this.popover.style.display = 'block';
+      this.popover.setAttribute('class', 'popover ' + this._placement + ' ' + this._animation);
     }
 
     /**
-     * Styles the tooltip based on placement attribute
+     * update the placement of popover
+     */
+
+  }, {
+    key: '_updatePlacement',
+    value: function _updatePlacement() {
+      switch (this._placement) {
+        case 'top':
+          return 'bottom';
+        case 'bottom':
+          return 'top';
+        case 'left':
+          return 'right';
+        case 'right':
+          return 'left';
+        default:
+          return this._placement;
+      }
+    }
+
+    /**
+     * Styles the popover based on placement attribute
      * @private
      */
 
   }, {
-    key: '_styleTooltip',
-    value: function _styleTooltip() {
-      var rect = this._target.getBoundingClientRect(); //tooltip real dimensions
+    key: '_stylePopover',
+    value: function _stylePopover() {
+      var rect = this._target.getBoundingClientRect(); //popover real dimensions
 
       var // link rect | window vertical and horizontal scroll
       scroll = _pfUtils.pfUtil.getScroll();
@@ -469,37 +505,59 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       var //link real dimensions
       linkDimensions = { w: rect.right - rect.left, h: rect.bottom - rect.top };
 
-      var tooltipDimensions = { w: this.tooltip.offsetWidth, h: this.tooltip.offsetHeight };
+      var popoverDimensions = { w: this.popover.offsetWidth, h: this.popover.offsetHeight };
 
       //apply styling
-      if (/top/.test(this._placement)) {
-        //TOP
-        this.tooltip.style.top = rect.top + scroll.y - tooltipDimensions.h + 'px';
-        this.tooltip.style.left = rect.left + scroll.x - tooltipDimensions.w / 2 + linkDimensions.w / 2 + 'px';
-      } else if (/bottom/.test(this._placement)) {
-        //BOTTOM
-        this.tooltip.style.top = rect.top + scroll.y + linkDimensions.h + 'px';
-        this.tooltip.style.left = rect.left + scroll.x - tooltipDimensions.w / 2 + linkDimensions.w / 2 + 'px';
-      } else if (/left/.test(this._placement)) {
-        //LEFT
-        this.tooltip.style.top = rect.top + scroll.y - tooltipDimensions.h / 2 + linkDimensions.h / 2 + 'px';
-        this.tooltip.style.left = rect.left + scroll.x - tooltipDimensions.w + 'px';
-      } else if (/right/.test(this._placement)) {
-        //RIGHT
-        this.tooltip.style.top = rect.top + scroll.y - tooltipDimensions.h / 2 + linkDimensions.h / 2 + 'px';
-        this.tooltip.style.left = rect.left + scroll.x + linkDimensions.w + 'px';
+      switch (this._placement) {
+        case 'top':
+          //TOP
+          this.popover.style.top = rect.top + scroll.y - popoverDimensions.h + 'px';
+          this.popover.style.left = rect.left + scroll.x - popoverDimensions.w / 2 + linkDimensions.w / 2 + 'px';
+          break;
+
+        case 'bottom':
+          //BOTTOM
+          this.popover.style.top = rect.top + scroll.y + linkDimensions.h + 'px';
+          this.popover.style.left = rect.left + scroll.x - popoverDimensions.w / 2 + linkDimensions.w / 2 + 'px';
+          break;
+
+        case 'left':
+          //LEFT
+          this.popover.style.top = rect.top + scroll.y - popoverDimensions.h / 2 + linkDimensions.h / 2 + 'px';
+          this.popover.style.left = rect.left + scroll.x - popoverDimensions.w + 'px';
+          break;
+
+        case 'right':
+          //RIGHT
+          this.popover.style.top = rect.top + scroll.y - popoverDimensions.h / 2 + linkDimensions.h / 2 + 'px';
+          this.popover.style.left = rect.left + scroll.x + linkDimensions.w + 'px';
+          break;
+      }
+      this.popover.className.indexOf(this._placement) === -1 && (this.popover.className = this.popover.className.replace(/\b(top|bottom|left|right)+/, this._placement));
+    }
+
+    /**
+     * check the placement of popover
+     */
+
+  }, {
+    key: '_checkPlacement',
+    value: function _checkPlacement() {
+      if (!_pfUtils.pfUtil.isElementInViewport(this.popover)) {
+        this._placement = this._updatePlacement();
+        this._stylePopover();
       }
     }
 
     /**
-     * Makes tooltip visible
+     * Makes popover visible
      * @private
      */
 
   }, {
-    key: '_showTooltip',
-    value: function _showTooltip() {
-      !/\bin/.test(this.tooltip.className) && _pfUtils.pfUtil.addClass(this.tooltip, 'in');
+    key: '_showPopover',
+    value: function _showPopover() {
+      !/\bin/.test(this.popover.className) && _pfUtils.pfUtil.addClass(this.popover, 'in');
     }
   }, {
     key: 'animation',
@@ -521,7 +579,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the tooltip containerSelector
+     * Get the popover container-selector
      *
      * @returns {string} The container element selector
      */
@@ -533,7 +591,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set the tooltip containerSelector
+     * Set the popover container-selector
      *
      * @param {string} value The container element selector
      */
@@ -542,7 +600,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       if (this._containerSelector !== value) {
         this._containerSelector = value;
         this._container = document.querySelector(this._containerSelector);
-        this.setAttribute('containerSelector', value);
+        this.setAttribute('container-selector', value);
       }
     }
 
@@ -597,9 +655,9 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the placement position
+     * Get the placement this._placement
      *
-     * @returns {string} The placement position left, top, bottom, right
+     * @returns {string} The placement this._placement left, top, bottom, right
      */
 
   }, {
@@ -609,9 +667,9 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set placement position
+     * Set placement this._placement
      *
-     * @param {string} value The placement position left, top, bottom, right
+     * @param {string} value The placement this._placement left, top, bottom, right
      */
     ,
     set: function set(value) {
@@ -622,10 +680,10 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the targetSelector
-     *
-     * @returns {string} The target element selector
-     */
+    * Get the target-selector
+    *
+    * @returns {string} The target element selector
+    */
 
   }, {
     key: 'targetSelector',
@@ -634,7 +692,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set targetSelector
+     * Set target-selector
      *
      * @param {string} value The target element selector
      */
@@ -643,15 +701,66 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       if (this._targetSelector !== value) {
         this._targetSelector = value;
         this._target = document.querySelector(this._targetSelector);
-        this.setAttribute('targetSelector', value);
+        this.setAttribute('target-selector', value);
+      }
+    }
+
+    /**
+     * Get the popover-title
+     *
+     * @return {string} the title of popover
+     */
+
+  }, {
+    key: 'popoverTitle',
+    get: function get() {
+      return this._popoverTitle;
+    }
+
+    /**
+     * Set popover-title
+     *
+     * @param {string} value The title of popover
+     */
+    ,
+    set: function set(value) {
+      if (this._popoverTitle !== value) {
+        this._popoverTitle = value;
+        this.setAttribute('popover-title', value);
       }
     }
   }]);
 
-  return PfTooltip;
+  return PfPopover;
 }(HTMLElement);
 
-window.customElements.define('pf-tooltip', PfTooltip);
+window.customElements.define('pf-popover', PfPopover);
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var PfPopoverTemplate = "\n<div class=\"popover\" role=\"popover\">\n  <div class=\"arrow\"></div>\n  <h3 class=\"popover-title closable\"></h3>\n  <div class=\"popover-content\"></div>\n</div>\n";
+
+exports.default = PfPopoverTemplate;
+
+/***/ }),
+
+/***/ 46:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/** PF Popover Component **/
+__webpack_require__(30);
 
 /***/ })
 

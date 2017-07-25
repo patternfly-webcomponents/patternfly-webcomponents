@@ -47,3 +47,6 @@ pf-modal-footer {
 
 pf-modal-header .modal-title {
   display: inline-block; }
+
+pf-popover {
+  display: none; }

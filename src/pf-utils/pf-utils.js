@@ -29,6 +29,10 @@ class PfUtil {
     }
   }
 
+  hasClass (el, c) {
+    return (' ' + el.className + ' ').indexOf(' ' + c + ' ') > -1;
+  }
+
   getClosest (el, s) { //el is the element and s the selector of the closest item to find
     // source http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
     const former = s.charAt(0);
@@ -39,7 +43,7 @@ class PfUtil {
           return el;
         }
       } else if ( former === '.' ) {// If selector is a class
-        if ( new RegExp(latter).test(el.className) ) {
+        if ( this.hasClass(el, latter) ) {
           return el;
         }
       } else { // we assume other selector is tag name
@@ -71,6 +75,26 @@ class PfUtil {
 
   reflow (el) { // force reflow
     return el.offsetHeight;
+  }
+
+  getArrayFromNodeList (els) {
+    let result = [];
+    if (els && els.length > 0) {
+      result = Array.prototype.slice.call(els);
+    }
+    return result;
+  }
+
+  removeNodes (els) {
+    if (els) {
+      if (typeof els.length === 'undefined') {
+        els.parentNode.removeChild(els);
+      } else if (els.length > 0) {
+        this.getArrayFromNodeList(els).forEach(function (el) {
+          el.parentNode.removeChild(el);
+        });
+      }
+    }
   }
 
   once (el, type, listener, self) {
@@ -105,6 +129,7 @@ class PfUtil {
     }
     return parentHeight;
   }
+
 }
 
 let pfUtil = new PfUtil();

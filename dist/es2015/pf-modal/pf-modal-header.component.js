@@ -25,7 +25,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-modal-header&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal-header modalTitle="Modal Title"></pf-modal-header>
+ * <pf-modal-header modal-title="Modal Title"></pf-modal-header>
  */
 
 var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
@@ -75,7 +75,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
     }
 
     /*
-     * Get modalTitle
+     * Get modal-title
      *
      * @returns {string} The modal title
      */
@@ -92,7 +92,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
      * @param {string} newValue The new attribute value
      */
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
-      if (attrName === 'modaltitle') {
+      if (attrName === 'modal-title') {
         if (newValue && !oldValue) {
           this._addModalTitle();
         }
@@ -108,20 +108,20 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
   }, {
     key: 'modalTitle',
     get: function get() {
-      return this.getAttribute('modalTitle');
+      return this.getAttribute('modal-title');
     }
 
     /*
-     * Set modalTitle
+     * Set modal-title
      *
      * @param {string} val Modal title
      */
     ,
     set: function set(val) {
       if (val) {
-        this.setAttribute('modalTitle', val);
+        this.setAttribute('modal-title', val);
       } else {
-        this.removeAttribute('modalTitle');
+        this.removeAttribute('modal-title');
       }
     }
 
@@ -132,7 +132,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['modaltitle'];
+      return ['modal-title'];
     }
   }]);
 

@@ -114,10 +114,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab tabTitle="Tab1" active="true">
+ *  <pf-tab tab-title="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab tabTitle="Tab2">
+ *  <pf-tab tab-title="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
@@ -517,15 +517,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab tabTitle="Tab1" active="true">
+ *  <pf-tab tab-title="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab tabTitle="Tab2">
+ *  <pf-tab tab-title="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
  *
- * @prop {string} tabTitle the tab title
+ * @prop {string} tab-title the tab title
  * @prop {string} active if attribute exists, tab will be active
  */
 var PfTab = exports.PfTab = function (_HTMLElement) {
@@ -538,6 +538,8 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
      * Called every time the element is inserted into the DOM
      */
     value: function connectedCallback() {
+      this._tabTitle = this.getAttribute('tab-title');
+
       this.appendChild(this._template.content);
     }
 
@@ -558,7 +560,7 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
      */
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
       var parent = this.parentNode;
-      if (attrName === 'tabTitle' && parent && parent.handleTitle) {
+      if (attrName === 'tab-title' && parent && parent.handleTitle) {
         parent.handleTitle(this, newValue);
       }
     }
@@ -570,7 +572,7 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['tabTitle'];
+      return ['tab-title'];
     }
   }]);
 
@@ -585,9 +587,9 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
   }
 
   /**
-   * Get tabTitle
+   * Get tab-title
    *
-   * @returns {string} The tabTitle
+   * @returns {string} The tab-title
    */
 
 
@@ -598,15 +600,15 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
     }
 
     /**
-     * Set tab tabTitle
+     * Set tab tab-title
      *
-     * @param {string} value The tab tabTitle
+     * @param {string} value The tab tab-title
      */
     ,
     set: function set(value) {
       if (this._tabTitle !== value) {
         this._tabTitle = value;
-        this.setAttribute('tabTitle', value);
+        this.setAttribute('tab-title', value);
       }
     }
 

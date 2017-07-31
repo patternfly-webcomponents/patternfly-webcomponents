@@ -15,7 +15,7 @@ describe ('PatternFly Moadl Component Tests', function () {
     mo.observe(document.body, { childList: true });
     render(
       '<button id="btn">Launch demo modal</button>' +
-      '<pf-modal id="modal" targetSelector="#btn" backdrop keyboard>' +
+      '<pf-modal id="modal" target-selector="#btn" backdrop keyboard>' +
       '  <pf-modal-dialog>' +
       '    <pf-modal-content>' +
       '      <pf-modal-header></pf-modal-header>' +

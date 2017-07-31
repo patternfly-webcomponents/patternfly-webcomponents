@@ -25,14 +25,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-tooltip&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-tooltip animation="fade" targetSelector="#btn-left" placement="left" delay="100" duration="150" containerSelector="#container"></pf-alert>
+ * <pf-tooltip animation="fade" target-selector="#btn-left" placement="left" delay="100" duration="150" container-selector="#container"></pf-alert>
  *
  * @prop {string} animation the animation class
- * @prop {string} targetSelector the target element selector
+ * @prop {string} target-selector the target element selector
  * @prop {string} placement left, right, top, bottom
  * @prop {number} delay animation delay (ms)
  * @prop {number} duration animation duration (ms)
- * @prop {string} containerSelector the container element selector
+ * @prop {string} container-selector the container element selector
  */
 
 var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
@@ -51,7 +51,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       this.element = this;
       this.content = this._innerHtml || this.element.innerHTML;
       this.tooltip = null;
-      this._targetSelector = this.getAttribute('targetSelector');
+      this._targetSelector = this.getAttribute('target-selector');
       this._target = this._targetSelector ? document.querySelector(this._targetSelector) : this;
       this._animation = this.getAttribute('animation') ? this.getAttribute('animation') : 'fade';
       this._placement = this.getAttribute('placement') ? this.getAttribute('placement') : 'right';
@@ -59,7 +59,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       this._mouseHover = 'onmouseleave' in document ? ['mouseenter', 'mouseleave'] : ['mouseover', 'mouseout'];
       this._tipPositions = /\b(top|bottom|left|top)+/;
       this._duration = _pfUtils.pfUtil.isMSIE && _pfUtils.pfUtil.isMSIE < 10 ? 0 : parseInt(this.getAttribute('duration')) || 150;
-      this._containerSelector = this.getAttribute('containerSelector');
+      this._containerSelector = this.getAttribute('container-selector');
       this._container = this._containerSelector ? document.querySelector(this._containerSelector) : document.body;
 
       if (this._target) {
@@ -118,7 +118,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
+      return ['animation', 'target-selector', 'placement', 'delay', 'duration', 'container-selector'];
     }
   }]);
 
@@ -299,7 +299,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the tooltip containerSelector
+     * Get the tooltip container-selector
      *
      * @returns {string} The container element selector
      */
@@ -311,7 +311,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set the tooltip containerSelector
+     * Set the tooltip container-selector
      *
      * @param {string} value The container element selector
      */
@@ -320,7 +320,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       if (this._containerSelector !== value) {
         this._containerSelector = value;
         this._container = document.querySelector(this._containerSelector);
-        this.setAttribute('containerSelector', value);
+        this.setAttribute('container-selector', value);
       }
     }
 
@@ -400,7 +400,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the targetSelector
+     * Get the target-selector
      *
      * @returns {string} The target element selector
      */
@@ -412,7 +412,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set targetSelector
+     * Set target-selector
      *
      * @param {string} value The target element selector
      */
@@ -421,7 +421,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       if (this._targetSelector !== value) {
         this._targetSelector = value;
         this._target = document.querySelector(this._targetSelector);
-        this.setAttribute('targetSelector', value);
+        this.setAttribute('target-selector', value);
       }
     }
   }]);

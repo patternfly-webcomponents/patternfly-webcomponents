@@ -475,10 +475,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab tabTitle="Tab1" active="true">
+ *  <pf-tab tab-title="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab tabTitle="Tab2">
+ *  <pf-tab tab-title="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
@@ -875,15 +875,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab tabTitle="Tab1" active="true">
+ *  <pf-tab tab-title="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab tabTitle="Tab2">
+ *  <pf-tab tab-title="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
  *
- * @prop {string} tabTitle the tab title
+ * @prop {string} tab-title the tab title
  * @prop {string} active if attribute exists, tab will be active
  */
 var PfTab = exports.PfTab = function (_HTMLElement) {
@@ -896,6 +896,8 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
      * Called every time the element is inserted into the DOM
      */
     value: function connectedCallback() {
+      this._tabTitle = this.getAttribute('tab-title');
+
       this.appendChild(this._template.content);
     }
 
@@ -916,7 +918,7 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
      */
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
       var parent = this.parentNode;
-      if (attrName === 'tabTitle' && parent && parent.handleTitle) {
+      if (attrName === 'tab-title' && parent && parent.handleTitle) {
         parent.handleTitle(this, newValue);
       }
     }
@@ -928,7 +930,7 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['tabTitle'];
+      return ['tab-title'];
     }
   }]);
 
@@ -943,9 +945,9 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
   }
 
   /**
-   * Get tabTitle
+   * Get tab-title
    *
-   * @returns {string} The tabTitle
+   * @returns {string} The tab-title
    */
 
 
@@ -956,15 +958,15 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
     }
 
     /**
-     * Set tab tabTitle
+     * Set tab tab-title
      *
-     * @param {string} value The tab tabTitle
+     * @param {string} value The tab tab-title
      */
     ,
     set: function set(value) {
       if (this._tabTitle !== value) {
         this._tabTitle = value;
-        this.setAttribute('tabTitle', value);
+        this.setAttribute('tab-title', value);
       }
     }
 
@@ -1044,14 +1046,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-tooltip&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-tooltip animation="fade" targetSelector="#btn-left" placement="left" delay="100" duration="150" containerSelector="#container"></pf-alert>
+ * <pf-tooltip animation="fade" target-selector="#btn-left" placement="left" delay="100" duration="150" container-selector="#container"></pf-alert>
  *
  * @prop {string} animation the animation class
- * @prop {string} targetSelector the target element selector
+ * @prop {string} target-selector the target element selector
  * @prop {string} placement left, right, top, bottom
  * @prop {number} delay animation delay (ms)
  * @prop {number} duration animation duration (ms)
- * @prop {string} containerSelector the container element selector
+ * @prop {string} container-selector the container element selector
  */
 
 var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
@@ -1070,7 +1072,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       this.element = this;
       this.content = this._innerHtml || this.element.innerHTML;
       this.tooltip = null;
-      this._targetSelector = this.getAttribute('targetSelector');
+      this._targetSelector = this.getAttribute('target-selector');
       this._target = this._targetSelector ? document.querySelector(this._targetSelector) : this;
       this._animation = this.getAttribute('animation') ? this.getAttribute('animation') : 'fade';
       this._placement = this.getAttribute('placement') ? this.getAttribute('placement') : 'right';
@@ -1078,7 +1080,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       this._mouseHover = 'onmouseleave' in document ? ['mouseenter', 'mouseleave'] : ['mouseover', 'mouseout'];
       this._tipPositions = /\b(top|bottom|left|top)+/;
       this._duration = _pfUtils.pfUtil.isMSIE && _pfUtils.pfUtil.isMSIE < 10 ? 0 : parseInt(this.getAttribute('duration')) || 150;
-      this._containerSelector = this.getAttribute('containerSelector');
+      this._containerSelector = this.getAttribute('container-selector');
       this._container = this._containerSelector ? document.querySelector(this._containerSelector) : document.body;
 
       if (this._target) {
@@ -1137,7 +1139,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['animation', 'targetSelector', 'placement', 'delay', 'duration', 'containerSelector'];
+      return ['animation', 'target-selector', 'placement', 'delay', 'duration', 'container-selector'];
     }
   }]);
 
@@ -1318,7 +1320,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the tooltip containerSelector
+     * Get the tooltip container-selector
      *
      * @returns {string} The container element selector
      */
@@ -1330,7 +1332,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set the tooltip containerSelector
+     * Set the tooltip container-selector
      *
      * @param {string} value The container element selector
      */
@@ -1339,7 +1341,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       if (this._containerSelector !== value) {
         this._containerSelector = value;
         this._container = document.querySelector(this._containerSelector);
-        this.setAttribute('containerSelector', value);
+        this.setAttribute('container-selector', value);
       }
     }
 
@@ -1419,7 +1421,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Get the targetSelector
+     * Get the target-selector
      *
      * @returns {string} The target element selector
      */
@@ -1431,7 +1433,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
-     * Set targetSelector
+     * Set target-selector
      *
      * @param {string} value The target element selector
      */
@@ -1440,7 +1442,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       if (this._targetSelector !== value) {
         this._targetSelector = value;
         this._target = document.querySelector(this._targetSelector);
-        this.setAttribute('targetSelector', value);
+        this.setAttribute('target-selector', value);
       }
     }
   }]);
@@ -1718,17 +1720,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-modal&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal targetSelector="#btn-toggle-modal" backdrop keyboard>
+ * <pf-modal target-selector="#btn-toggle-modal" backdrop keyboard>
  *   <pf-modal-dialog>
  *     <pf-modal-content>
- *       <pf-modal-header modalTitle="Modal Title"></pf-modal-header>
+ *       <pf-modal-header modal-title="Modal Title"></pf-modal-header>
  *       <pf-modal-body>custom content</pf-modal-body>
  *       <pf-modal-footer></pf-modal-footer>
  *     </pf-modal-content>
  *   </pf-modal-dialog>
  * </pf-modal>
  *
- * @prop {string} targetSelector Indicating which element will fireup the modal
+ * @prop {string} target-selector Indicating which element will fireup the modal
  * @prop {boolean} backdrop Indicating whether Clicking the backdrop could hide the modal or not
  * @prop {boolean} keyboard Indicating whether clicking the escape key could hide the modal or not
  * @prop {boolean} open Indicating whether or not the modal is opend
@@ -1764,7 +1766,7 @@ var PfModal = exports.PfModal = function (_HTMLElement) {
      * @param {string} newValue The new attribute value
      */
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
-      if (attrName === 'targetselector' && newValue !== null && oldValue === null) {
+      if (attrName === 'target-selector' && newValue !== null && oldValue === null) {
         this._target = document.querySelector(newValue);
         if (this._target) {
           this._target.addEventListener('click', this.show.bind(this), false);
@@ -1879,7 +1881,7 @@ var PfModal = exports.PfModal = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['targetselector', 'open', 'keyboard', 'backdrop'];
+      return ['target-selector', 'open', 'keyboard', 'backdrop'];
     }
   }]);
 
@@ -1907,8 +1909,8 @@ var PfModal = exports.PfModal = function (_HTMLElement) {
         this._showModal();
       }
 
-      if (this.getAttribute('targetSelector')) {
-        this._target = document.querySelector(this.getAttribute('targetSelector'));
+      if (this.getAttribute('target-selector')) {
+        this._target = document.querySelector(this.getAttribute('target-selector'));
         if (this._target && !(this._target.getAttribute('data-bound') === 'bound')) {
           this._target.addEventListener('click', this.show.bind(this), false);
         }
@@ -2083,7 +2085,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-modal-dialog&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal targetSelector="#btn-toggle-modal" backdrop keyboard>
+ * <pf-modal target-selector="#btn-toggle-modal" backdrop keyboard>
  *  <pf-modal-dialog>
  *   <pf-modal-content> practical content of pf-modal </pf-modal-content>
  *  </pf-modal-dialog>
@@ -2145,7 +2147,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-modal-content&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal targetSelector="#btn-toggle-modal" backdrop keyboard>
+ * <pf-modal target-selector="#btn-toggle-modal" backdrop keyboard>
  *  <pf-modal-dialog>
  *   <pf-modal-content> practical content of pf-modal </pf-modal-content>
  *  </pf-modal-dialog>
@@ -2213,7 +2215,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-modal-header&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal-header modalTitle="Modal Title"></pf-modal-header>
+ * <pf-modal-header modal-title="Modal Title"></pf-modal-header>
  */
 
 var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
@@ -2263,7 +2265,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
     }
 
     /*
-     * Get modalTitle
+     * Get modal-title
      *
      * @returns {string} The modal title
      */
@@ -2280,7 +2282,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
      * @param {string} newValue The new attribute value
      */
     value: function attributeChangedCallback(attrName, oldValue, newValue) {
-      if (attrName === 'modaltitle') {
+      if (attrName === 'modal-title') {
         if (newValue && !oldValue) {
           this._addModalTitle();
         }
@@ -2296,20 +2298,20 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
   }, {
     key: 'modalTitle',
     get: function get() {
-      return this.getAttribute('modalTitle');
+      return this.getAttribute('modal-title');
     }
 
     /*
-     * Set modalTitle
+     * Set modal-title
      *
      * @param {string} val Modal title
      */
     ,
     set: function set(val) {
       if (val) {
-        this.setAttribute('modalTitle', val);
+        this.setAttribute('modal-title', val);
       } else {
-        this.removeAttribute('modalTitle');
+        this.removeAttribute('modal-title');
       }
     }
 
@@ -2320,7 +2322,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
   }], [{
     key: 'observedAttributes',
     get: function get() {
-      return ['modaltitle'];
+      return ['modal-title'];
     }
   }]);
 

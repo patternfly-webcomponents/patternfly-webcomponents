@@ -32,10 +32,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab tabTitle="Tab1" active="true">
+ *  <pf-tab tab-title="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab tabTitle="Tab2">
+ *  <pf-tab tab-title="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>

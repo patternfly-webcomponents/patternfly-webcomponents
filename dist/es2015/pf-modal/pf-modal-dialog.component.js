@@ -19,7 +19,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * <b>&lt;pf-modal-dialog&gt;</b> element for Patternfly Web Components
  *
  * @example {@lang xml}
- * <pf-modal targetSelector="#btn-toggle-modal" backdrop keyboard>
+ * <pf-modal target-selector="#btn-toggle-modal" backdrop keyboard>
  *  <pf-modal-dialog>
  *   <pf-modal-content> practical content of pf-modal </pf-modal-content>
  *  </pf-modal-dialog>

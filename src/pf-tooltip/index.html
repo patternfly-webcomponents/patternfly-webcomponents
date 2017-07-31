@@ -13,22 +13,22 @@
     </div>
     <hr>
 
-    <pf-tooltip id="tooltip-left" placement="left" targetSelector="#btn-left">
+    <pf-tooltip id="tooltip-left" placement="left" target-selector="#btn-left">
         Tooltip text on Left
     </pf-tooltip>
     <button id="btn-left" type="button" class="btn btn-primary" aria-describedby="tooltip-left">Left</button>
 
-    <pf-tooltip id="tooltip-top" placement="top" targetSelector="#btn-top">
+    <pf-tooltip id="tooltip-top" placement="top" target-selector="#btn-top">
         <span>Tooltip on top</span>
     </pf-tooltip>
     <button id="btn-top" type="button" class="btn btn-secondary" aria-describedby="tooltip-top">Top</button>
 
-    <pf-tooltip id="tooltip-bottom" placement="bottom" targetSelector="#btn-bottom">
+    <pf-tooltip id="tooltip-bottom" placement="bottom" target-selector="#btn-bottom">
         <span>Tooltip on bottom</span>
     </pf-tooltip>
     <button id="btn-bottom" type="button" class="btn btn-warning" aria-describedby="tooltip-bottom">Bottom</button>
 
-    <pf-tooltip id="tooltip-right" placement="right" targetSelector="#btn-right">
+    <pf-tooltip id="tooltip-right" placement="right" target-selector="#btn-right">
         <span>Tooltip on right</span>
     </pf-tooltip>
     <button id="btn-right" type="button" class="btn btn-danger" aria-describedby="tooltip-right">Right</button>
@@ -41,7 +41,7 @@
     <script src="../../dist/js/patternfly.js"></script>
     <script>
         setTimeout(function(){
-          var pfTooltipRight = document.querySelector('[targetSelector="#btn-right"]');
+          var pfTooltipRight = document.querySelector('[target-selector="#btn-right"]');
           pfTooltipRight.setInnerHtml("<span>Right content changed!</span>");
         });
     </script>

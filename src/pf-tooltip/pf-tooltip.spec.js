@@ -14,7 +14,7 @@ describe ("PatternFly Tooltip Component Tests", function () {
 
   it('should create the tooltip on open and destroy on close', function (done) {
     render('<button id="btn">Button</button>');
-    render('<pf-tooltip id="tooltip" placement="left" targetSelector="#btn">Would you look at that!</pf-tooltip>');
+    render('<pf-tooltip id="tooltip" placement="left" target-selector="#btn">Would you look at that!</pf-tooltip>');
 
     button = document.querySelector('#btn');
     customElement = document.querySelector('#tooltip');

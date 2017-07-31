@@ -5,15 +5,15 @@ import {default as tmpl} from 'panel.template';
  *
  * @example {@lang xml}
  * <pf-tabs>
- *  <pf-tab tabTitle="Tab1" active="true">
+ *  <pf-tab tab-title="Tab1" active="true">
  *    <p>Tab1 content here</p>
  *  </pf-tab>
- *  <pf-tab tabTitle="Tab2">
+ *  <pf-tab tab-title="Tab2">
  *    <p>Tab2 content here</p>
  *  </pf-tab>
  * </pf-tabs>
  *
- * @prop {string} tabTitle the tab title
+ * @prop {string} tab-title the tab title
  * @prop {string} active if attribute exists, tab will be active
  */
 export class PfTab extends HTMLElement {
@@ -21,6 +21,8 @@ export class PfTab extends HTMLElement {
    * Called every time the element is inserted into the DOM
    */
   connectedCallback () {
+    this._tabTitle = this.getAttribute('tab-title');
+
     this.appendChild(this._template.content);
   }
 
@@ -28,7 +30,7 @@ export class PfTab extends HTMLElement {
    * Only attributes listed in the observedAttributes property will receive this callback
    */
   static get observedAttributes() {
-    return ['tabTitle'];
+    return ['tab-title'];
   }
 
   /**
@@ -40,7 +42,7 @@ export class PfTab extends HTMLElement {
    */
   attributeChangedCallback (attrName, oldValue, newValue) {
     let parent = this.parentNode;
-    if (attrName === 'tabTitle' && parent && parent.handleTitle) {
+    if (attrName === 'tab-title' && parent && parent.handleTitle) {
       parent.handleTitle(this, newValue);
     }
   }
@@ -55,23 +57,23 @@ export class PfTab extends HTMLElement {
   }
 
   /**
-   * Get tabTitle
+   * Get tab-title
    *
-   * @returns {string} The tabTitle
+   * @returns {string} The tab-title
    */
   get tabTitle () {
     return this._tabTitle;
   }
 
   /**
-   * Set tab tabTitle
+   * Set tab tab-title
    *
-   * @param {string} value The tab tabTitle
+   * @param {string} value The tab tab-title
    */
   set tabTitle (value) {
     if (this._tabTitle !== value) {
       this._tabTitle = value;
-      this.setAttribute('tabTitle', value);
+      this.setAttribute('tab-title', value);
     }
   }
 

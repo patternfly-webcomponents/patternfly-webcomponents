@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="../../dist/css/patternfly.css">
     <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
     <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+    <style>
+        .tooltip-wrapper-div {
+            margin-top: 40px;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -13,25 +19,39 @@
     </div>
     <hr>
 
+    <pf-tooltip id="tooltip-left-nv" placement="left" target-selector="#btn-left-nv">
+        Tooltip text on Left but not in view
+    </pf-tooltip>
+    <button id="btn-left-nv" type="button" class="btn btn-primary" aria-describedby="tooltip-left-nv">Left</button>
+
+    <div style="margin-left: 200px;">
     <pf-tooltip id="tooltip-left" placement="left" target-selector="#btn-left">
         Tooltip text on Left
     </pf-tooltip>
     <button id="btn-left" type="button" class="btn btn-primary" aria-describedby="tooltip-left">Left</button>
+    </div>
 
+    <hr>
+    <div class="tooltip-wrapper-div">
     <pf-tooltip id="tooltip-top" placement="top" target-selector="#btn-top">
         <span>Tooltip on top</span>
     </pf-tooltip>
     <button id="btn-top" type="button" class="btn btn-secondary" aria-describedby="tooltip-top">Top</button>
+    </div>
 
+    <div class="tooltip-wrapper-div">
     <pf-tooltip id="tooltip-bottom" placement="bottom" target-selector="#btn-bottom">
         <span>Tooltip on bottom</span>
     </pf-tooltip>
     <button id="btn-bottom" type="button" class="btn btn-warning" aria-describedby="tooltip-bottom">Bottom</button>
+    </div>
 
+    <div class="tooltip-wrapper-div">
     <pf-tooltip id="tooltip-right" placement="right" target-selector="#btn-right">
         <span>Tooltip on right</span>
     </pf-tooltip>
     <button id="btn-right" type="button" class="btn btn-danger" aria-describedby="tooltip-right">Right</button>
+    </div>
 
     <br/>
     <br/>

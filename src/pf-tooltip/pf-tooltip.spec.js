@@ -23,7 +23,7 @@ describe ("PatternFly Tooltip Component Tests", function () {
     //https://github.com/karma-runner/karma-phantomjs-launcher/issues/19
     customElement.open();
 
-    customElement.addEventListener('tooltipOpened', function () {
+    customElement.addEventListener('pf-tooltip.opened', function () {
       let tooltip = document.querySelector('.tooltip');
       let tooltipText = tooltip.innerText.replace(/(\r\n|\n|\r)/gm,""); //remove any newlines rendered in Phantom
 
@@ -32,7 +32,7 @@ describe ("PatternFly Tooltip Component Tests", function () {
       customElement.close();
     }, false);
 
-    customElement.addEventListener('tooltipClosed', function () {
+    customElement.addEventListener('pf-tooltip.closed', function () {
       expect(document.querySelector('.tooltip')).toBe(null);
       done();
     }, false);

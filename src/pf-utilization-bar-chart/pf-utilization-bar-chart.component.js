@@ -115,8 +115,8 @@ export class PfUtilizationBarChart extends HTMLElement {
       }
 
       if (thresholdClass !== this._lastThresholdClass) {
-        let event = new CustomEvent('thresholdSet', {'id':this.getAttribute('id'), 'threshold':thresholdClass});
-        event.initCustomEvent('thresholdSet', true, true, {'id':this.getAttribute('id'), 'threshold':thresholdClass});
+        let event = new CustomEvent('pf-utilization-bar-chart.thresholdSet', {'id':this.getAttribute('id'), 'threshold':thresholdClass});
+        event.initCustomEvent('pf-utilization-bar-chart.thresholdSet', true, true, {'id':this.getAttribute('id'), 'threshold':thresholdClass});
         usedBar.classList.remove(this._lastThresholdClass);
         usedBar.classList.add(thresholdClass);
         this._lastThresholdClass = thresholdClass;

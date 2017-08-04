@@ -72,11 +72,11 @@
 
   var demoEvents = document.querySelector('#demoEvents');
 
-  this.addEventListener("RowSelectionChanged", function (e) {
+  this.addEventListener("pf-list-view.RowSelectionChanged", function (e) {
     demoEvents.innerHTML = e.detail.value + "\n" + demoEvents.innerHTML;
   });
 
-  this.addEventListener("ListViewItemActionInitiated", function (e) {
+  this.addEventListener("pf-list-view.ItemActionInitiated", function (e) {
     demoEvents.innerHTML = "Action '" + e.detail.actionType + "' initiated for item: '" + e.detail.itemId + "'\n" + demoEvents.innerHTML;
   });
 </script>

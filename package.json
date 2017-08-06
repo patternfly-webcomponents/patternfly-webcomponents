@@ -1,6 +1,6 @@
 {
   "name": "patternfly-webcomponents",
-  "version": "0.0.9",
+  "version": "0.0.0-semantically-released",
   "description": "PatternFly Web Components",
   "main": "dist/js/index.js",
   "author": "Red Hat",
@@ -33,9 +33,10 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2",
     "patternfly-eng-publish": "0.0.3",
-    "patternfly-eng-release": "3.21.0",
+    "patternfly-eng-release": "^3.26.35",
     "promise-polyfill": "^6.0.2",
     "run-sequence": "^1.2.2",
+    "semantic-release": "^6.3.6",
     "webpack": "^3.3.0",
     "webpack-bundle-analyzer": "^2.8.3",
     "webpack-stream": "~3.2.0"
@@ -46,12 +47,16 @@
     "font-awesome": "^4.7.0",
     "patternfly": "^3.21.0"
   },
+  "release": {
+    "branch": "master-dist",
+    "debug": false
+  },
   "scripts": {
-    "publish": "publish-ghpages.sh public",
     "publish-travis": "publish-ghpages.sh -t public",
     "test": "gulp test",
     "start": "gulp build; gulp serve & open http://localhost:3000/index.html;",
-    "build": "gulp build"
+    "build": "gulp build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",

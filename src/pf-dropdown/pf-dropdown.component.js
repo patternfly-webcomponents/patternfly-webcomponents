@@ -26,7 +26,7 @@ export class PfDropdown extends HTMLElement {
    * Called every time the element is inserted into the DOM
    */
   connectedCallback() {
-    this._button = this.querySelector('.btn');
+    this._button = this.querySelector('.dropdown-toggle');
     this._disabled = /\bdisabled/.test(this._button.className);
     let menu = this.querySelector('.dropdown-menu');
 
@@ -109,7 +109,7 @@ export class PfDropdown extends HTMLElement {
    *
    */
   _showDropdown() {
-    let button = this.querySelector('.btn');
+    let button = this.querySelector('.dropdown-toggle');
     if (/\bdisabled/.test(button.className)) {
       return;
     }
@@ -131,7 +131,7 @@ export class PfDropdown extends HTMLElement {
    *
    */
   _clearDropdown() {
-    let button = this.querySelector('.btn');
+    let button = this.querySelector('.dropdown-toggle');
     let backdrop = this.querySelector('.dropdown-backdrop');
     if (backdrop) {
       backdrop.parentNode.removeChild(backdrop);

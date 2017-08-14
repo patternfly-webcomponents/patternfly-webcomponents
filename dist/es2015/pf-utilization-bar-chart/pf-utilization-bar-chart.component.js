@@ -152,8 +152,8 @@ var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLEleme
         }
 
         if (thresholdClass !== this._lastThresholdClass) {
-          var event = new CustomEvent('thresholdSet', { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
-          event.initCustomEvent('thresholdSet', true, true, { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
+          var event = new CustomEvent('pf-utilization-bar-chart.thresholdSet', { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
+          event.initCustomEvent('pf-utilization-bar-chart.thresholdSet', true, true, { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
           usedBar.classList.remove(this._lastThresholdClass);
           usedBar.classList.add(thresholdClass);
           this._lastThresholdClass = thresholdClass;

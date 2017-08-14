@@ -809,7 +809,7 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
       }.bind(this));
 
       //dispatch the custom 'tabChanged' event for framework listeners
-      this.dispatchEvent(new CustomEvent('tabChanged', { detail: activeTabTitle }));
+      this.dispatchEvent(new CustomEvent('pf-tabs.tabChanged', { detail: activeTabTitle }));
     }
   }]);
 
@@ -1108,7 +1108,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
       this.init();
 
       //handleContentChanged
-      this.element.addEventListener('handleContentChanged', function (e) {
+      this.element.addEventListener('pf-tooltip.handleContentChanged', function (e) {
         _this3.init();
       }, false);
     }
@@ -1164,7 +1164,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     key: 'setInnerHtml',
     value: function setInnerHtml(html) {
       this._innerHtml = html;
-      this.element.dispatchEvent(new CustomEvent('handleContentChanged', {}));
+      this.element.dispatchEvent(new CustomEvent('pf-tooltip.handleContentChanged', {}));
     }
 
     /**
@@ -1190,7 +1190,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
           _this4._styleTooltip();
           _this4._showTooltip();
           //notify frameworks
-          _this4.dispatchEvent(new CustomEvent('tooltipOpened', {}));
+          _this4.dispatchEvent(new CustomEvent('pf-tooltip.opened', {}));
         }
       }, 20);
     }
@@ -1211,7 +1211,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
           setTimeout(function () {
             _this5._removeTooltip();
             //notify frameworks
-            _this5.dispatchEvent(new CustomEvent('tooltipClosed', {}));
+            _this5.dispatchEvent(new CustomEvent('pf-tooltip.closed', {}));
           }, _this5._duration);
         }
       }, this._delay + this._duration);
@@ -1625,8 +1625,8 @@ var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLEleme
         }
 
         if (thresholdClass !== this._lastThresholdClass) {
-          var event = new CustomEvent('thresholdSet', { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
-          event.initCustomEvent('thresholdSet', true, true, { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
+          var event = new CustomEvent('pf-utilization-bar-chart.thresholdSet', { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
+          event.initCustomEvent('pf-utilization-bar-chart.thresholdSet', true, true, { 'id': this.getAttribute('id'), 'threshold': thresholdClass });
           usedBar.classList.remove(this._lastThresholdClass);
           usedBar.classList.add(thresholdClass);
           this._lastThresholdClass = thresholdClass;
@@ -2682,7 +2682,7 @@ var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
       this.disableClick();
 
       this.initialized = true;
-      this.dispatchEvent(new CustomEvent('initialized', {}));
+      this.dispatchEvent(new CustomEvent('pf-dropdown.initialized', {}));
     }
 
     /**
@@ -2735,7 +2735,7 @@ var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
           if (items[i].parentNode.classList.contains('disabled')) {
             return false;
           }
-          self.dispatchEvent(new CustomEvent('itemClicked', {}));
+          self.dispatchEvent(new CustomEvent('pf-dropdown.itemClicked', {}));
           return true;
         };
       };
@@ -2759,11 +2759,11 @@ var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
       var active = /\bopen/.test(button.parentNode.className);
       if (!active) {
         this._detectTouch();
-        this.dispatchEvent(new CustomEvent('show.bs.dropdown', {}));
+        this.dispatchEvent(new CustomEvent('pf-dropdown.show', {}));
         button.focus();
         button.setAttribute('aria-expanded', 'true');
         button.parentNode.classList.toggle('open');
-        this.dispatchEvent(new CustomEvent('shown.bs.dropdown', {}));
+        this.dispatchEvent(new CustomEvent('pf-dropdown.shown', {}));
       }
       if (active) {
         this._clearDropdown();
@@ -2782,10 +2782,10 @@ var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
       if (backdrop) {
         backdrop.parentNode.removeChild(backdrop);
       }
-      this.dispatchEvent(new CustomEvent('hide.bs.dropdown', {}));
+      this.dispatchEvent(new CustomEvent('pf-dropdown.hide', {}));
       button.setAttribute('aria-expanded', 'false');
       button.parentNode.classList.remove('open');
-      this.dispatchEvent(new CustomEvent('hidden.bs.dropdown', {}));
+      this.dispatchEvent(new CustomEvent('pf-dropdown.hidden', {}));
     }
 
     /**

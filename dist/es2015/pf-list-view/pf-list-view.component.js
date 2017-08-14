@@ -56,7 +56,7 @@ var PfListView = exports.PfListView = function (_HTMLElement) {
     // ie. repeates the user defined template and replaces $(name) with actual values
     var _this = _possibleConstructorReturn(this, (PfListView.__proto__ || Object.getPrototypeOf(PfListView)).call(this));
 
-    _this.addEventListener("RepeaterContentChanged", function (e) {
+    _this.addEventListener("pf-template-repeater.ContentChanged", function (e) {
       this.handleRepeaterContentChanged();
     });
     return _this;
@@ -196,8 +196,8 @@ var PfListView = exports.PfListView = function (_HTMLElement) {
       var actionType = e.currentTarget.actionType;
       var itemId = e.currentTarget.itemId;
 
-      var event = new CustomEvent('ListViewItemActionInitiated', { "actionType": actionType, "itemId": itemId });
-      event.initCustomEvent('ListViewItemActionInitiated', true, true, { "actionType": actionType, "itemId": itemId });
+      var event = new CustomEvent('pf-list-view.ItemActionInitiated', { "actionType": actionType, "itemId": itemId });
+      event.initCustomEvent('pf-list-view.ItemActionInitiated', true, true, { "actionType": actionType, "itemId": itemId });
       this.dispatchEvent(event);
     }
   }, {
@@ -226,8 +226,8 @@ var PfListView = exports.PfListView = function (_HTMLElement) {
           var itemId = checkbox.parentNode.parentNode.lastElementChild.innerText.replace(/\s+/g, ' ').trim();
           checkbox.value = itemId;
           // there can only be one
-          checkbox.removeEventListener("change", handleCheckboxChange);
-          checkbox.addEventListener("change", handleCheckboxChange);
+          checkbox.removeEventListener("pf-list-view.change", handleCheckboxChange);
+          checkbox.addEventListener("pf-list-view.change", handleCheckboxChange);
         }
       }
 
@@ -238,8 +238,8 @@ var PfListView = exports.PfListView = function (_HTMLElement) {
         checkbox.parentNode.parentNode.parentNode.classList.toggle('active');
 
         var msg = (checkbox.checked ? "Selected: " : "Unselected: ") + checkbox.value;
-        var event = new CustomEvent('RowSelectionChanged', { "value": msg });
-        event.initCustomEvent('RowSelectionChanged', true, true, { "value": msg });
+        var event = new CustomEvent('pf-list-view.RowSelectionChanged', { "value": msg });
+        event.initCustomEvent('pf-list-view.RowSelectionChanged', true, true, { "value": msg });
         this.dispatchEvent(event);
       }
     }

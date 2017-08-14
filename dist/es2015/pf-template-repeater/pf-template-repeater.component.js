@@ -51,8 +51,8 @@ var PFTemplateRepeater = function (_HTMLElement) {
       }
 
       // dispatch a 'repeater content changed' event
-      var event = new CustomEvent('RepeaterContentChanged', {});
-      event.initCustomEvent('RepeaterContentChanged', true, true, {});
+      var event = new CustomEvent('pf-template-repeater.ContentChanged', {});
+      event.initCustomEvent('pf-template-repeater.ContentChanged', true, true, {});
       this.dispatchEvent(event);
 
       return this.innerHTML;

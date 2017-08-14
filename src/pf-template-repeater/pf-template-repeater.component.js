@@ -28,8 +28,8 @@ class PFTemplateRepeater extends HTMLElement {
     }
 
     // dispatch a 'repeater content changed' event
-    let event = new CustomEvent('RepeaterContentChanged', {});
-    event.initCustomEvent('RepeaterContentChanged', true, true, {});
+    let event = new CustomEvent('pf-template-repeater.ContentChanged', {});
+    event.initCustomEvent('pf-template-repeater.ContentChanged', true, true, {});
     this.dispatchEvent(event);
 
     return this.innerHTML;

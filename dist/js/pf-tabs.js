@@ -448,7 +448,7 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
       }.bind(this));
 
       //dispatch the custom 'tabChanged' event for framework listeners
-      this.dispatchEvent(new CustomEvent('tabChanged', { detail: activeTabTitle }));
+      this.dispatchEvent(new CustomEvent('pf-tabs.tabChanged', { detail: activeTabTitle }));
     }
   }]);
 

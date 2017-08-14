@@ -31,7 +31,7 @@ export class PfListView extends HTMLElement {
     super();
     // Listen for when the child template-repeater updates it's content
     // ie. repeates the user defined template and replaces $(name) with actual values
-    this.addEventListener("RepeaterContentChanged", function (e) {
+    this.addEventListener("pf-template-repeater.ContentChanged", function (e) {
       this.handleRepeaterContentChanged();
     });
   }
@@ -153,8 +153,8 @@ export class PfListView extends HTMLElement {
     let actionType = e.currentTarget.actionType;
     let itemId = e.currentTarget.itemId;
 
-    let event = new CustomEvent('ListViewItemActionInitiated', {"actionType": actionType, "itemId": itemId});
-    event.initCustomEvent('ListViewItemActionInitiated', true, true, {"actionType": actionType, "itemId": itemId});
+    let event = new CustomEvent('pf-list-view.ItemActionInitiated', {"actionType": actionType, "itemId": itemId});
+    event.initCustomEvent('pf-list-view.ItemActionInitiated', true, true, {"actionType": actionType, "itemId": itemId});
     this.dispatchEvent(event);
   }
 
@@ -181,8 +181,8 @@ export class PfListView extends HTMLElement {
         let itemId = checkbox.parentNode.parentNode.lastElementChild.innerText.replace(/\s+/g, ' ').trim();
         checkbox.value = itemId;
         // there can only be one
-        checkbox.removeEventListener("change", handleCheckboxChange);
-        checkbox.addEventListener("change", handleCheckboxChange);
+        checkbox.removeEventListener("pf-list-view.change", handleCheckboxChange);
+        checkbox.addEventListener("pf-list-view.change", handleCheckboxChange);
       }
     }
 
@@ -193,8 +193,8 @@ export class PfListView extends HTMLElement {
       checkbox.parentNode.parentNode.parentNode.classList.toggle('active');
 
       let msg = (checkbox.checked ? "Selected: " : "Unselected: ") + checkbox.value;
-      let event = new CustomEvent('RowSelectionChanged', {"value": msg});
-      event.initCustomEvent('RowSelectionChanged', true, true, {"value": msg});
+      let event = new CustomEvent('pf-list-view.RowSelectionChanged', {"value": msg});
+      event.initCustomEvent('pf-list-view.RowSelectionChanged', true, true, {"value": msg});
       this.dispatchEvent(event);
     }
   }

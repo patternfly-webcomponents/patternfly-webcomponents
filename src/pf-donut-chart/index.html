@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>pf-donut-chart example</title>
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+</head>
+
+<body>
+  <h3> Utilization chart with custom tooltip </h3>
+  <div id="chart"></div>
+  <h3> Relationship of a Set of Values to a Whole </h3>
+  <div id="chart1"></div>
+  <div id="chart2"></div>
+  <div id="chart3"></div>
+  <h3> Small Donut </h3>
+  <div id="chart4"></div>
+  <div style="text-align: center; width: 220px; height: 100px;">CSV Data</div>
+
+
+
+  <pf-donut-chart id="donut" title="Utilization Chart" target-selector="#chart" columns="[
+                                                                                  ['Used', 60],
+                                                                                  ['Available', 40]
+                                                                                ]" data="{
+                                                                                  'groups': [
+                                                                                      ['used', 'available']
+                                                                                  ],
+                                                                                  'order': null
+                                                                                }" width="200" height="171"></pf-donut-chart>
+
+  <pf-donut-chart id="donut1" title=" Animals donut1" target-selector="#chart1" rows="[
+                                                                        ['Dogs', 'Cats', 'Fish', 'Hamsters'],
+                                                                          [2, 2, 3, 1]
+                                                                          ]" width="200" height="171"></pf-donut-chart>
+
+  <pf-donut-chart id="donut2" target-selector="#chart2" legend="{
+                                              'show': true,
+                                              'position': 'right'
+                                            }" colors="{
+                                              'data1': '#0088ce',
+                                              'data2': '#3f9c35',
+                                              'data3': '#ec7a08' 
+                                            }" json="[
+                                              {'name': 'www.site1.com', 'data1': 200, 'data2': 200, 'data3': 400},
+                                              {'name': 'www.site2.com', 'data1': 100, 'data2': 300, 'data3': 400}
+                                            ]" data="{ 
+                                              'keys': {
+                                              'value': ['data1', 'data2', 'data3'] 
+                                              }
+                                            }" title="donut2" width="200" height="171"></pf-donut-chart>
+  <pf-donut-chart id="donut3" title="donut3" target-selector="#chart3" url="input-url.json"></pf-donut-chart>
+  <pf-donut-chart id="donut4" target-selector="#chart4" url="input-url.csv"></pf-donut-chart>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+  <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.15/c3.min.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
+  <script>
+    let donut = document.querySelector('#donut');
+    let donut1 = document.querySelector('#donut1');
+    let donut2 = document.querySelector('#donut2');
+    let donut3 = document.querySelector('#donut3');
+    let donut4 = document.querySelector('#donut4');
+
+    function tooltipContent(d, defaultTitleFormat, defaultValueFormat, color) {
+      return '<table class="c3-tooltip">' +
+        '  <tr>' +
+        '    <td><span style="background-color:' + color(d[0].id) + '"></span>' + '<strong>' + d[0].value + '</strong> ' + d[0].name + '</td>' +
+        '    <td>' + (Math.round(d[0].ratio * 1000) / 10) + '%</td>' +
+        '  </tr>' +
+        '</table>';
+    };
+
+    // #donut Tooltip Example
+    donut.tooltip = {
+      show: true,
+      contents: function (d) {
+        return '<span class="donut-tooltip-pf" style="white-space: nowrap;">' +
+          (Math.round(d[0].ratio * 1000) / 10) + '%' + ' MHz ' + d[0].name +
+          '</span>';
+      }
+    };
+
+    // #donut1
+    donut1.colors = {
+      Cats: '#0088ce',
+      Hamsters: '#3f9c35',
+      Fish: '#ec7a08',
+      Dogs: '#cc0000'
+    };
+
+    donut1.tooltip = {
+      show: true,
+      contents: tooltipContent
+    };
+
+    // #donut2
+    donut2.tooltip = {
+      show: true,
+      contents: tooltipContent
+    };
+
+    // #donut3
+    donut3.legend = {
+      show: true
+    };
+
+    donut3.tooltip = {
+      show: true
+    };
+
+    donut3.colors = {
+      data1: '#0088ce',
+      data2: '#3f9c35',
+      data3: '#ec7a08',
+      data4: '#123455',
+      data6: '#abcdef'
+    };
+
+    donut3.onclick(function () {
+      alert('clicked on donut3');
+    });
+
+    setTimeout(function () {
+      donut3.load({
+        columns: [
+          ['data1', 300, 100, 250, 150, 300, 150, 500],
+          ['data2', 100, 200, 150, 50, 100, 250]
+        ],
+        colors: {
+          data1: '#123455',
+          data2: '#abcdef'
+        }
+      });
+      donut3.unload({
+        ids: ['data3', 'data4', 'data6']
+      });
+    }, 5000);
+
+    // #donut4
+    donut4.title = "donut4";
+    donut4.data = {
+      groups: [
+        ['data1', 'data3']
+      ],
+    };
+    donut4.width = 250;
+    donut4.height = 115;
+    donut4.legend = {
+      show: true,
+      position: 'right'
+    };
+    donut4.tooltip = {
+      show: true
+    };
+    donut4.colors = {
+      data1: '#ec7a08',
+      data2: '#123455',
+      data3: '#abcdef'
+    };
+  </script>
+</body>
+
+</html>

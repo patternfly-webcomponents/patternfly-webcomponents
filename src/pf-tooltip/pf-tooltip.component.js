@@ -55,7 +55,7 @@ export class PfTooltip extends HTMLElement {
     this.init();
 
     //handleContentChanged
-    this.element.addEventListener('handleContentChanged', (e) => {
+    this.element.addEventListener('pf-tooltip.handleContentChanged', (e) => {
       this.init();
     }, false);
   }
@@ -94,7 +94,7 @@ export class PfTooltip extends HTMLElement {
    */
   setInnerHtml(html) {
     this._innerHtml = html;
-    this.element.dispatchEvent(new CustomEvent('handleContentChanged', {}));
+    this.element.dispatchEvent(new CustomEvent('pf-tooltip.handleContentChanged', {}));
   }
 
   /**
@@ -236,7 +236,7 @@ export class PfTooltip extends HTMLElement {
         this._styleTooltip();
         this._showTooltip();
         //notify frameworks
-        this.dispatchEvent(new CustomEvent('tooltipOpened', {}));
+        this.dispatchEvent(new CustomEvent('pf-tooltip.opened', {}));
       }
     }, 20 );
   }
@@ -252,7 +252,7 @@ export class PfTooltip extends HTMLElement {
         setTimeout(() => {
           this._removeTooltip();
           //notify frameworks
-          this.dispatchEvent(new CustomEvent('tooltipClosed', {}));
+          this.dispatchEvent(new CustomEvent('pf-tooltip.closed', {}));
         }, this._duration);
       }
     }, this._delay + this._duration);

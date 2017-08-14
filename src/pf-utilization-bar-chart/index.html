@@ -56,7 +56,7 @@
     }, 500);
 
     // Listen for the threshold changed event.
-    document.addEventListener('thresholdSet', function (e) {
+    document.addEventListener('pf-utilization-bar-chart.thresholdSet', function (e) {
       var id = e.detail.id;
       if(id === 'thresholdExample1') {
           var threshold = e.detail.threshold;

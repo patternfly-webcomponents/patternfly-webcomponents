@@ -234,6 +234,7 @@ export class PfTooltip extends HTMLElement {
       if (this.tooltip === null) {
         this._createTooltip();
         this._styleTooltip();
+        this._checkPlacement();
         this._showTooltip();
         //notify frameworks
         this.dispatchEvent(new CustomEvent('pf-tooltip.opened', {}));
@@ -253,6 +254,8 @@ export class PfTooltip extends HTMLElement {
           this._removeTooltip();
           //notify frameworks
           this.dispatchEvent(new CustomEvent('pf-tooltip.closed', {}));
+          // reset position after tooltip is closed
+          this._placement = this.getAttribute('placement') ? this.getAttribute('placement') : 'right';
         }, this._duration);
       }
     }, this._delay + this._duration);
@@ -288,6 +291,24 @@ export class PfTooltip extends HTMLElement {
   }
 
   /**
+   * update the placement of tooltip
+   */
+  _updatePlacement() {
+    switch (this._placement) {
+      case 'top':
+        return 'bottom';
+      case 'bottom':
+        return 'top';
+      case 'left':
+        return 'right';
+      case 'right':
+        return 'left';
+      default:
+        return this._placement;
+    }
+  }
+
+  /**
    * Styles the tooltip based on placement attribute
    * @private
    */
@@ -318,6 +339,18 @@ export class PfTooltip extends HTMLElement {
     } else if ( /right/.test(this._placement) ) { //RIGHT
       this.tooltip.style.top = `${rect.top + scroll.y - tooltipDimensions.h / 2 + linkDimensions.h / 2}px`;
       this.tooltip.style.left = `${rect.left + scroll.x + linkDimensions.w}px`;
+    }
+
+    this.tooltip.className.indexOf(this._placement) === -1 && (this.tooltip.className = this.tooltip.className.replace(/\b(top|bottom|left|right)+/, this._placement));
+  }
+
+  /**
+   * check the placement of tooltip
+   */
+  _checkPlacement() {
+    if (!pfUtil.isElementInViewport(this.tooltip)) {
+      this._placement = this._updatePlacement();
+      this._styleTooltip();
     }
   }
 

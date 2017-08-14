@@ -1240,6 +1240,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
         if (_this4.tooltip === null) {
           _this4._createTooltip();
           _this4._styleTooltip();
+          _this4._checkPlacement();
           _this4._showTooltip();
           //notify frameworks
           _this4.dispatchEvent(new CustomEvent('pf-tooltip.opened', {}));
@@ -1264,6 +1265,8 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
             _this5._removeTooltip();
             //notify frameworks
             _this5.dispatchEvent(new CustomEvent('pf-tooltip.closed', {}));
+            // reset position after tooltip is closed
+            _this5._placement = _this5.getAttribute('placement') ? _this5.getAttribute('placement') : 'right';
           }, _this5._duration);
         }
       }, this._delay + this._duration);
@@ -1305,6 +1308,27 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
     }
 
     /**
+     * update the placement of tooltip
+     */
+
+  }, {
+    key: '_updatePlacement',
+    value: function _updatePlacement() {
+      switch (this._placement) {
+        case 'top':
+          return 'bottom';
+        case 'bottom':
+          return 'top';
+        case 'left':
+          return 'right';
+        case 'right':
+          return 'left';
+        default:
+          return this._placement;
+      }
+    }
+
+    /**
      * Styles the tooltip based on placement attribute
      * @private
      */
@@ -1339,6 +1363,21 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
         //RIGHT
         this.tooltip.style.top = rect.top + scroll.y - tooltipDimensions.h / 2 + linkDimensions.h / 2 + 'px';
         this.tooltip.style.left = rect.left + scroll.x + linkDimensions.w + 'px';
+      }
+
+      this.tooltip.className.indexOf(this._placement) === -1 && (this.tooltip.className = this.tooltip.className.replace(/\b(top|bottom|left|right)+/, this._placement));
+    }
+
+    /**
+     * check the placement of tooltip
+     */
+
+  }, {
+    key: '_checkPlacement',
+    value: function _checkPlacement() {
+      if (!_pfUtils.pfUtil.isElementInViewport(this.tooltip)) {
+        this._placement = this._updatePlacement();
+        this._styleTooltip();
       }
     }
 

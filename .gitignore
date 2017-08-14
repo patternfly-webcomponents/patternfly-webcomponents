@@ -1,5 +1,6 @@
 # Ignore Project files
 *.idea
+.vscode
 
 # Ignore local nodejs packages
 node_modules/

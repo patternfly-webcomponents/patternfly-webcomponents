@@ -1,3 +1,4 @@
+export { default as PfAccordion } from './pf-accordion/index'
 export { default as PfAlert } from './pf-alert/index'
 export { default as PfDropdown } from './pf-dropdown/index'
 export { default as PfModal } from './pf-modal/index'

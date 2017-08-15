@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+  <title>pf-accordion example</title>
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Accordion</h1>
+    </div>
+    <pf-accordion id="myAccordion">
+      <pf-accordion-panel>
+        <pf-accordion-heading id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion" href="#collapseOne" aria-controls="collapseOne">
+              Collapsible Group Item #1
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseOne" open aria-labelledby="headingOne">
+          <pf-accordion-body>
+            Collapse CONTENT 1
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+      <pf-accordion-panel class="panel panel-primary">
+        <pf-accordion-heading id="headingTwo">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion" href="#collapseTwo" aria-controls="collapseTwo">
+              Collapsible Group Item #2
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseTwo" aria-labelledby="headingTwo">
+          <pf-accordion-body>
+            Collapse CONTENT 2
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+      <pf-accordion-panel class="panel-warning">
+        <pf-accordion-heading id="headingThree">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion" href="#collapseThree" aria-controls="collapseThree">
+              Collapsible Group Item #3
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseThree" aria-labelledby="headingThree">
+          <pf-accordion-body>
+            Collapse CONTENT 3
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+      <pf-accordion-panel class="panel panel-success">
+        <pf-accordion-heading id="headingFour">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion" href="#collapseFour" aria-controls="collapseFour">
+              Collapsible Group Item #4
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseFour" aria-labelledby="headingFour">
+          <pf-accordion-body>
+            Collapse CONTENT 4
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+      <pf-accordion-panel class="panel panel-danger">
+        <pf-accordion-heading id="headingFive">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion" href="#collapseFive" aria-controls="collapseFive">
+              Collapsible Group Item #5
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseFive" aria-labelledby="headingFive">
+          <pf-accordion-body>
+            Collapse CONTENT 5
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+    </pf-accordion>
+
+    <h2>Fixed Height</h2>
+    <pf-accordion fixedheight style="height: 200px" id="myAccordion2">
+      <pf-accordion-panel>
+        <pf-accordion-heading id="headingOne2">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion2" href="#collapseOne2" aria-controls="collapseOne2">
+              Collapsible Group Item #1
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseOne2" open aria-labelledby="headingOne2">
+          <pf-accordion-body>
+            <p>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              ulpa qui officia deserunt mollit anim id est laborum."
+            </p>
+            <p>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              ulpa qui officia deserunt mollit anim id est laborum."
+            </p>
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+      <pf-accordion-panel class="panel panel-primary">
+        <pf-accordion-heading id="headingTwo2">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#myAccordion2" href="#collapseTwo2" aria-controls="collapseTwo2">
+              Collapsible Group Item #2
+            </a>
+          </h4>
+        </pf-accordion-heading>
+        <pf-accordion-template id="collapseTwo2" aria-labelledby="headingTwo2">
+          <pf-accordion-body>
+            <p>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              ulpa qui officia deserunt mollit anim id est laborum."
+            </p>
+            <p>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              ulpa qui officia deserunt mollit anim id est laborum."
+            </p>
+          </pf-accordion-body>
+        </pf-accordion-template>
+      </pf-accordion-panel>
+    </pf-accordion>
+  </div>
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+  <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
+</body>
+</html>

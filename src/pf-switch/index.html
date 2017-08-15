@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <title>pf-switch example</title>
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+</head>
+<body>
+<div class="container">
+  <div class="page-header">
+    <h1>Switches</h1>
+  </div>
+  <p>
+    <pf-switch id="test-switch">
+      <input id="test-switch-state" type="checkbox"/>
+    </pf-switch>
+    <span id="test-switch-state-show">
+        OFF
+      </span>
+  </p>
+  <p>
+    <pf-switch animated state="closed" id="test-switch-2">
+      <input id="test-switch-2-state" type="checkbox"/>
+    </pf-switch>
+  </p>
+  <h2>Switches with custom labels</h2>
+  <hr>
+  <p>
+    <pf-switch animated state="closed" id="test-switch-3" open-text="&#x274c;" closed-text="&#x2714;">
+      <input id="test-switch-3-state" type="checkbox"/>
+    </pf-switch>
+  </p>
+  <p>
+    <pf-switch animated closed-text="R" open-text="STOPPED"></pf-switch>
+  </p>
+  <p>
+    <pf-switch open-text="ସ୍ଥିର" closed-text="ଗତିଶୀଳ"></pf-switch>
+  </p>
+  <p>
+    <pf-switch label-text="SWITCH"></pf-switch>
+  </p>
+  </p>
+  <h2>Appearance properties</h2>
+  <hr>
+  <p>
+    <label>Readonly: </label>
+    <pf-switch readonly></pf-switch>
+  </p>
+  <p>
+    <label>Disabled: </label>
+    <pf-switch disabled></pf-switch>
+  </p>
+  <p>
+    <label>Animated: </label>
+    <pf-switch animated></pf-switch>
+  </p>
+
+  <h2>Test</h2>
+  <hr>
+  <div>
+    <p>
+      <pf-switch id="test"></pf-switch>
+    </p>
+    <div class="controls form-inline">
+      <div class="form-group">
+      <div class="checkbox-inline">
+        <label>
+          <input id="disabled" type="checkbox" value="">
+          Disabled
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label>
+          <input id="readonly" type="checkbox" value="">
+          Read only
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label>
+          <input id="indeterminate" type="checkbox" value="">
+          Indeterminate
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label>
+          <input id="animated" type="checkbox" value="">
+          Animated
+        </label>
+      </div>
+      </div>
+      <div class="form-inline">
+        <div class="form-group">
+            <label>Close Text</label>
+            <input class="form-control" type="text" id="close-text" value="ON" />
+        </div>
+        <div class="form-group">
+          <label>Open Text</label>
+          <input class="form-control" type="text" id="open-text" value="OFF" />
+        </div>
+        <div class="form-group">
+          <label>Label Text</label>
+          <input class="form-control" type="text" id="label-text" />
+        </div>
+      </div>
+    </div>
+    </p>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+  <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+  <script src="../../dist/js/patternfly.js"></script>
+  <script>
+    (function () {
+      var changeElem = document.getElementById('test-switch-state-show');
+      var switchz = document.getElementById('test-switch');
+      switchz.addEventListener('pf-switch.change', function (e) {
+        changeElem.innerText = switchz.closed ? 'ON' : 'OFF';
+      });
+
+      var test = document.getElementById('test');
+      document.getElementById('disabled').addEventListener('change', function (e) {
+        test.disabled = e.target.checked;
+      });
+      document.getElementById('readonly').addEventListener('change', function (e) {
+        test.readonly = e.target.checked;
+      });
+      document.getElementById('indeterminate').addEventListener('change', function (e) {
+        if (e.target.checked) {
+          test.state = 'indeterminate';
+        } else {
+          test.state = 'closed';
+        }
+      });
+      document.getElementById('animated').addEventListener('change', function (e) {
+        test.animated = e.target.checked;
+      });
+      document.getElementById('close-text').addEventListener('change', function (e) {
+        test.closedText = e.target.value;
+      });
+      document.getElementById('open-text').addEventListener('change', function (e) {
+        test.openText = e.target.value;
+      });
+      document.getElementById('label-text').addEventListener('change', function (e) {
+        test.labelText = e.target.value;
+      });
+    })();
+  </script>
+</body>
+</html>

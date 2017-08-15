@@ -144,5 +144,6 @@ gulp.task('serve', function () {
   gulp.watch('app/*.html', ['build']);
   gulp.watch('src/**/*.js', ['build']);
   gulp.watch('src/**/*.html', ['build']);
+  gulp.watch('src/**/*.scss', ['build']);
   gulp.watch("dist/**/*").on('change', browserSync.reload);
 });

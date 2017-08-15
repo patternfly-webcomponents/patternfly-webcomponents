@@ -1,0 +1,36 @@
+pf-accordion,
+pf-accordion-panel,
+pf-accordion-heading,
+pf-accordion-template,
+pf-accordion-body {
+  display: block;
+  .hidden {
+    display: none;
+  }
+}
+
+pf-accordion-template {
+  position: relative;
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+
+  &.collapsing {
+    height: 0;
+  }
+
+  &.collapsing,
+  &.collapse {
+    // override
+    display: block;
+    height: 0;
+  }
+
+  &.collapse.in {
+    height: unset;
+  }
+}
+
+
+

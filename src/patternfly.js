@@ -38,7 +38,10 @@ require('pf-hello.component.js');
 require('pf-dropdown.component.js');
 
 /** PF Touchspin **/
-require('pf-touchspin.component.js')
+require('pf-touchspin.component.js');
 
 /** PF Popover **/
 require('pf-popover.component.js');
+
+/** PF Accordion Component **/
+require('pf-accordion.component.js');

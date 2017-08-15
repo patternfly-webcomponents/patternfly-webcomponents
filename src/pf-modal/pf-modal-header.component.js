@@ -33,7 +33,7 @@ export class PfModalHeader extends HTMLElement {
     }
   }
 
-    /*
+  /*
    * Append cancel button
    *
    * @private

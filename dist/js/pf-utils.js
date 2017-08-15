@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 47);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -180,6 +180,31 @@ var PfUtil = function () {
 
       el.addEventListener(type, one);
     }
+
+    // the following 2 methods were taken from bootstrap.native - Native Javascript for Bootstrap 4
+    // https://github.com/thednp/bootstrap.native
+    // Copyright (c) 2015 dnp_theme
+
+  }, {
+    key: 'getOuterHeight',
+    value: function getOuterHeight(child) {
+      var childStyle = child && window.getComputedStyle(child),
+          btp = /px/.test(childStyle.borderTopWidth) ? Math.round(childStyle.borderTopWidth.replace('px', '')) : 0,
+          btb = /px/.test(childStyle.borderBottomWidth) ? Math.round(childStyle.borderBottomWidth.replace('px', '')) : 0,
+          mtp = /px/.test(childStyle.marginTop) ? Math.round(childStyle.marginTop.replace('px', '')) : 0,
+          mbp = /px/.test(childStyle.marginBottom) ? Math.round(childStyle.marginBottom.replace('px', '')) : 0;
+      return child.clientHeight + parseInt(btp) + parseInt(btb) + parseInt(mtp) + parseInt(mbp);
+    }
+  }, {
+    key: 'getMaxHeight',
+    value: function getMaxHeight(parent) {
+      // get collapse trueHeight and border
+      var parentHeight = 0;
+      for (var k = 0, ll = parent.children.length; k < ll; k++) {
+        parentHeight += parent.children[k].offsetHeight;
+      }
+      return parentHeight;
+    }
   }]);
 
   return PfUtil;
@@ -244,7 +269,7 @@ exports.i18n = i18n;
 
 /***/ }),
 
-/***/ 47:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

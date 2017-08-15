@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 25:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -197,14 +197,14 @@ window.customElements.define("pf-template-repeater", PFTemplateRepeater);
 
 /***/ }),
 
-/***/ 44:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /** PfTemplateRepeaterComponent **/
-__webpack_require__(25);
+__webpack_require__(30);
 
 /***/ })
 

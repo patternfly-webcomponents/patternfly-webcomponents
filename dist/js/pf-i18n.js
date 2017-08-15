@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -119,7 +119,7 @@ exports.i18n = i18n;
 
 /***/ }),
 
-/***/ 27:
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -276,14 +276,14 @@ window.customElements.define('pf-i18n', PfI18n);
 
 /***/ }),
 
-/***/ 41:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /** PF i18n **/
-__webpack_require__(27);
+__webpack_require__(32);
 
 /***/ })
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -180,6 +180,31 @@ var PfUtil = function () {
 
       el.addEventListener(type, one);
     }
+
+    // the following 2 methods were taken from bootstrap.native - Native Javascript for Bootstrap 4
+    // https://github.com/thednp/bootstrap.native
+    // Copyright (c) 2015 dnp_theme
+
+  }, {
+    key: 'getOuterHeight',
+    value: function getOuterHeight(child) {
+      var childStyle = child && window.getComputedStyle(child),
+          btp = /px/.test(childStyle.borderTopWidth) ? Math.round(childStyle.borderTopWidth.replace('px', '')) : 0,
+          btb = /px/.test(childStyle.borderBottomWidth) ? Math.round(childStyle.borderBottomWidth.replace('px', '')) : 0,
+          mtp = /px/.test(childStyle.marginTop) ? Math.round(childStyle.marginTop.replace('px', '')) : 0,
+          mbp = /px/.test(childStyle.marginBottom) ? Math.round(childStyle.marginBottom.replace('px', '')) : 0;
+      return child.clientHeight + parseInt(btp) + parseInt(btb) + parseInt(mtp) + parseInt(mbp);
+    }
+  }, {
+    key: 'getMaxHeight',
+    value: function getMaxHeight(parent) {
+      // get collapse trueHeight and border
+      var parentHeight = 0;
+      for (var k = 0, ll = parent.children.length; k < ll; k++) {
+        parentHeight += parent.children[k].offsetHeight;
+      }
+      return parentHeight;
+    }
   }]);
 
   return PfUtil;
@@ -197,39 +222,13 @@ exports.pfUtil = pfUtil;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var PfTooltipTemplate = "\n<div role=\"tooltip\" class=\"tooltip\">\n    <div class=\"tooltip-arrow\"></div>\n    <div class=\"tooltip-inner\"></div>\n</div>\n";
-
-exports.default = PfTooltipTemplate;
-
-/***/ }),
-
-/***/ 34:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/** PF Tooltip Component **/
-__webpack_require__(9);
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.PfTooltip = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfTooltip = __webpack_require__(10);
+var _pfTooltip = __webpack_require__(11);
 
 var _pfTooltip2 = _interopRequireDefault(_pfTooltip);
 
@@ -691,6 +690,32 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
 }(HTMLElement);
 
 window.customElements.define('pf-tooltip', PfTooltip);
+
+/***/ }),
+
+/***/ 11:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var PfTooltipTemplate = "\n<div role=\"tooltip\" class=\"tooltip\">\n    <div class=\"tooltip-arrow\"></div>\n    <div class=\"tooltip-inner\"></div>\n</div>\n";
+
+exports.default = PfTooltipTemplate;
+
+/***/ }),
+
+/***/ 40:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/** PF Tooltip Component **/
+__webpack_require__(10);
 
 /***/ })
 

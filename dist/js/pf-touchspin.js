@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 22:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -531,14 +531,14 @@ window.customElements.define('pf-touchspin', PfTouchspin);
 
 /***/ }),
 
-/***/ 36:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /* pf-touchspin webcomponent */
-__webpack_require__(22);
+__webpack_require__(23);
 
 /***/ })
 

@@ -61,10 +61,10 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
     }
 
     /*
-    * Append cancel button
-    *
-    * @private
-    */
+     * Append cancel button
+     *
+     * @private
+     */
 
   }, {
     key: '_addModalTitle',

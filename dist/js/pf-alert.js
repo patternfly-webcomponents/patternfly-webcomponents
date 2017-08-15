@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -180,6 +180,31 @@ var PfUtil = function () {
 
       el.addEventListener(type, one);
     }
+
+    // the following 2 methods were taken from bootstrap.native - Native Javascript for Bootstrap 4
+    // https://github.com/thednp/bootstrap.native
+    // Copyright (c) 2015 dnp_theme
+
+  }, {
+    key: 'getOuterHeight',
+    value: function getOuterHeight(child) {
+      var childStyle = child && window.getComputedStyle(child),
+          btp = /px/.test(childStyle.borderTopWidth) ? Math.round(childStyle.borderTopWidth.replace('px', '')) : 0,
+          btb = /px/.test(childStyle.borderBottomWidth) ? Math.round(childStyle.borderBottomWidth.replace('px', '')) : 0,
+          mtp = /px/.test(childStyle.marginTop) ? Math.round(childStyle.marginTop.replace('px', '')) : 0,
+          mbp = /px/.test(childStyle.marginBottom) ? Math.round(childStyle.marginBottom.replace('px', '')) : 0;
+      return child.clientHeight + parseInt(btp) + parseInt(btb) + parseInt(mtp) + parseInt(mbp);
+    }
+  }, {
+    key: 'getMaxHeight',
+    value: function getMaxHeight(parent) {
+      // get collapse trueHeight and border
+      var parentHeight = 0;
+      for (var k = 0, ll = parent.children.length; k < ll; k++) {
+        parentHeight += parent.children[k].offsetHeight;
+      }
+      return parentHeight;
+    }
   }]);
 
   return PfUtil;
@@ -190,7 +215,7 @@ exports.pfUtil = pfUtil;
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -203,7 +228,7 @@ exports.PfAlert = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfAlert = __webpack_require__(3);
+var _pfAlert = __webpack_require__(4);
 
 var _pfAlert2 = _interopRequireDefault(_pfAlert);
 
@@ -426,7 +451,18 @@ window.customElements.define('pf-alert', PfAlert);
 
 /***/ }),
 
-/***/ 3:
+/***/ 38:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/** PF Alert Component **/
+__webpack_require__(3);
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -437,17 +473,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 var PfAlertTemplate = "\n<button type=\"button\" class=\"close hidden\" data-dismiss=\"alert\" aria-hidden=\"true\">\n  <span class=\"pficon pficon-close\"></span>\n</button>\n<span class=\"pficon\"></span>\n";
 exports.default = PfAlertTemplate;
-
-/***/ }),
-
-/***/ 32:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/** PF Alert Component **/
-__webpack_require__(2);
 
 /***/ })
 

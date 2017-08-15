@@ -60,23 +60,23 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 33:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /** PF Tabs Component **/
-__webpack_require__(4);
+__webpack_require__(5);
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,15 +89,15 @@ exports.PfTabs = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfTab = __webpack_require__(5);
+var _pfTab = __webpack_require__(6);
 
 var _pfTab2 = _interopRequireDefault(_pfTab);
 
-var _pfTabs = __webpack_require__(6);
+var _pfTabs = __webpack_require__(7);
 
 var _pfTabs2 = _interopRequireDefault(_pfTabs);
 
-var _pfTab3 = __webpack_require__(7);
+var _pfTab3 = __webpack_require__(8);
 
 var _pfTab4 = _interopRequireDefault(_pfTab3);
 
@@ -459,7 +459,7 @@ window.customElements.define('pf-tabs', PfTabs);
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -473,7 +473,7 @@ exports.default = PfTabTemplate;
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -487,7 +487,7 @@ exports.default = PfTabsTemplate;
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -500,7 +500,7 @@ exports.PfTab = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _panel = __webpack_require__(8);
+var _panel = __webpack_require__(9);
 
 var _panel2 = _interopRequireDefault(_panel);
 
@@ -645,7 +645,7 @@ window.customElements.define('pf-tab', PfTab);
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

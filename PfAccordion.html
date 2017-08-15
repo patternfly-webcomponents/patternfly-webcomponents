@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: PFTemplateRepeater</title>
+	<title>Documentation Class: PfAccordion</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,17 +65,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: PFTemplateRepeater</h1>
+	<h1 class="page-title">Class: PfAccordion</h1>
 <section>
 
 <header>
     
         <h2>
-        PFTemplateRepeater
+        PfAccordion
         </h2>
         
-            <div class="class-description"><p><b>&lt;pf-template-repeater&gt;</b> element for Patternfly Web Components</p>
-<p>This is a fork of a template-repeater: <a href="http://github.com/Nevraeka/template-repeater">http://github.com/Nevraeka/template-repeater</a></p></div>
+            <div class="class-description"><p><b>&lt;pf-accordion&gt;</b> element for Patternfly Web Components</p></div>
         
     
 </header>
@@ -87,12 +86,16 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="PFTemplateRepeater"><span class="type-signature"></span>new PFTemplateRepeater()</h4>
+    <h4 class="name" id="PfAccordion"><span class="type-signature"></span>new PfAccordion()</h4>
     
     
 </dt>
 <dd>
 
+    
+    <div class="description">
+        <p>Called when an instance of the element is created</p>
+    </div>
     
 
     
@@ -132,13 +135,13 @@
 
         <tr>
             
-                <td class="name"><code>content</code></td>
+                <td class="name"><code>fixedHeight</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Boolean</span>
 
 
 
@@ -149,7 +152,7 @@
 
             
 
-            <td class="description last"><p>the json stringified content</p></td>
+            <td class="description last"><p>Whether the accrodion is a fixed-height accordion</p></td>
         </tr>
 
     
@@ -211,7 +214,36 @@
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-xml">
-&lt;pf-template-repeater id=&quot;example1-content&quot; content=&#x27;[{&quot;name&quot;: &quot;Big Bird&quot;, &quot;address&quot;: &quot;1 Seaseme Street&quot;}]&#x27;&gt;</pre>
+&lt;pf-accordion&gt;
+  &lt;pf-accordion-panel&gt;
+    &lt;pf-accordion-heading&gt;
+      &lt;h4 class=&quot;panel-title&quot;&gt;
+        &lt;a role=&quot;button&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+          Collapsible Group Item #1
+        &lt;/a&gt;
+      &lt;/h4&gt;
+    &lt;/pf-accordion-heading&gt;
+    &lt;pf-accordion-template open&gt;
+      &lt;pf-accordion-body&gt;
+        Collapse CONTENT 1
+      &lt;/pf-accordion-body&gt;
+    &lt;/pf-accordion-template&gt;
+  &lt;/pf-accordion-panel&gt;
+  &lt;pf-accordion-panel class=&quot;panel panel-primary&quot;&gt;
+    &lt;pf-accordion-heading&gt;
+      &lt;h4 class=&quot;panel-title&quot;&gt;
+        &lt;a role=&quot;button&quot; data-toggle=&quot;collapse&quot; href=&quot;#&quot;&gt;
+          Collapsible Group Item #2
+        &lt;/a&gt;
+      &lt;/h4&gt;
+    &lt;/pf-accordion-heading&gt;
+    &lt;pf-accordion-template&gt;
+      &lt;pf-accordion-body&gt;
+        Collapse CONTENT 2
+      &lt;/pf-accordion-body&gt;
+    &lt;/pf-accordion-template&gt;
+  &lt;/pf-accordion-panel&gt;
+&lt;/pf-accordion&gt;</pre>
 
 
     
@@ -415,7 +447,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="render"><span class="type-signature"></span>render(val)</h4>
+    <h4 class="name" id="connectedCallback"><span class="type-signature"></span>connectedCallback()</h4>
     
     
 </dt>
@@ -423,7 +455,7 @@
 
     
     <div class="description">
-        <p>Renders the &lt;pf-template&gt; using PFTemplateRepeater</p>
+        <p>Called when an instance was inserted into the document</p>
     </div>
     
 
@@ -433,55 +465,83 @@
 
     
     
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The json content</p></td>
-        </tr>
 
     
-    </tbody>
-</table>
+<dl class="details">
+    
 
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="disconnectedCallback"><span class="type-signature"></span>disconnectedCallback()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Called when the element is removed from the DOM</p>
+    </div>
+    
+
+    
+
+    
+
+    
     
 
     
@@ -589,7 +649,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on August 15th 2017, 3:05:06 pm
+		on August 15th 2017, 3:05:05 pm
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

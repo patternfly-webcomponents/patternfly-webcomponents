@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Class: PFTemplateRepeater</title>
+	<title>Documentation Class: PfAccordionTemplate</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,17 +65,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: PFTemplateRepeater</h1>
+	<h1 class="page-title">Class: PfAccordionTemplate</h1>
 <section>
 
 <header>
     
         <h2>
-        PFTemplateRepeater
+        PfAccordionTemplate
         </h2>
         
-            <div class="class-description"><p><b>&lt;pf-template-repeater&gt;</b> element for Patternfly Web Components</p>
-<p>This is a fork of a template-repeater: <a href="http://github.com/Nevraeka/template-repeater">http://github.com/Nevraeka/template-repeater</a></p></div>
+            <div class="class-description"><p><b>&lt;pf-accordion-template&gt;</b> element for Patternfly Web Components</p></div>
         
     
 </header>
@@ -87,12 +86,16 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="PFTemplateRepeater"><span class="type-signature"></span>new PFTemplateRepeater()</h4>
+    <h4 class="name" id="PfAccordionTemplate"><span class="type-signature"></span>new PfAccordionTemplate()</h4>
     
     
 </dt>
 <dd>
 
+    
+    <div class="description">
+        <p>Called when an instance of the element is created</p>
+    </div>
     
 
     
@@ -132,13 +135,13 @@
 
         <tr>
             
-                <td class="name"><code>content</code></td>
+                <td class="name"><code>open</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -149,7 +152,7 @@
 
             
 
-            <td class="description last"><p>the json stringified content</p></td>
+            <td class="description last"><p>indicates if accordion is expanded</p></td>
         </tr>
 
     
@@ -208,13 +211,6 @@
     
 
     
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-xml">
-&lt;pf-template-repeater id=&quot;example1-content&quot; content=&#x27;[{&quot;name&quot;: &quot;Big Bird&quot;, &quot;address&quot;: &quot;1 Seaseme Street&quot;}]&#x27;&gt;</pre>
-
-
-    
 </dd>
 
     
@@ -231,11 +227,351 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".observedAttributes">
+    <h4 id=".observedAttributes"><span class="type-signature">&lt;static> </span>observedAttributes<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Returns a list of attributes on which we are interested to track changes</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="open">
+    <h4 id="open"><span class="type-signature"></span>open<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Set the display state of the panel</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="open">
+    <h4 id="open"><span class="type-signature"></span>open<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Get the display state of the panel</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
 
     
         <h3 class="subsection-title">Methods</h3>
 
         <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="_collapse"><span class="type-signature"></span>_collapse()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Hide the panel</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="_expand"><span class="type-signature"></span>_expand()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Make the panel visible</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -415,7 +751,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="render"><span class="type-signature"></span>render(val)</h4>
+    <h4 class="name" id="connectedCallback"><span class="type-signature"></span>connectedCallback()</h4>
     
     
 </dt>
@@ -423,7 +759,7 @@
 
     
     <div class="description">
-        <p>Renders the &lt;pf-template&gt; using PFTemplateRepeater</p>
+        <p>Called when an instance was inserted into the document</p>
     </div>
     
 
@@ -433,55 +769,83 @@
 
     
     
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The json content</p></td>
-        </tr>
 
     
-    </tbody>
-</table>
+<dl class="details">
+    
 
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toggle"><span class="type-signature"></span>toggle()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Toggle the visiblity of the panel</p>
+    </div>
+    
+
+    
+
+    
+
+    
     
 
     
@@ -589,7 +953,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on August 15th 2017, 3:05:06 pm
+		on August 15th 2017, 3:05:05 pm
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

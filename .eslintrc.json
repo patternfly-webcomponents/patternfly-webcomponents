@@ -41,6 +41,6 @@
     "no-console": 2,
     "no-extra-semi": 2,
     "no-irregular-whitespace": 2,
-    "dot-notation": [2, {"allowPattern": "^[a-z]+(_[a-z]+)+$"}]
+    "dot-notation": [1, {"allowPattern": "^[a-z]+(_[a-z]+)+$"}]
   }
 }

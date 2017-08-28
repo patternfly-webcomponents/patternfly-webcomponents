@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 22:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -322,14 +322,14 @@ window.customElements.define('pf-dropdown', PfDropdown);
 
 /***/ }),
 
-/***/ 41:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /* pf-dropdown webcomponent */
-__webpack_require__(22);
+__webpack_require__(23);
 
 /***/ })
 

@@ -21,6 +21,7 @@ module.exports = {
     'pf-utilization-bar-chart': './src/pf-utilization-bar-chart/index',
     'pf-modal': './src/pf-modal/index',
     'pf-popover': './src/pf-popover/index',
+    'pf-donut-chart': './src/pf-donut-chart/index',
     'pf-utils': './src/pf-utils/index',
     'index': './src/index'
   },
@@ -41,6 +42,7 @@ module.exports = {
       path.join(__dirname, "src/pf-utilization-bar-chart"),
       path.join(__dirname, "src/pf-modal"),
       path.join(__dirname, "src/pf-popover"),
+      path.join(__dirname, "src/pf-donut-chart"),
       path.join(__dirname, "src/pf-utils")
     ]
   },

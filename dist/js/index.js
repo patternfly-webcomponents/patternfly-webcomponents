@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 58);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -227,7 +227,7 @@ exports.PfAccordionTemplate = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfAccordionBody = __webpack_require__(27);
+var _pfAccordionBody = __webpack_require__(28);
 
 var _pfAccordionBody2 = _interopRequireDefault(_pfAccordionBody);
 
@@ -442,7 +442,8 @@ var PfAccordionTemplate = exports.PfAccordionTemplate = function (_HTMLElement) 
 })();
 
 /***/ }),
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -455,7 +456,7 @@ exports.PfAlert = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfAlert = __webpack_require__(4);
+var _pfAlert = __webpack_require__(5);
 
 var _pfAlert2 = _interopRequireDefault(_pfAlert);
 
@@ -677,7 +678,7 @@ var PfAlert = exports.PfAlert = function (_HTMLElement) {
 window.customElements.define('pf-alert', PfAlert);
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -690,7 +691,7 @@ var PfAlertTemplate = "\n<button type=\"button\" class=\"close hidden\" data-dis
 exports.default = PfAlertTemplate;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -703,15 +704,15 @@ exports.PfTabs = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfTab = __webpack_require__(6);
+var _pfTab = __webpack_require__(7);
 
 var _pfTab2 = _interopRequireDefault(_pfTab);
 
-var _pfTabs = __webpack_require__(7);
+var _pfTabs = __webpack_require__(8);
 
 var _pfTabs2 = _interopRequireDefault(_pfTabs);
 
-var _pfTab3 = __webpack_require__(8);
+var _pfTab3 = __webpack_require__(9);
 
 var _pfTab4 = _interopRequireDefault(_pfTab3);
 
@@ -1072,7 +1073,7 @@ var PfTabs = exports.PfTabs = function (_HTMLElement) {
 window.customElements.define('pf-tabs', PfTabs);
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1085,7 +1086,7 @@ var PfTabTemplate = "\n<li role=\"presentation\">\n  <a href=\"#\" role=\"tab\" 
 exports.default = PfTabTemplate;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1098,7 +1099,7 @@ var PfTabsTemplate = "\n<ul role=\"tablist\"></ul>\n";
 exports.default = PfTabsTemplate;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1111,7 +1112,7 @@ exports.PfTab = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _panel = __webpack_require__(9);
+var _panel = __webpack_require__(10);
 
 var _panel2 = _interopRequireDefault(_panel);
 
@@ -1255,7 +1256,7 @@ var PfTab = exports.PfTab = function (_HTMLElement) {
 window.customElements.define('pf-tab', PfTab);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1268,7 +1269,7 @@ var PfPanelTemplate = "\n<div role=\"tabpanel\"></div>\n";
 exports.default = PfPanelTemplate;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1281,7 +1282,7 @@ exports.PfTooltip = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfTooltip = __webpack_require__(11);
+var _pfTooltip = __webpack_require__(12);
 
 var _pfTooltip2 = _interopRequireDefault(_pfTooltip);
 
@@ -1745,7 +1746,7 @@ var PfTooltip = exports.PfTooltip = function (_HTMLElement) {
 window.customElements.define('pf-tooltip', PfTooltip);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1759,7 +1760,7 @@ var PfTooltipTemplate = "\n<div role=\"tooltip\" class=\"tooltip\">\n    <div cl
 exports.default = PfTooltipTemplate;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1772,11 +1773,11 @@ exports.PfUtilizationBarChart = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfUtilizationBarChartDefault = __webpack_require__(13);
+var _pfUtilizationBarChartDefault = __webpack_require__(14);
 
 var _pfUtilizationBarChartDefault2 = _interopRequireDefault(_pfUtilizationBarChartDefault);
 
-var _pfUtilizationBarChartInline = __webpack_require__(14);
+var _pfUtilizationBarChartInline = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1939,7 +1940,7 @@ var PfUtilizationBarChart = exports.PfUtilizationBarChart = function (_HTMLEleme
 window.customElements.define('pf-utilization-bar-chart', PfUtilizationBarChart);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1952,7 +1953,7 @@ var pfUtilzBarChartDefault = "\n  <div class=\"utilization-bar-chart-pf\">\n    
 exports.default = pfUtilzBarChartDefault;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1965,7 +1966,7 @@ var pfUtilzBarChartInline = "\n  <div class=\"progress-container progress-descri
 exports.inline = pfUtilzBarChartInline;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1980,23 +1981,23 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _pfUtils = __webpack_require__(0);
 
-var _pfModalDialog = __webpack_require__(16);
+var _pfModalDialog = __webpack_require__(17);
 
 var _pfModalDialog2 = _interopRequireDefault(_pfModalDialog);
 
-var _pfModalContent = __webpack_require__(17);
+var _pfModalContent = __webpack_require__(18);
 
 var _pfModalContent2 = _interopRequireDefault(_pfModalContent);
 
-var _pfModalHeader = __webpack_require__(18);
+var _pfModalHeader = __webpack_require__(19);
 
 var _pfModalHeader2 = _interopRequireDefault(_pfModalHeader);
 
-var _pfModalBody = __webpack_require__(20);
+var _pfModalBody = __webpack_require__(21);
 
 var _pfModalBody2 = _interopRequireDefault(_pfModalBody);
 
-var _pfModalFooter = __webpack_require__(21);
+var _pfModalFooter = __webpack_require__(22);
 
 var _pfModalFooter2 = _interopRequireDefault(_pfModalFooter);
 
@@ -2352,7 +2353,7 @@ var PfModal = exports.PfModal = function (_HTMLElement) {
 window.customElements.define('pf-modal', PfModal);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2414,7 +2415,7 @@ var PfModalDialog = exports.PfModalDialog = function (_HTMLElement) {
 window.customElements.define('pf-modal-dialog', PfModalDialog);
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2476,7 +2477,7 @@ var PfModalContent = exports.PfModalContent = function (_HTMLElement) {
 window.customElements.define('pf-modal-content', PfModalContent);
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2491,7 +2492,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _pfUtils = __webpack_require__(0);
 
-var _pfModalHeader = __webpack_require__(19);
+var _pfModalHeader = __webpack_require__(20);
 
 var _pfModalHeader2 = _interopRequireDefault(_pfModalHeader);
 
@@ -2624,7 +2625,7 @@ var PfModalHeader = exports.PfModalHeader = function (_HTMLElement) {
 window.customElements.define('pf-modal-header', PfModalHeader);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2637,7 +2638,7 @@ var PfModalHeaderTemplate = "\n<button type=\"button\" class=\"close pf-hide-mod
 exports.default = PfModalHeaderTemplate;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2695,7 +2696,7 @@ var PfModalBody = exports.PfModalBody = function (_HTMLElement) {
 window.customElements.define('pf-modal-body', PfModalBody);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2887,7 +2888,7 @@ var PfModalFooter = exports.PfModalFooter = function (_HTMLElement) {
 window.customElements.define('pf-modal-footer', PfModalFooter);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3143,7 +3144,7 @@ var PfDropdown = exports.PfDropdown = function (_HTMLElement) {
 window.customElements.define('pf-dropdown', PfDropdown);
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3608,7 +3609,7 @@ var PfTouchspin = exports.PfTouchspin = function (_HTMLElement) {
 window.customElements.define('pf-touchspin', PfTouchspin);
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3621,7 +3622,7 @@ exports.PfAccordion = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfAccordionPanel = __webpack_require__(25);
+var _pfAccordionPanel = __webpack_require__(26);
 
 var _pfAccordionPanel2 = _interopRequireDefault(_pfAccordionPanel);
 
@@ -3950,7 +3951,7 @@ var PfAccordion = exports.PfAccordion = function (_HTMLElement) {
 })();
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3963,7 +3964,7 @@ exports.PfAccordionPanel = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfAccordionHeading = __webpack_require__(26);
+var _pfAccordionHeading = __webpack_require__(27);
 
 var _pfAccordionHeading2 = _interopRequireDefault(_pfAccordionHeading);
 
@@ -4086,7 +4087,7 @@ var PfAccordionPanel = exports.PfAccordionPanel = function (_HTMLElement) {
 })();
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4279,7 +4280,7 @@ var PfAccordionHeading = exports.PfAccordionHeading = function (_HTMLElement) {
 })();
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4329,7 +4330,6 @@ var PfAccordionBody = exports.PfAccordionBody = function (_HTMLElement) {
 })();
 
 /***/ }),
-/* 28 */,
 /* 29 */,
 /* 30 */,
 /* 31 */,
@@ -4338,44 +4338,17 @@ var PfAccordionBody = exports.PfAccordionBody = function (_HTMLElement) {
 /* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/** PF Accordion Component **/
-__webpack_require__(24);
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/** PF Alert Component **/
-__webpack_require__(3);
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/** PF Tabs Component **/
-__webpack_require__(5);
-
-/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-/** PF Tooltip Component **/
-__webpack_require__(10);
+/** PF Accordion Component **/
+__webpack_require__(25);
 
 /***/ }),
 /* 41 */
@@ -4384,8 +4357,8 @@ __webpack_require__(10);
 "use strict";
 
 
-/* pf-dropdown webcomponent */
-__webpack_require__(22);
+/** PF Alert Component **/
+__webpack_require__(4);
 
 /***/ }),
 /* 42 */
@@ -4394,8 +4367,8 @@ __webpack_require__(22);
 "use strict";
 
 
-/* pf-touchspin webcomponent */
-__webpack_require__(23);
+/** PF Tabs Component **/
+__webpack_require__(6);
 
 /***/ }),
 /* 43 */
@@ -4404,8 +4377,8 @@ __webpack_require__(23);
 "use strict";
 
 
-/** PF Utilization Bar Chart **/
-__webpack_require__(12);
+/** PF Tooltip Component **/
+__webpack_require__(11);
 
 /***/ }),
 /* 44 */
@@ -4414,20 +4387,51 @@ __webpack_require__(12);
 "use strict";
 
 
-/** PF Tooltip Component **/
-__webpack_require__(15);
+/* pf-dropdown webcomponent */
+__webpack_require__(23);
 
 /***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/* pf-touchspin webcomponent */
+__webpack_require__(24);
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/** PF Utilization Bar Chart **/
+__webpack_require__(13);
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/** PF Tooltip Component **/
+__webpack_require__(16);
+
+/***/ }),
 /* 48 */,
 /* 49 */,
 /* 50 */,
 /* 51 */,
 /* 52 */,
 /* 53 */,
-/* 54 */
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4437,7 +4441,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(37);
+var _index = __webpack_require__(40);
 
 Object.defineProperty(exports, 'PfAccordion', {
   enumerable: true,
@@ -4446,7 +4450,7 @@ Object.defineProperty(exports, 'PfAccordion', {
   }
 });
 
-var _index2 = __webpack_require__(38);
+var _index2 = __webpack_require__(41);
 
 Object.defineProperty(exports, 'PfAlert', {
   enumerable: true,
@@ -4455,7 +4459,7 @@ Object.defineProperty(exports, 'PfAlert', {
   }
 });
 
-var _index3 = __webpack_require__(41);
+var _index3 = __webpack_require__(44);
 
 Object.defineProperty(exports, 'PfDropdown', {
   enumerable: true,
@@ -4464,7 +4468,7 @@ Object.defineProperty(exports, 'PfDropdown', {
   }
 });
 
-var _index4 = __webpack_require__(44);
+var _index4 = __webpack_require__(47);
 
 Object.defineProperty(exports, 'PfModal', {
   enumerable: true,
@@ -4473,7 +4477,7 @@ Object.defineProperty(exports, 'PfModal', {
   }
 });
 
-var _index5 = __webpack_require__(39);
+var _index5 = __webpack_require__(42);
 
 Object.defineProperty(exports, 'PfTabs', {
   enumerable: true,
@@ -4482,7 +4486,7 @@ Object.defineProperty(exports, 'PfTabs', {
   }
 });
 
-var _index6 = __webpack_require__(40);
+var _index6 = __webpack_require__(43);
 
 Object.defineProperty(exports, 'PfTooltip', {
   enumerable: true,
@@ -4491,7 +4495,7 @@ Object.defineProperty(exports, 'PfTooltip', {
   }
 });
 
-var _index7 = __webpack_require__(42);
+var _index7 = __webpack_require__(45);
 
 Object.defineProperty(exports, 'PfTouchspin', {
   enumerable: true,
@@ -4500,7 +4504,7 @@ Object.defineProperty(exports, 'PfTouchspin', {
   }
 });
 
-var _index8 = __webpack_require__(43);
+var _index8 = __webpack_require__(46);
 
 Object.defineProperty(exports, 'PfUtilizationBarChart', {
   enumerable: true,

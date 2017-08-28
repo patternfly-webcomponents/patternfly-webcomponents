@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -215,7 +215,7 @@ exports.pfUtil = pfUtil;
 
 /***/ }),
 
-/***/ 15:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -230,23 +230,23 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _pfUtils = __webpack_require__(0);
 
-var _pfModalDialog = __webpack_require__(16);
+var _pfModalDialog = __webpack_require__(17);
 
 var _pfModalDialog2 = _interopRequireDefault(_pfModalDialog);
 
-var _pfModalContent = __webpack_require__(17);
+var _pfModalContent = __webpack_require__(18);
 
 var _pfModalContent2 = _interopRequireDefault(_pfModalContent);
 
-var _pfModalHeader = __webpack_require__(18);
+var _pfModalHeader = __webpack_require__(19);
 
 var _pfModalHeader2 = _interopRequireDefault(_pfModalHeader);
 
-var _pfModalBody = __webpack_require__(20);
+var _pfModalBody = __webpack_require__(21);
 
 var _pfModalBody2 = _interopRequireDefault(_pfModalBody);
 
-var _pfModalFooter = __webpack_require__(21);
+var _pfModalFooter = __webpack_require__(22);
 
 var _pfModalFooter2 = _interopRequireDefault(_pfModalFooter);
 
@@ -603,7 +603,7 @@ window.customElements.define('pf-modal', PfModal);
 
 /***/ }),
 
-/***/ 16:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -666,7 +666,7 @@ window.customElements.define('pf-modal-dialog', PfModalDialog);
 
 /***/ }),
 
-/***/ 17:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -729,7 +729,7 @@ window.customElements.define('pf-modal-content', PfModalContent);
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -744,7 +744,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _pfUtils = __webpack_require__(0);
 
-var _pfModalHeader = __webpack_require__(19);
+var _pfModalHeader = __webpack_require__(20);
 
 var _pfModalHeader2 = _interopRequireDefault(_pfModalHeader);
 
@@ -878,7 +878,7 @@ window.customElements.define('pf-modal-header', PfModalHeader);
 
 /***/ }),
 
-/***/ 19:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -892,7 +892,7 @@ exports.default = PfModalHeaderTemplate;
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -951,7 +951,7 @@ window.customElements.define('pf-modal-body', PfModalBody);
 
 /***/ }),
 
-/***/ 21:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1144,14 +1144,14 @@ window.customElements.define('pf-modal-footer', PfModalFooter);
 
 /***/ }),
 
-/***/ 44:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /** PF Tooltip Component **/
-__webpack_require__(15);
+__webpack_require__(16);
 
 /***/ })
 

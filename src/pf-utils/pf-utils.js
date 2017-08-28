@@ -105,6 +105,22 @@ class PfUtil {
     }
     return parentHeight;
   }
+
+  getAttributeOrProperty(element, attribute) {
+    // checks element attributes and then properties
+    // React commonly gives us a node with attributes, when Angular adds it as a property
+    return element.attributes && element.attributes[attribute] ?
+      element.attributes[attribute].value : element[attribute];
+  }
+
+  transcludeChildren(fromElement, toElement) {
+    // transcludes all child elements from the fromElement to the toElement,
+    // retaining all event handlers and attributes/props.
+    // cloneNode and innerHTML will not do this like appendChild (which moves the child element)
+    [...fromElement.childNodes].forEach((child) => {
+      toElement.appendChild(child);
+    });
+  }
 }
 
 let pfUtil = new PfUtil();

@@ -6,6 +6,11 @@
   <link rel="stylesheet" href="../../dist/css/patternfly.css">
   <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
   <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+  <style>
+      .pf-tabrow-contents button {
+        margin-left: 5px;
+      }
+  </style>
 </head>
 
 <body>
@@ -13,41 +18,264 @@
     <div class="page-header">
       <h1>Tabs</h1>
     </div>
-    <pf-tabs>
-      <pf-tab tab-title="Tab One" active="true">
-        <p>Tab one content here</p>
-      </pf-tab>
-      <pf-tab tab-title="Tab Two">
-        <p>Tab two content here</p>
-      </pf-tab>
-    </pf-tabs>
 
     <pf-tabs>
-      <pf-tab tab-title="Tab One" active="true">
-        <pf-tabs class="nav nav-tabs nav-tabs-pf">
-          <pf-tab tab-title="Tab One Secondary Tab One" active="true">
-            <p>Tab One Secondary Tab One content.</p>
-          </pf-tab>
-          <pf-tab tab-title="Tab One Secondary Tab Two">
-            <p>Tab One Secondary Tab Two content.</p>
-          </pf-tab>
-        </pf-tabs>
-      </pf-tab>
-      <pf-tab tab-title="Tab Two">
-        <pf-tabs class="nav nav-tabs nav-tabs-pf">
-          <pf-tab tab-title="Tab Two Secondary Tab One" active="true">
-            <p>Tab Two Secondary Tab One content.</p>
-          </pf-tab>
-          <pf-tab tab-title="Tab Two Secondary Tab Two">
-            <p>Tab Two Secondary Tab Two content.</p>
-          </pf-tab>
-        </pf-tabs>
+      <pf-tab content-id="example-one-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-one-tab-two">Tab Two</pf-tab>
+    </pf-tabs>
+    <pf-tab-content content-id="example-one-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-one-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+
+    <h3>Secondary Tabs</h3>
+    <pf-tabs>
+      <pf-tab content-id="example-two-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-two-tab-two">Tab Two</pf-tab>
+    </pf-tabs>
+    <pf-tab-content content-id="example-two-tab-one">
+      <pf-tabs tabs-class="nav nav-tabs nav-tabs-pf">
+        <pf-tab content-id="example-two-tab-one-secondary-one">Tab One Secondary Tab One</pf-tab>
+        <pf-tab content-id="example-two-tab-one-secondary-two">Tab One Secondary Tab Two</pf-tab>
+      </pf-tabs>
+      <pf-tab-content content-id="example-two-tab-one-secondary-one">
+        <p>tab one secondary tab one content</p>
+      </pf-tab-content>
+      <pf-tab-content content-id="example-two-tab-one-secondary-two">
+        <p>tab one secondary tab two content</p>
+      </pf-tab-content>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-two-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+
+
+    <h3>Justified Tabs</h3>
+    <pf-tabs tabs-class="nav nav-tabs nav-justified">
+      <pf-tab content-id="example-three-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-three-tab-two">Tab Two</pf-tab>
+      <pf-tab content-id="example-three-tab-three">Tab Three</pf-tab>
+    </pf-tabs>
+    <pf-tab-content content-id="example-three-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-three-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-three-tab-three">
+      <p>tab three content </p>
+    </pf-tab-content>
+
+    <h3>Tabs with Dropdowns</h3>
+    <pf-tabs>
+      <pf-tab content-id="example-four-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-four-tab-two">Tab Two</pf-tab>
+      <pf-tab content-id="example-four-tab-three">
+        <pf-dropdown class="dropdown" id="dropdown1">
+          <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Header</li>
+            <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li class="disabled"><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Item 5</a></li>
+          </ul>
+        </pf-dropdown>
       </pf-tab>
     </pf-tabs>
+    <pf-tab-content content-id="example-four-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-four-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-four-tab-three">
+      <p>tab three content </p>
+    </pf-tab-content>
+
+    <h3>Patternfly Styles</h3>
+    <pf-tabs tabs-class="nav nav-tabs nav-tabs-pf">
+      <pf-tab content-id="example-five-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-five-tab-two">Tab Two</pf-tab>
+    </pf-tabs>
+    <pf-tab-content content-id="example-five-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-five-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+
+    <pf-tabs tabs-class="nav nav-tabs nav-tabs-pf nav-justified">
+      <pf-tab content-id="example-six-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-six-tab-two">Tab Two</pf-tab>
+      <pf-tab content-id="example-six-tab-six">Tab Three</pf-tab>
+    </pf-tabs>
+    <pf-tab-content content-id="example-six-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-six-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-six-tab-six">
+      <p>tab three content </p>
+    </pf-tab-content>
+
+    <pf-tabs tabs-class="nav nav-tabs nav-tabs-pf">
+      <pf-tab content-id="example-seven-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-seven-tab-two">Tab Two</pf-tab>
+      <pf-tab content-id="example-seven-tab-three">
+        <pf-dropdown class="dropdown" id="dropdown1">
+          <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Header</li>
+            <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li class="disabled"><a href="#">Item 3</a></li>
+          <li><a href="#">Item 4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Item 5</a></li>
+          </ul>
+        </pf-dropdown>
+      </pf-tab>
+    </pf-tabs>
+    <pf-tab-content content-id="example-seven-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-seven-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-seven-tab-three">
+      <p>tab three content </p>
+    </pf-tab-content>
+
+    <h3>Tab Row Contents</h3>
+    <pf-tabs tabs-class="nav nav-tabs pf-tabrow">
+      <pf-tab content-id="example-eight-tab-one">Tab One</pf-tab>
+      <pf-tab content-id="example-eight-tab-two">Tab Two</pf-tab>
+      <pf-tab-row-contents contents-class="pf-tabrow-contents">
+        <button class="btn btn-default" type="button">Secondary</button>
+        <button class="btn btn-primary" type="button">Primary</button>
+        <button class="btn btn-danger" type="button">Destructive</button>
+      </pf-tab-row-contents>
+    </pf-tabs>
+    <pf-tab-content content-id="example-eight-tab-one">
+      <p> tab one content </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-eight-tab-two">
+      <p>tab two content </p>
+    </pf-tab-content>
+
+    <h3>Changes in Content</h3>
+    <pf-tabs id="dynamicPfTabs" tabs-class="nav nav-tabs pf-tabrow">
+      <pf-tab content-id="example-nine-tab-one">
+        <span id="dynamic-title-one">Tab One</span>
+      </pf-tab>
+      <pf-tab content-id="example-nine-tab-two">
+        <span id="dynamic-title-two">Tab Two</span>
+        <i class="fa fa-bell"></i>
+      </pf-tab>
+      <pf-tab content-id="example-nine-tab-three">
+        <span id="dynamic-title-three">Tab Three</span>
+        <span class="badge">3</span>
+      </pf-tab>
+      <pf-tab-row-contents id="dynamic-tab-row" contents-class="pf-tabrow-contents">
+        <button id="secondary-btn" class="btn btn-default" type="button">Secondary</button>
+        <button id="primary-btn" class="btn btn-primary" type="button">Primary</button>
+        <button id="destructive-btn" class="btn btn-danger" type="button">Destructive</button>
+      </pf-tab-row-contents>
+    </pf-tabs>
+    <pf-tab-content content-id="example-nine-tab-one">
+      <p>
+        <span>Change my titles dynamically. </span>
+        <button id="changeTitles1" class="btn btn-primary"> Click me! </button> 
+      </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-nine-tab-two">
+      <p>
+        <span id="dynamic-content">Change my content dynamically. </span>
+        <button id="changeContent1" class="btn btn-primary"> Click me! </button>
+      </p>
+    </pf-tab-content>
+    <pf-tab-content content-id="example-nine-tab-three">
+      <p>
+        <span>Change my tab row content dynamically. </span>
+        <button id="changeRowContent1" class="btn btn-primary"> Click me! </button>
+      </p>
+    </pf-tab-content>
+
+
+
   </div>
   <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
   <script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
   <script src="../../dist/js/patternfly.js"></script>
+  <script>
+    var dynamicPfTabs = document.getElementById('dynamicPfTabs');
+
+    if (dynamicPfTabs.initialized) {
+      listenForChangeClicks();
+    }
+    else {
+      //wait for initialization
+      dynamicPfTabs.addEventListener('pf-tabs.initialized', function (event) {
+        listenForChangeClicks();
+      });
+    }
+
+    function listenForChangeClicks(){
+      //change title contents
+      var changeTitles1Button = document.getElementById('changeTitles1');
+      var dynamicTitleOne = dynamicPfTabs.querySelector('#dynamic-title-one');
+      var dynamicTitleTwo = dynamicPfTabs.querySelector('#dynamic-title-two');
+      var dynamicTitleThree = dynamicPfTabs.querySelector('#dynamic-title-three');
+      changeTitles1Button.onclick = function(e){
+        dynamicTitleOne.innerHTML = "Tab A";
+        dynamicTitleTwo.innerHTML = "Tab B";
+        dynamicTitleThree.innerHTML = "Tab C";
+      }
+
+      //change tab contents
+      var changeContent1Button = document.getElementById('changeContent1');
+      var dynamicContent = document.getElementById('dynamic-content');
+      changeContent1Button.onclick = function(e){
+        dynamicContent.innerHTML = "Ohhh yea, I like this!";
+      }
+
+      //change tab row contents
+      var changeRowContent1Button = document.getElementById('changeRowContent1');
+      var dynamicTabRow = document.getElementById('dynamic-tab-row');
+      var primaryBtn = document.getElementById('primary-btn');
+      var secondaryBtn = document.getElementById('secondary-btn');
+      var destructiveBtn = document.getElementById('destructive-btn');
+
+      changeRowContent1Button.onclick = function(e){
+        primaryBtn.innerHTML = 'Primary Changed';
+        secondaryBtn.innerHTML = 'Secondary Changed';
+        destructiveBtn.innerHTML = 'Destructive Changed';
+      }
+
+      primaryBtn.onclick = function(e){
+        alert('Primary clicked!');
+      }
+      secondaryBtn.onclick = function(e){
+        alert('Secondary clicked!');
+      }
+      destructiveBtn.onclick = function(e){
+        alert('Destructive clicked!');
+      }
+    }
+
+  </script>
 </body>
 
 </html>

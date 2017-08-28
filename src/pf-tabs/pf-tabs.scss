@@ -1,4 +1,39 @@
-pf-tabs.nav.nav-tabs .nav.nav-tabs-pf {
+pf-tabs ul.nav.nav-tabs li,
+pf-tabs ul.nav.nav-tabs li a {
+  cursor: pointer;
+}
+
+pf-tab-content > *:not(ul):not(pf-tab):not(pf-tabs):not(pf-tab-content) {
+  font-size: 14px;
+  padding: 15px;
+}
+
+pf-tab-content {
+  display: none;
+}
+
+pf-tab-content.active {
+  display: block;
+}
+
+pf-tab {
+  display: none;
+}
+
+pf-tabs pf-dropdown > a {
+  color: #4d5258;
+  &:hover {
+    color: #4d5258;
+    text-decoration: none;
+  }
+}
+
+pf-tabs li.active pf-dropdown > a {
+  color: #0088ce;
+}
+
+// secondary tabs
+pf-tab-content > pf-tabs ul.nav.nav-tabs-pf {
   & > li {
     font-size: 12px;
 
@@ -12,12 +47,20 @@ pf-tabs.nav.nav-tabs .nav.nav-tabs-pf {
   }
 }
 
-pf-tabs.nav.nav-tabs li,
-pf-tabs.nav.nav-tabs li a {
-  cursor: pointer;
+// tab row
+pf-tab-row-contents {
+  display: none;
 }
 
-pf-tab > *:not(ul):not(pf-tab):not(pf-tabs) {
-  font-size: 14px;
-  padding: 15px;
+pf-tabs ul.pf-tabrow {
+  display: flex;
+  flex-wrap: wrap-reverse;
+
+  & > li {
+    float: none;
+  }
+  & > .pf-tabrow-contents {
+    margin-left: auto;
+  }
 }
+

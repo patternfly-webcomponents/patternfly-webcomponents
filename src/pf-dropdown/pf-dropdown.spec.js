@@ -37,7 +37,7 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("disabled button should not open dropdown", function () {
-    let button = customElement.querySelector('.btn');
+    let button = customElement.querySelector('.dropdown-toggle');
     button.classList.add('disabled');
     customElement.toggle();
     expect(button.parentNode.classList.contains('open')).toBe(false);
@@ -46,7 +46,7 @@ describe("Patternfly Dropdown Component Test", function () {
   });
 
   it("should select an element", function () {
-    let buttonText = customElement.querySelector('.btn');
+    let buttonText = customElement.querySelector('.dropdown-toggle');
     let item = customElement.querySelector('ul.dropdown-menu > li:nth-child(2) a');
     let result = false;
     expect(buttonText.innerText).toBe('Dropdown');

@@ -54,3 +54,6 @@ require('pf-chart-utils.js');
 
 /** PF Donut Chart **/
 require('pf-donut-chart.component.js');
+
+/** PF Switch **/
+require('pf-switch.component.js');

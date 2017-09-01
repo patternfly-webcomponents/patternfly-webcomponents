@@ -9,9 +9,11 @@ module.exports = {
     'patternfly': './src/patternfly',
     'pf-accordion': './src/pf-accordion/index',
     'pf-alert': './src/pf-alert/index',
+    'pf-dropdown': './src/pf-dropdown/index',
     'pf-i18n': './src/pf-i18n/index',
     'pf-hello': './src/pf-hello/index',
     'pf-list-view': './src/pf-list-view/index',
+    'pf-switch': './src/pf-switch/index',
     'pf-template-repeater': './src/pf-template-repeater/index',
     'pf-template': './src/pf-template/index',
     'pf-tabs': './src/pf-tabs/index',
@@ -31,9 +33,11 @@ module.exports = {
     modules: [
       path.join(__dirname, "src/pf-accordion"),
       path.join(__dirname, "src/pf-alert"),
+      path.join(__dirname, "src/pf-dropdown"),
       path.join(__dirname, "src/pf-hello"),
       path.join(__dirname, "src/pf-i18n"),
       path.join(__dirname, "src/pf-list-view"),
+      path.join(__dirname, "src/pf-switch"),
       path.join(__dirname, "src/pf-template-repeater"),
       path.join(__dirname, "src/pf-template"),
       path.join(__dirname, "src/pf-tabs"),
@@ -77,3 +81,4 @@ module.exports = {
     ]
   }
 };
+

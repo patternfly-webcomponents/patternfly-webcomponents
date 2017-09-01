@@ -1,0 +1,36 @@
+pf-switch {
+  display: inline;
+
+  .pf-switch-state {
+    display: none;
+  }
+
+  > .bootstrap-switch {
+    overflow: hidden;
+    > .bootstrap-switch-container {
+      width: 150%;
+      margin-left: -50%;
+      display: table;
+      border-collapse: separate;
+      > span {
+        width: 33.334%;
+      }
+    }
+    &.bootstrap-switch.bootstrap-switch-on {
+      > .bootstrap-switch-container {
+        margin-left: 0%;
+      }
+    }
+
+    &.bootstrap-switch.bootstrap-switch-indeterminate {
+      > .bootstrap-switch-container {
+        margin-left: -25%;
+      }
+    }
+  }
+}
+
+pf-switch[hidden] {
+  display: none;
+}
+

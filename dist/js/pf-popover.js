@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 55);
+/******/ 	return __webpack_require__(__webpack_require__.s = 66);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -115,6 +115,11 @@ var PfUtil = function () {
       }
     }
   }, {
+    key: 'hasClass',
+    value: function hasClass(el, c) {
+      return (' ' + el.className + ' ').indexOf(' ' + c + ' ') > -1;
+    }
+  }, {
     key: 'getClosest',
     value: function getClosest(el, s) {
       //el is the element and s the selector of the closest item to find
@@ -130,7 +135,7 @@ var PfUtil = function () {
           }
         } else if (former === '.') {
           // If selector is a class
-          if (new RegExp(latter).test(el.className)) {
+          if (this.hasClass(el, latter)) {
             return el;
           }
         } else {
@@ -166,6 +171,28 @@ var PfUtil = function () {
     value: function reflow(el) {
       // force reflow
       return el.offsetHeight;
+    }
+  }, {
+    key: 'getArrayFromNodeList',
+    value: function getArrayFromNodeList(els) {
+      var result = [];
+      if (els && els.length > 0) {
+        result = Array.prototype.slice.call(els);
+      }
+      return result;
+    }
+  }, {
+    key: 'removeNodes',
+    value: function removeNodes(els) {
+      if (els) {
+        if (typeof els.length === 'undefined') {
+          els.parentNode.removeChild(els);
+        } else if (els.length > 0) {
+          this.getArrayFromNodeList(els).forEach(function (el) {
+            el.parentNode.removeChild(el);
+          });
+        }
+      }
     }
   }, {
     key: 'once',
@@ -215,7 +242,7 @@ exports.pfUtil = pfUtil;
 
 /***/ }),
 
-/***/ 37:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -228,7 +255,7 @@ exports.PfPopover = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfPopover = __webpack_require__(38);
+var _pfPopover = __webpack_require__(48);
 
 var _pfPopover2 = _interopRequireDefault(_pfPopover);
 
@@ -763,7 +790,7 @@ window.customElements.define('pf-popover', PfPopover);
 
 /***/ }),
 
-/***/ 38:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -778,14 +805,14 @@ exports.default = PfPopoverTemplate;
 
 /***/ }),
 
-/***/ 55:
+/***/ 66:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /** PF Popover Component **/
-__webpack_require__(37);
+__webpack_require__(47);
 
 /***/ })
 

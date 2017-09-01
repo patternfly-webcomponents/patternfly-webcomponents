@@ -62,6 +62,35 @@ pf-tooltip {
 pf-dropdown {
   display: block; }
 
+pf-notification-drawer-accordion-panel {
+  display: block; }
+  pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse {
+    display: block;
+    position: relative;
+    height: 0px;
+    overflow: hidden;
+    -webkit-transition-property: height;
+    transition-property: height;
+    -webkit-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease; }
+    pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse.uncollapsed {
+      height: 326px; }
+      pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse.uncollapsed.empty-view {
+        height: 127px; }
+        pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse.uncollapsed.empty-view pf-notification-drawer-accordion-panel-body {
+          height: 0px; }
+    pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse pf-notification-drawer-accordion-panel-body {
+      display: block;
+      height: 284px;
+      overflow-y: auto; }
+    pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse .blank-slate-pf {
+      position: absolute;
+      top: 0px;
+      bottom: 1px;
+      width: 100%; }
+
 pf-modal[open] {
   display: block; }
 

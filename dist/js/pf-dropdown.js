@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -322,7 +322,7 @@ window.customElements.define('pf-dropdown', PfDropdown);
 
 /***/ }),
 
-/***/ 44:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

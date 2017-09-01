@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 58);
+/******/ 	return __webpack_require__(__webpack_require__.s = 69);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -114,6 +114,11 @@ var PfUtil = function () {
       }
     }
   }, {
+    key: 'hasClass',
+    value: function hasClass(el, c) {
+      return (' ' + el.className + ' ').indexOf(' ' + c + ' ') > -1;
+    }
+  }, {
     key: 'getClosest',
     value: function getClosest(el, s) {
       //el is the element and s the selector of the closest item to find
@@ -129,7 +134,7 @@ var PfUtil = function () {
           }
         } else if (former === '.') {
           // If selector is a class
-          if (new RegExp(latter).test(el.className)) {
+          if (this.hasClass(el, latter)) {
             return el;
           }
         } else {
@@ -165,6 +170,28 @@ var PfUtil = function () {
     value: function reflow(el) {
       // force reflow
       return el.offsetHeight;
+    }
+  }, {
+    key: 'getArrayFromNodeList',
+    value: function getArrayFromNodeList(els) {
+      var result = [];
+      if (els && els.length > 0) {
+        result = Array.prototype.slice.call(els);
+      }
+      return result;
+    }
+  }, {
+    key: 'removeNodes',
+    value: function removeNodes(els) {
+      if (els) {
+        if (typeof els.length === 'undefined') {
+          els.parentNode.removeChild(els);
+        } else if (els.length > 0) {
+          this.getArrayFromNodeList(els).forEach(function (el) {
+            el.parentNode.removeChild(el);
+          });
+        }
+      }
     }
   }, {
     key: 'once',
@@ -4341,7 +4368,17 @@ var PfAccordionBody = exports.PfAccordionBody = function (_HTMLElement) {
 /* 37 */,
 /* 38 */,
 /* 39 */,
-/* 40 */
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4351,7 +4388,7 @@ var PfAccordionBody = exports.PfAccordionBody = function (_HTMLElement) {
 __webpack_require__(25);
 
 /***/ }),
-/* 41 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4361,7 +4398,7 @@ __webpack_require__(25);
 __webpack_require__(4);
 
 /***/ }),
-/* 42 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4371,7 +4408,7 @@ __webpack_require__(4);
 __webpack_require__(6);
 
 /***/ }),
-/* 43 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4381,7 +4418,7 @@ __webpack_require__(6);
 __webpack_require__(11);
 
 /***/ }),
-/* 44 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4391,7 +4428,7 @@ __webpack_require__(11);
 __webpack_require__(23);
 
 /***/ }),
-/* 45 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4401,7 +4438,7 @@ __webpack_require__(23);
 __webpack_require__(24);
 
 /***/ }),
-/* 46 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4411,7 +4448,7 @@ __webpack_require__(24);
 __webpack_require__(13);
 
 /***/ }),
-/* 47 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4421,17 +4458,18 @@ __webpack_require__(13);
 __webpack_require__(16);
 
 /***/ }),
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4441,7 +4479,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(40);
+var _index = __webpack_require__(50);
 
 Object.defineProperty(exports, 'PfAccordion', {
   enumerable: true,
@@ -4450,7 +4488,7 @@ Object.defineProperty(exports, 'PfAccordion', {
   }
 });
 
-var _index2 = __webpack_require__(41);
+var _index2 = __webpack_require__(51);
 
 Object.defineProperty(exports, 'PfAlert', {
   enumerable: true,
@@ -4459,7 +4497,7 @@ Object.defineProperty(exports, 'PfAlert', {
   }
 });
 
-var _index3 = __webpack_require__(44);
+var _index3 = __webpack_require__(54);
 
 Object.defineProperty(exports, 'PfDropdown', {
   enumerable: true,
@@ -4468,7 +4506,7 @@ Object.defineProperty(exports, 'PfDropdown', {
   }
 });
 
-var _index4 = __webpack_require__(47);
+var _index4 = __webpack_require__(57);
 
 Object.defineProperty(exports, 'PfModal', {
   enumerable: true,
@@ -4477,7 +4515,7 @@ Object.defineProperty(exports, 'PfModal', {
   }
 });
 
-var _index5 = __webpack_require__(42);
+var _index5 = __webpack_require__(52);
 
 Object.defineProperty(exports, 'PfTabs', {
   enumerable: true,
@@ -4486,7 +4524,7 @@ Object.defineProperty(exports, 'PfTabs', {
   }
 });
 
-var _index6 = __webpack_require__(43);
+var _index6 = __webpack_require__(53);
 
 Object.defineProperty(exports, 'PfTooltip', {
   enumerable: true,
@@ -4495,7 +4533,7 @@ Object.defineProperty(exports, 'PfTooltip', {
   }
 });
 
-var _index7 = __webpack_require__(45);
+var _index7 = __webpack_require__(55);
 
 Object.defineProperty(exports, 'PfTouchspin', {
   enumerable: true,
@@ -4504,7 +4542,7 @@ Object.defineProperty(exports, 'PfTouchspin', {
   }
 });
 
-var _index8 = __webpack_require__(46);
+var _index8 = __webpack_require__(56);
 
 Object.defineProperty(exports, 'PfUtilizationBarChart', {
   enumerable: true,

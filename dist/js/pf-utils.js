@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 57);
+/******/ 	return __webpack_require__(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -115,6 +115,11 @@ var PfUtil = function () {
       }
     }
   }, {
+    key: 'hasClass',
+    value: function hasClass(el, c) {
+      return (' ' + el.className + ' ').indexOf(' ' + c + ' ') > -1;
+    }
+  }, {
     key: 'getClosest',
     value: function getClosest(el, s) {
       //el is the element and s the selector of the closest item to find
@@ -130,7 +135,7 @@ var PfUtil = function () {
           }
         } else if (former === '.') {
           // If selector is a class
-          if (new RegExp(latter).test(el.className)) {
+          if (this.hasClass(el, latter)) {
             return el;
           }
         } else {
@@ -166,6 +171,28 @@ var PfUtil = function () {
     value: function reflow(el) {
       // force reflow
       return el.offsetHeight;
+    }
+  }, {
+    key: 'getArrayFromNodeList',
+    value: function getArrayFromNodeList(els) {
+      var result = [];
+      if (els && els.length > 0) {
+        result = Array.prototype.slice.call(els);
+      }
+      return result;
+    }
+  }, {
+    key: 'removeNodes',
+    value: function removeNodes(els) {
+      if (els) {
+        if (typeof els.length === 'undefined') {
+          els.parentNode.removeChild(els);
+        } else if (els.length > 0) {
+          this.getArrayFromNodeList(els).forEach(function (el) {
+            el.parentNode.removeChild(el);
+          });
+        }
+      }
     }
   }, {
     key: 'once',
@@ -449,7 +476,7 @@ exports.pfChartUtil = pfChartUtil;
 
 /***/ }),
 
-/***/ 57:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

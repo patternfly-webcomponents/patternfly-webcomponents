@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -93,7 +93,7 @@ window.customElements.define("pf-template", PFTemplate);
 
 /***/ }),
 
-/***/ 54:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

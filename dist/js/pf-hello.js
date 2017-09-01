@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 51);
+/******/ 	return __webpack_require__(__webpack_require__.s = 61);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -119,7 +119,7 @@ exports.i18n = i18n;
 
 /***/ }),
 
-/***/ 35:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -132,7 +132,7 @@ exports.PfHello = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _pfHello = __webpack_require__(36);
+var _pfHello = __webpack_require__(46);
 
 var _pfHello2 = _interopRequireDefault(_pfHello);
 
@@ -246,7 +246,7 @@ window.customElements.define('pf-hello', PfHello);
 
 /***/ }),
 
-/***/ 36:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -260,14 +260,14 @@ exports.default = PfHelloTemplate;
 
 /***/ }),
 
-/***/ 51:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /** PF Hello **/
-__webpack_require__(35);
+__webpack_require__(45);
 
 /***/ })
 

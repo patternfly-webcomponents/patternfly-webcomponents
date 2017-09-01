@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 56);
+/******/ 	return __webpack_require__(__webpack_require__.s = 67);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -245,7 +245,7 @@ exports.pfChartUtil = pfChartUtil;
 
 /***/ }),
 
-/***/ 39:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -711,14 +711,14 @@ window.customElements.define('pf-donut-chart', PfDonutChart);
 
 /***/ }),
 
-/***/ 56:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 /* pf-donut-chart webcomponent */
-__webpack_require__(39);
+__webpack_require__(49);
 
 /***/ })
 

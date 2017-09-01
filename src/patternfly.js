@@ -25,6 +25,9 @@ require('pf-utilization-bar-chart.component.js');
 /** PF Modal Component **/
 require('pf-modal.component.js');
 
+/** PF Notification Drawer **/
+require('pf-notification-drawer.component.js');
+
 /** PF Utils **/
 require('pf-utils.js');
 

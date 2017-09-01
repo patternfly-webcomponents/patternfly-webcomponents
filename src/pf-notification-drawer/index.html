@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+  <title>pf-notification-drawer example</title>
+  <link rel="stylesheet" href="../../dist/css/patternfly.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="../../dist/css/patternfly-webcomponents.css">
+  <link rel="import" href="notification-samples.html">
+</head>
+<body style="height: 700px;">
+<div class="container" style="position: relative;">
+  <div class="page-header">
+    <h1>Notification Drawer</h1>
+  </div>
+
+  <nav class="navbar navbar-pf-vertical">
+    <div class="navbar-header">
+      <a class="navbar-brand">
+        PatternFly Enterprise Application
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right navbar-iconic">
+        <li>
+          <a class="nav-item-iconic" id="btn-toggle-notification-drawer">
+            <span class="fa fa-bell" title="Notifications"></span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-item-iconic">
+            <span title="Help" class="fa pficon-help"></span>
+            <span class="caret"></span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-item-iconic">
+            <span title="Username" class="fa pficon-user"></span>
+            Brian Johnson <span class="caret"></span>
+          </a>
+        </li>
+      </ul>
+      <pf-notification-drawer targetSelector="#btn-toggle-notification-drawer">
+        <pf-notification-drawer-header drawerTitle="Notifications Drawer"></pf-notification-drawer-header>
+        <pf-notification-drawer-accordion>
+          <pf-notification-drawer-accordion-panel panelTitle="Notification Tab 1">
+          <pf-notification-drawer-accordion-panel-collapse>
+            <pf-notification-drawer-accordion-panel-body></pf-notification-drawer-accordion-panel-body>
+          </pf-notification-drawer-accordion-panel-collapse>
+          </pf-notification-drawer-accordion-panel>
+          <pf-notification-drawer-accordion-panel panelTitle="Notification Tab 2">
+            <pf-notification-drawer-accordion-panel-collapse>
+              <pf-notification-drawer-accordion-panel-body></pf-notification-drawer-accordion-panel-body>
+            </pf-notification-drawer-accordion-panel-collapse>
+          </pf-notification-drawer-accordion-panel>
+          <pf-notification-drawer-accordion-panel panelTitle="Notification Tab 3">
+            <pf-notification-drawer-accordion-panel-collapse>
+              <pf-notification-drawer-accordion-panel-body></pf-notification-drawer-accordion-panel-body>
+            </pf-notification-drawer-accordion-panel-collapse>
+          </pf-notification-drawer-accordion-panel>
+        </pf-notification-drawer-accordion>
+      </pf-notification-drawer>
+    </nav>
+  </nav>
+  <label style="margin-top: 100px;">Events: </label>
+  <br/>
+  <textarea id="console" rows="15" cols="60" readonly style="resize: none;"></textarea>
+
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.0/webcomponents-lite.js"></script>
+<script src="//rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+<script type="text/javascript">
+  (function() {
+    var nativeSupportHI = true;
+    var notificationSamples = document.querySelector('link[rel="import"]').import;
+
+    if (notificationSamples) {
+      insertNotifications();
+    } else {
+      nativeSupportHI = false;
+    }
+
+    function insertNotifications() {
+      var panels = document.querySelectorAll('pf-notification-drawer-accordion-panel-body');
+      var samples = notificationSamples.querySelectorAll('.drawer-pf-notification');
+      Array.prototype.slice.call(panels).forEach(function (panel, index) {
+        if (index === 0) {
+          Array.prototype.slice.call(samples).forEach(function (sample) {
+            panel.appendChild(sample.cloneNode(true));
+          });
+        } else {
+          var count = 0;
+          do {
+            Array.prototype.slice.call(samples).forEach(function (sample) {
+              panel.appendChild(sample.cloneNode(true));
+            });
+            count++;
+          } while (count < 3);
+        }
+      });
+    }
+
+    window.addEventListener('HTMLImportsLoaded', function() {
+      if (!nativeSupportHI) {
+        notificationSamples = document.querySelector('link[rel="import"]').import;
+        insertNotifications();
+      }
+    });
+
+    function monitorDrawerEvents (e) {
+      var message = e.type + ' fired\n';
+      if (e.type.indexOf('markallread') > 0) {
+        message += '-- all the notifications of ' + e.detail.source.panelTitle + ' are read --\n';
+      } else if (e.type.indexOf('clearall') > 0) {
+        e.detail.source.querySelector('.panel-body').innerHTML = '';
+        message += '-- all the notifications of ' + e.detail.source.panelTitle + ' are removed --\n';
+      }
+      console.value += message;
+    }
+
+    var drawer = document.querySelector('pf-notification-drawer');
+    var console = document.querySelector('#console');
+    drawer.addEventListener('pf-notification-drawer.initialized', monitorDrawerEvents, false);
+    drawer.addEventListener('pf-notification-drawer.markallread', monitorDrawerEvents, false);
+    drawer.addEventListener('pf-notification-drawer.clearall', monitorDrawerEvents, false);
+
+  }());
+</script>
+<script src="../../dist/js/patternfly.js"></script>
+</body>
+</html>

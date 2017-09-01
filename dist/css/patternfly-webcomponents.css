@@ -1,0 +1,108 @@
+pf-accordion,
+pf-accordion-panel,
+pf-accordion-heading,
+pf-accordion-template,
+pf-accordion-body {
+  display: block; }
+  pf-accordion .hidden,
+  pf-accordion-panel .hidden,
+  pf-accordion-heading .hidden,
+  pf-accordion-template .hidden,
+  pf-accordion-body .hidden {
+    display: none; }
+
+pf-accordion-template {
+  position: relative;
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-duration: 0.35s;
+  transition-timing-function: ease; }
+  pf-accordion-template.collapsing {
+    height: 0; }
+  pf-accordion-template.collapsing, pf-accordion-template.collapse {
+    display: block;
+    height: 0; }
+  pf-accordion-template.collapse.in {
+    height: unset; }
+
+pf-alert {
+  display: block; }
+  pf-alert .hidden {
+    display: none; }
+
+pf-tabs.nav.nav-tabs .nav.nav-tabs-pf > li {
+  font-size: 12px; }
+  pf-tabs.nav.nav-tabs .nav.nav-tabs-pf > li:first-child > a {
+    padding-left: 15px; }
+    pf-tabs.nav.nav-tabs .nav.nav-tabs-pf > li:first-child > a:before {
+      left: 15px !important; }
+
+pf-tabs.nav.nav-tabs li,
+pf-tabs.nav.nav-tabs li a {
+  cursor: pointer; }
+
+pf-tab > *:not(ul):not(pf-tab):not(pf-tabs) {
+  font-size: 14px;
+  padding: 15px; }
+
+pf-tooltip {
+  display: none; }
+
+.label-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  display: block; }
+
+.doc-bottom-label {
+  position: relative;
+  top: -16px;
+  left: 94px; }
+
+pf-dropdown {
+  display: block; }
+
+pf-notification-drawer-accordion-panel {
+  display: block; }
+  pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse {
+    display: block;
+    position: relative;
+    height: 0px;
+    overflow: hidden;
+    -webkit-transition-property: height;
+    transition-property: height;
+    -webkit-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease; }
+    pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse.uncollapsed {
+      height: 326px; }
+      pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse.uncollapsed.empty-view {
+        height: 127px; }
+        pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse.uncollapsed.empty-view pf-notification-drawer-accordion-panel-body {
+          height: 0px; }
+    pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse pf-notification-drawer-accordion-panel-body {
+      display: block;
+      height: 284px;
+      overflow-y: auto; }
+    pf-notification-drawer-accordion-panel pf-notification-drawer-accordion-panel-collapse .blank-slate-pf {
+      position: absolute;
+      top: 0px;
+      bottom: 1px;
+      width: 100%; }
+
+pf-modal[open] {
+  display: block; }
+
+pf-modal-dialog,
+pf-modal-content,
+pf-modal-header,
+pf-modal-body,
+pf-modal-footer {
+  display: block; }
+
+pf-modal-header .modal-title {
+  display: inline-block; }
+
+pf-popover {
+  display: none; }
